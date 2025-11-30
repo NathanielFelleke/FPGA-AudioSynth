@@ -1,0 +1,26 @@
+# ==========================================================
+# IP Repository Git Ignore
+# For custom IP cores, we track most files since they
+# define the IP interface and functionality.
+# ==========================================================
+
+# Vivado-generated logs & reports
+*.log
+*.jou
+
+# Temporary files
+*.temp
+*.tmp
+*.backup*
+
+# Lock files
+*.lock
+
+# Vivado crash dumps
+vivado_*_crash.log
+
+# IP packager temporary files
+.Xil/
+managed_ip_project/
+
+# Keep everything else - custom IP files should be committed

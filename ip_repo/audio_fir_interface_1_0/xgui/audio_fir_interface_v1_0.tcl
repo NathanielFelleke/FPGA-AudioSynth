@@ -11,6 +11,24 @@ proc init_gui { IPINST } {
 
 }
 
+proc update_PARAM_VALUE.COEFF_WIDTH { PARAM_VALUE.COEFF_WIDTH } {
+	# Procedure called to update COEFF_WIDTH when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.COEFF_WIDTH { PARAM_VALUE.COEFF_WIDTH } {
+	# Procedure called to validate COEFF_WIDTH
+	return true
+}
+
+proc update_PARAM_VALUE.NUM_COEFFS { PARAM_VALUE.NUM_COEFFS } {
+	# Procedure called to update NUM_COEFFS when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.NUM_COEFFS { PARAM_VALUE.NUM_COEFFS } {
+	# Procedure called to validate NUM_COEFFS
+	return true
+}
+
 proc update_PARAM_VALUE.C_S00_AXI_DATA_WIDTH { PARAM_VALUE.C_S00_AXI_DATA_WIDTH } {
 	# Procedure called to update C_S00_AXI_DATA_WIDTH when any of the dependent parameters in the arguments change
 }
@@ -56,5 +74,15 @@ proc update_MODELPARAM_VALUE.C_S00_AXI_DATA_WIDTH { MODELPARAM_VALUE.C_S00_AXI_D
 proc update_MODELPARAM_VALUE.C_S00_AXI_ADDR_WIDTH { MODELPARAM_VALUE.C_S00_AXI_ADDR_WIDTH PARAM_VALUE.C_S00_AXI_ADDR_WIDTH } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.C_S00_AXI_ADDR_WIDTH}] ${MODELPARAM_VALUE.C_S00_AXI_ADDR_WIDTH}
+}
+
+proc update_MODELPARAM_VALUE.NUM_COEFFS { MODELPARAM_VALUE.NUM_COEFFS PARAM_VALUE.NUM_COEFFS } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.NUM_COEFFS}] ${MODELPARAM_VALUE.NUM_COEFFS}
+}
+
+proc update_MODELPARAM_VALUE.COEFF_WIDTH { MODELPARAM_VALUE.COEFF_WIDTH PARAM_VALUE.COEFF_WIDTH } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.COEFF_WIDTH}] ${MODELPARAM_VALUE.COEFF_WIDTH}
 }
 

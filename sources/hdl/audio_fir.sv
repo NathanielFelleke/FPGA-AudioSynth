@@ -1,5 +1,5 @@
 module audio_fir #(
-    parameter DATA_WIDTH
+    parameter DATA_WIDTH = 32
     parameter NUM_COEFFS = 64
     parameter COEFF_WIDTH = 16
 )

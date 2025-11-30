@@ -11,7 +11,9 @@
 
 		// Parameters of Axi Slave Bus Interface S00_AXI
 		parameter integer C_S00_AXI_DATA_WIDTH	= 32,
-		parameter integer C_S00_AXI_ADDR_WIDTH	= 9
+		parameter integer C_S00_AXI_ADDR_WIDTH	= 9,
+		parameter integer NUM_COEFFS = 64,
+		parameter integer COEFF_WIDTH = 16
 	)
 	(
 		// Users to add ports here
@@ -41,12 +43,17 @@
 		output wire [C_S00_AXI_DATA_WIDTH-1 : 0] s00_axi_rdata,
 		output wire [1 : 0] s00_axi_rresp,
 		output wire  s00_axi_rvalid,
-		input wire  s00_axi_rready
+		input wire  s00_axi_rready,
+		output wire [NUM_COEFFS - 1 :0][COEFF_WIDTH-1:0] coeffs,
+        output wire [COEFF_WIDTH-1:0] scaler,
+		output wire enable //used wheter to passthrough or not
 	);
 // Instantiation of Axi Bus Interface S00_AXI
 	audio_fir_interface_slave_lite_v1_0_S00_AXI # ( 
 		.C_S_AXI_DATA_WIDTH(C_S00_AXI_DATA_WIDTH),
-		.C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH)
+		.C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH),
+		.NUM_COEFFS(NUM_COEFFS),
+		.COEFF_WIDTH(COEFF_WIDTH)
 	) audio_fir_interface_slave_lite_v1_0_S00_AXI_inst (
 		.S_AXI_ACLK(s00_axi_aclk),
 		.S_AXI_ARESETN(s00_axi_aresetn),
@@ -68,7 +75,10 @@
 		.S_AXI_RDATA(s00_axi_rdata),
 		.S_AXI_RRESP(s00_axi_rresp),
 		.S_AXI_RVALID(s00_axi_rvalid),
-		.S_AXI_RREADY(s00_axi_rready)
+		.S_AXI_RREADY(s00_axi_rready),
+		.coeffs(coeffs),
+		.scaler(scaler),
+		.enable(enable)
 	);
 
 	// Add user logic here

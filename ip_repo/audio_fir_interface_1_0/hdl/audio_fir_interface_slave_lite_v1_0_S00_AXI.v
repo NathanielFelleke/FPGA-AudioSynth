@@ -87,7 +87,7 @@
 		//custom added to the ip
 		output wire [NUM_COEFFS - 1 :0][COEFF_WIDTH-1:0] coeffs,
         output wire [COEFF_WIDTH-1:0] scaler,
-		output wire enable, //used wheter to passthrough or not
+		output wire enable //used wheter to passthrough or not
 	);
 
 	// AXI4LITE signals
@@ -1072,7 +1072,7 @@
         coeffs_r[1023:1008] = slv_reg63[15:0];
 
         scaler_r = slv_reg64[15:0];
-        ob_r = slv_reg65[0];
+        enable_r = slv_reg65[0];
 	end
 
 	endmodule

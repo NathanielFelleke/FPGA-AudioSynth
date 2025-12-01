@@ -24,7 +24,8 @@
       "multi_voice_adsr_wra_0": "",
       "ilconstant_0": "",
       "ilconstant_1": "",
-      "ilconstant_2": ""
+      "ilconstant_2": "",
+      "effect_mux_wrapper_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -2434,6 +2435,86 @@
       },
       "ilconstant_2": {
         "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0"
+      },
+      "effect_mux_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:effect_mux_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_effect_mux_wrapper_0_0",
+        "xci_path": "ip\\design_1_effect_mux_wrapper_0_0\\design_1_effect_mux_wrapper_0_0.xci",
+        "inst_hier_path": "effect_mux_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "effect_mux_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "sample_valid": {
+            "direction": "I"
+          },
+          "audio_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "audio_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "audio_out_valid": {
+            "direction": "O"
+          },
+          "enable_bitcrush": {
+            "direction": "I"
+          },
+          "enable_delay": {
+            "direction": "I"
+          },
+          "bit_depth": {
+            "direction": "I",
+            "left": "4",
+            "right": "0"
+          },
+          "delay_samples": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "feedback_amount": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2485,6 +2566,18 @@
         "ports": [
           "audio_fir_interface_0/scaler",
           "xpm_cdc_gen_1/src_in"
+        ]
+      },
+      "audio_fir_wrapper_0_data_out": {
+        "ports": [
+          "audio_fir_wrapper_0/data_out",
+          "effect_mux_wrapper_0/audio_in"
+        ]
+      },
+      "audio_fir_wrapper_0_data_out_valid": {
+        "ports": [
+          "audio_fir_wrapper_0/data_out_valid",
+          "effect_mux_wrapper_0/sample_valid"
         ]
       },
       "ilconstant_0_dout": {
@@ -2574,10 +2667,11 @@
           "xpm_cdc_gen_1/src_clk",
           "xpm_cdc_gen_2/dest_clk",
           "xpm_cdc_gen_2/src_clk",
-          "audio_fir_wrapper_0/clk",
           "voice_control_interf_0/s00_axi_aclk",
           "multi_voice_adsr_wra_0/clk",
-          "voice_mixer_wrapper_0/clk"
+          "audio_fir_wrapper_0/clk",
+          "voice_mixer_wrapper_0/clk",
+          "effect_mux_wrapper_0/clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -2591,10 +2685,11 @@
           "rst_ps7_0_100M/peripheral_aresetn",
           "audio_fir_interface_0/s00_axi_aresetn",
           "axi_smc/aresetn",
-          "audio_fir_wrapper_0/rst",
           "voice_control_interf_0/s00_axi_aresetn",
           "multi_voice_adsr_wra_0/rst",
-          "voice_mixer_wrapper_0/rst"
+          "audio_fir_wrapper_0/rst",
+          "voice_mixer_wrapper_0/rst",
+          "effect_mux_wrapper_0/reset"
         ]
       },
       "voice_control_interf_0_attack_time": {

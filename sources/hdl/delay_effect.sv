@@ -1,6 +1,6 @@
 module delay_effect #(
     parameter ADDR_WIDTH = 16,      // 2^16 = 65536 samples (~1.36s at 48kHz)
-    parameter DATA_WIDTH = 16,      // 16-bit audio
+    parameter DATA_WIDTH = 32,      // 32-bit internal data width
     parameter FEEDBACK_WIDTH = 8    // 8-bit feedback control
 )(
     input  wire                         clk,

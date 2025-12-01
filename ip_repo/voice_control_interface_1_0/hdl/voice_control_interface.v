@@ -84,24 +84,5 @@
 
 	// User logic ends
 
-	reg [RATE_WIDTH-1:0] attack_time_r;
-    assign attack_time = attack_time_r;
-
-	reg [RATE_WIDTH-1:0] decay_time_r;
-    assign decay_time = decay_time_r;
-
-	reg [6:0] sustain_percent_r;
-	assign sustain_percent = sustain_percent_r;
-
-	reg [RATE_WIDTH-1:0] release_time_r;
-    assign release_time = release_time_r;
-    
-    
-	always @(*)begin
-        // Map all 64 coefficients (16 bits each)
-        
-
-        
-	end
 
 	endmodule

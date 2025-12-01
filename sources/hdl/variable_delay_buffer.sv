@@ -80,10 +80,22 @@ module variable_delay_buffer #(
 
             // Output is valid once we have written at least delay_samples samples
             // Once "full", it stays valid (the read pointer always provides valid delayed data)
-            if (write_count >= delay_samples) begin
-                out_sample_valid <= 1'b1;
+            // Account for the fact that write_count will increment this cycle,
+            // so check against delay_samples-1 if we're about to write
+            if (sample_valid) begin
+                // About to increment write_count, so check if it will reach delay_samples
+                if (write_count + 1 >= delay_samples) begin
+                    out_sample_valid <= 1'b1;
+                end else begin
+                    out_sample_valid <= 1'b0;
+                end
             end else begin
-                out_sample_valid <= 1'b0;
+                // Not writing, keep current state (once valid, stays valid)
+                if (write_count >= delay_samples) begin
+                    out_sample_valid <= 1'b1;
+                end else begin
+                    out_sample_valid <= 1'b0;
+                end
             end
         end
     end

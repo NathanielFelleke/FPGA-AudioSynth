@@ -1,0 +1,71 @@
+#--------------------------------------------------------------------------
+# AMD Vivado v2025.1 (64-bit)
+# SW Build: 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build: 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build: 6139179 on Tue May 20 17:58:58 MDT 2025
+# Current time: Sun Nov 30 20:10:47 EST 2025
+# Process ID (PID): 7688
+# User: Nathaniel Felleke
+# OS: Windows 10
+# Project: synth
+# Part: pynq-z2 (xc7z020clg400-1)
+#
+# This file is an indication that an internal application error occurred.
+# This information is useful for debugging. Please open a case with AMD.
+# Technical Support with this file and a testcase attached.
+#--------------------------------------------------------------------------
+Sun Nov 30 20:10:47 EST 2025
+ui.frmwork.COutOfMemoryException: Out of memory
+	at ui.data.rsbi.RSBBlockInterface_getName(Native Method)
+	at ui.data.o.al.getName(SourceFile:138)
+	at ui.views.systembuilder.de.gRE(SourceFile:42)
+	at ui.dlg.k.f.b.a.i$b.getText(SourceFile:271)
+	at java.desktop/javax.swing.plaf.basic.BasicLabelUI.propertyChange(BasicLabelUI.java:492)
+	at java.desktop/java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:343)
+	at java.desktop/java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:335)
+	at java.desktop/java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:268)
+	at java.desktop/java.awt.Component.firePropertyChange(Component.java:8717)
+	at java.desktop/java.awt.Component.updateGraphicsData(Component.java:1187)
+	at java.desktop/java.awt.Container.updateChildGraphicsData(Container.java:1187)
+	at java.desktop/java.awt.Component.updateGraphicsData(Component.java:1179)
+	at java.desktop/java.awt.Container.updateChildGraphicsData(Container.java:1187)
+	at java.desktop/java.awt.Component.updateGraphicsData(Component.java:1179)
+	at java.desktop/java.awt.Container.updateChildGraphicsData(Container.java:1187)
+	at java.desktop/java.awt.Component.updateGraphicsData(Component.java:1179)
+	at java.desktop/java.awt.Container.updateChildGraphicsData(Container.java:1187)
+	at java.desktop/java.awt.Component.updateGraphicsData(Component.java:1179)
+	at java.desktop/java.awt.Container.updateChildGraphicsData(Container.java:1187)
+	at java.desktop/java.awt.Component.updateGraphicsData(Component.java:1179)
+	at java.desktop/java.awt.Container.updateChildGraphicsData(Container.java:1187)
+	at java.desktop/java.awt.Component.updateGraphicsData(Component.java:1179)
+	at java.desktop/java.awt.Component.setGraphicsConfiguration(Component.java:1167)
+	at java.desktop/java.awt.Container.addImpl(Container.java:1140)
+	at java.desktop/javax.swing.JTabbedPane.insertTab(JTabbedPane.java:758)
+	at com.jidesoft.swing.JideTabbedPane.insertTab(Unknown Source)
+	at java.desktop/javax.swing.JTabbedPane.addTab(JTabbedPane.java:832)
+	at ui.utils.swing.u.g.a(SourceFile:299)
+	at ui.views.bT.jSG(SourceFile:753)
+	at ui.views.bT.kQE(SourceFile:689)
+	at ui.views.bT.eJ(SourceFile:528)
+	at ui.views.bT.a(SourceFile:463)
+	at ui.views.bd.a(SourceFile:230)
+	at ui.data.j.a(SourceFile:711)
+	at ui.data.j$a.handleTclEvent(SourceFile:109)
+	at ui.frmwork.a.x.d(SourceFile:42)
+	at ui.frmwork.I.i(SourceFile:216)
+	at ui.frmwork.I.dQ(SourceFile:122)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:308)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at ui.frmwork.a.d.dispatchEvent(SourceFile:38)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+

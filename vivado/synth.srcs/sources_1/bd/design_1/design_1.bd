@@ -17,7 +17,9 @@
       "xpm_cdc_gen_2": "",
       "axi_smc": "",
       "rst_ps7_0_100M": "",
-      "audio_fir_wrapper_0": ""
+      "audio_fir_wrapper_0": "",
+      "voice_control_interf_0": "",
+      "voice_mixer_wrapper_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -1955,6 +1957,9 @@
         "inst_hier_path": "axi_smc",
         "has_run_ip_tcl": "true",
         "parameters": {
+          "NUM_MI": {
+            "value": "2"
+          },
           "NUM_SI": {
             "value": "1"
           }
@@ -1965,11 +1970,12 @@
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
             "bridges": [
-              "M00_AXI"
+              "M00_AXI",
+              "M01_AXI"
             ],
             "bd_attributes": {
               "BRIDGES": {
-                "value": "M00_AXI",
+                "value": "M00_AXI:M01_AXI",
                 "value_src": "auto"
               },
               "TYPE": {
@@ -1979,6 +1985,17 @@
             }
           },
           "M00_AXI": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "bd_attributes": {
+              "TYPE": {
+                "value": "interior",
+                "value_src": "default"
+              }
+            }
+          },
+          "M01_AXI": {
             "mode": "Master",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
@@ -2061,6 +2078,94 @@
             "direction": "O"
           }
         }
+      },
+      "voice_control_interf_0": {
+        "vlnv": "xilinx.com:user:voice_control_interface:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_voice_control_interf_0_0",
+        "xci_path": "ip\\design_1_voice_control_interf_0_0\\design_1_voice_control_interf_0_0.xci",
+        "inst_hier_path": "voice_control_interf_0",
+        "has_run_ip_tcl": "true"
+      },
+      "voice_mixer_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:voice_mixer_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_voice_mixer_wrapper_0_0",
+        "xci_path": "ip\\design_1_voice_mixer_wrapper_0_0\\design_1_voice_mixer_wrapper_0_0.xci",
+        "inst_hier_path": "voice_mixer_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "voice_mixer_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "voice_0": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_1": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_2": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_3": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_4": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_5": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_6": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_7": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "data_in_valid": {
+            "direction": "I"
+          },
+          "mixed_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "data_out_valid": {
+            "direction": "O"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2068,6 +2173,12 @@
         "interface_ports": [
           "axi_smc/M00_AXI",
           "audio_fir_interface_0/S00_AXI"
+        ]
+      },
+      "axi_smc_M01_AXI": {
+        "interface_ports": [
+          "axi_smc/M01_AXI",
+          "voice_control_interf_0/S00_AXI"
         ]
       },
       "processing_system7_0_DDR": {
@@ -2120,7 +2231,10 @@
           "xpm_cdc_gen_1/dest_clk",
           "xpm_cdc_gen_1/src_clk",
           "xpm_cdc_gen_2/dest_clk",
-          "xpm_cdc_gen_2/src_clk"
+          "xpm_cdc_gen_2/src_clk",
+          "audio_fir_wrapper_0/clk",
+          "voice_control_interf_0/s00_axi_aclk",
+          "voice_mixer_wrapper_0/clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -2133,7 +2247,22 @@
         "ports": [
           "rst_ps7_0_100M/peripheral_aresetn",
           "audio_fir_interface_0/s00_axi_aresetn",
-          "axi_smc/aresetn"
+          "axi_smc/aresetn",
+          "audio_fir_wrapper_0/rst",
+          "voice_control_interf_0/s00_axi_aresetn",
+          "voice_mixer_wrapper_0/rst"
+        ]
+      },
+      "voice_mixer_wrapper_0_data_out_valid": {
+        "ports": [
+          "voice_mixer_wrapper_0/data_out_valid",
+          "audio_fir_wrapper_0/data_in_valid"
+        ]
+      },
+      "voice_mixer_wrapper_0_mixed_out": {
+        "ports": [
+          "voice_mixer_wrapper_0/mixed_out",
+          "audio_fir_wrapper_0/data_in"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {
@@ -2147,6 +2276,12 @@
           "xpm_cdc_gen_1/dest_out",
           "audio_fir_wrapper_0/scaler"
         ]
+      },
+      "xpm_cdc_gen_2_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_2/dest_out",
+          "audio_fir_wrapper_0/enable"
+        ]
       }
     },
     "addressing": {
@@ -2157,6 +2292,13 @@
               "SEG_audio_fir_interface_0_S00_AXI_reg": {
                 "address_block": "/audio_fir_interface_0/S00_AXI/S00_AXI_reg",
                 "offset": "0x43C00000",
+                "range": "64K",
+                "offset_base_param": "C_S00_AXI_BASEADDR",
+                "offset_high_param": "C_S00_AXI_HIGHADDR"
+              },
+              "SEG_voice_control_interf_0_S00_AXI_reg": {
+                "address_block": "/voice_control_interf_0/S00_AXI/S00_AXI_reg",
+                "offset": "0x43C10000",
                 "range": "64K",
                 "offset_base_param": "C_S00_AXI_BASEADDR",
                 "offset_high_param": "C_S00_AXI_HIGHADDR"

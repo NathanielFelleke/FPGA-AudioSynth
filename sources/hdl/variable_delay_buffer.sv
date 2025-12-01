@@ -18,10 +18,11 @@ module variable_delay_buffer #(
     // --- Internal pointers ---
     logic [ADDR_WIDTH-1:0] wr_ptr;
 
-    // Read pointer: compensate for BRAM 1-cycle latency by reading 1 address ahead
-    // This makes the actual delay exactly 'delay_samples' cycles
+    // Read pointer: points to sample that is exactly delay_samples old
+    // BRAM has 1-cycle latency (data appears next cycle), but the read pointer
+    // calculation is combinational, so BRAM will naturally read the right address
     logic [ADDR_WIDTH-1:0] rd_ptr;
-    assign rd_ptr = (wr_ptr + 1) - delay_samples;
+    assign rd_ptr = wr_ptr - delay_samples;
 
     // --- RAM output ---
     logic [DATA_WIDTH-1:0] ram_out;

@@ -22,8 +22,8 @@ module delay_effect #(
     // =========================================================================
     // Constants
     // =========================================================================
-    localparam signed MAX_POSITIVE = {1'b0, {(DATA_WIDTH-1){1'b1}}};  // 0x7FFF
-    localparam signed MAX_NEGATIVE = {1'b1, {(DATA_WIDTH-1){1'b0}}};  // 0x8000
+    localparam signed MAX_POSITIVE = {1'b0, {(DATA_WIDTH-1){1'b1}}};  // Largest positive value
+    localparam signed MAX_NEGATIVE = {1'b1, {(DATA_WIDTH-1){1'b0}}};  // Most negative value
 
     // =========================================================================
     // Delayed signal from buffer
@@ -81,18 +81,22 @@ module delay_effect #(
     // =========================================================================
     wire signed [DATA_WIDTH+8-1:0] dry_scaled;
     wire signed [DATA_WIDTH+8-1:0] wet_scaled;
+    wire signed [DATA_WIDTH+8:0] mixed_sum;  // Extra bit for overflow detection
     wire signed [DATA_WIDTH+8-1:0] mixed_output;
-    
+
     // Scale dry and wet signals
     assign dry_scaled = audio_in * (8'd255 - effect_amount);
     assign wet_scaled = delayed_sample * effect_amount;
-    
-    // Mix together and scale down by 256
-    assign mixed_output = (dry_scaled + wet_scaled) >>> 8;
+
+    // Mix together (keep extra bit for overflow detection)
+    assign mixed_sum = dry_scaled + wet_scaled;
+
+    // Scale down by 256 with saturation
+    assign mixed_output = mixed_sum >>> 8;
     
     // =========================================================================
     // Output register
-    // No saturation needed - mathematically cannot overflow with this mix scheme
+    // Take the scaled output and register it
     // =========================================================================
     always_ff @(posedge clk) begin
         if (reset) begin

@@ -24,3 +24,4 @@ vivado_*_crash.log
 managed_ip_project/
 
 # Keep everything else - custom IP files should be committed
+

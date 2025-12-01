@@ -16,7 +16,7 @@ module variable_delay_buffer #(
     localparam RAM_DEPTH = (1 << ADDR_WIDTH);
 
     // --- Internal pointers ---
-    logic [ADDR_WIDTH-1:0] wr_ptr = 0;
+    logic [ADDR_WIDTH-1:0] wr_ptr;
 
     // Read pointer: compensate for BRAM 1-cycle latency by reading 1 address ahead
     // This makes the actual delay exactly 'delay_samples' cycles
@@ -57,24 +57,46 @@ module variable_delay_buffer #(
         .doutb (ram_out)
     );
 
-    // --- Output registers ---
+    // --- Output registers and valid tracking ---
+    // Track how many samples have been written to know when buffer is "full"
+    logic [ADDR_WIDTH-1:0] write_count;
+
     always @(posedge clk) begin
         if (reset) begin
             out_sample <= 0;
             out_sample_valid <= 0;
+            write_count <= 0;
         end else begin
-            out_sample_valid <= sample_valid;  // valid delayed by 1 cycle to match output
-            if (sample_valid)
-                out_sample <= ram_out;
+            out_sample <= ram_out;
+
+            // Increment write_count only when a sample is actually written
+            if (sample_valid) begin
+                // Once we've written enough samples, keep write_count saturated
+                // (we only care if write_count >= delay_samples)
+                if (write_count < (1 << ADDR_WIDTH) - 1) begin
+                    write_count <= write_count + 1;
+                end
+            end
+
+            // Output is valid once we have written at least delay_samples samples
+            // Once "full", it stays valid (the read pointer always provides valid delayed data)
+            if (write_count >= delay_samples) begin
+                out_sample_valid <= 1'b1;
+            end else begin
+                out_sample_valid <= 1'b0;
+            end
         end
     end
 
     // --- Write pointer increment ---
+    logic [ADDR_WIDTH-1:0] wr_ptr_next;
+    assign wr_ptr_next = wr_ptr + 1;
+
     always @(posedge clk) begin
         if (reset)
             wr_ptr <= 0;
         else if (sample_valid)
-            wr_ptr <= wr_ptr + 1;
+            wr_ptr <= wr_ptr_next;
     end
 
 endmodule

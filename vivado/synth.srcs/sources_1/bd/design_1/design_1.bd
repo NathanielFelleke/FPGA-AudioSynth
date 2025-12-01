@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x67B2F705BBC7A98F",
+      "boundary_crc": "0x67B2F705CE4AEE4F",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../synth.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -19,7 +19,8 @@
       "rst_ps7_0_100M": "",
       "audio_fir_wrapper_0": "",
       "voice_control_interf_0": "",
-      "voice_mixer_wrapper_0": ""
+      "voice_mixer_wrapper_0": "",
+      "adsr_envelope_wrapper_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -2081,7 +2082,7 @@
       },
       "voice_control_interf_0": {
         "vlnv": "xilinx.com:user:voice_control_interface:1.0",
-        "ip_revision": "1",
+        "ip_revision": "2",
         "xci_name": "design_1_voice_control_interf_0_0",
         "xci_path": "ip\\design_1_voice_control_interf_0_0\\design_1_voice_control_interf_0_0.xci",
         "inst_hier_path": "voice_control_interf_0",
@@ -2166,6 +2167,74 @@
             "direction": "O"
           }
         }
+      },
+      "adsr_envelope_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:adsr_envelope_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_adsr_envelope_wrapper_0_0",
+        "xci_path": "ip\\design_1_adsr_envelope_wrapper_0_0\\design_1_adsr_envelope_wrapper_0_0.xci",
+        "inst_hier_path": "adsr_envelope_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "adsr_envelope_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "note_on": {
+            "direction": "I"
+          },
+          "attack_time": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "decay_time": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "sustain_percent": {
+            "direction": "I",
+            "left": "6",
+            "right": "0"
+          },
+          "release_time": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "audio_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "data_in_valid": {
+            "direction": "I"
+          },
+          "audio_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "data_out_valid": {
+            "direction": "O"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2201,6 +2270,12 @@
       }
     },
     "nets": {
+      "adsr_envelope_wrapper_0_audio_out": {
+        "ports": [
+          "adsr_envelope_wrapper_0/audio_out",
+          "voice_mixer_wrapper_0/voice_0"
+        ]
+      },
       "audio_fir_interface_0_coeffs": {
         "ports": [
           "audio_fir_interface_0/coeffs",
@@ -2251,6 +2326,30 @@
           "audio_fir_wrapper_0/rst",
           "voice_control_interf_0/s00_axi_aresetn",
           "voice_mixer_wrapper_0/rst"
+        ]
+      },
+      "voice_control_interf_0_attack_time": {
+        "ports": [
+          "voice_control_interf_0/attack_time",
+          "adsr_envelope_wrapper_0/attack_time"
+        ]
+      },
+      "voice_control_interf_0_decay_time": {
+        "ports": [
+          "voice_control_interf_0/decay_time",
+          "adsr_envelope_wrapper_0/decay_time"
+        ]
+      },
+      "voice_control_interf_0_release_time": {
+        "ports": [
+          "voice_control_interf_0/release_time",
+          "adsr_envelope_wrapper_0/release_time"
+        ]
+      },
+      "voice_control_interf_0_sustain_percent": {
+        "ports": [
+          "voice_control_interf_0/sustain_percent",
+          "adsr_envelope_wrapper_0/sustain_percent"
         ]
       },
       "voice_mixer_wrapper_0_data_out_valid": {

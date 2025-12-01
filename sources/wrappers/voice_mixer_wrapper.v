@@ -25,17 +25,17 @@ module voice_mixer_wrapper #(
     output wire data_out_valid
 );
 
-    // Create array from individual inputs
-    wire signed [DATA_WIDTH-1:0] voice_array [0:NUM_VOICES-1];
+    // Create flattened packed array from individual inputs
+    wire signed [(DATA_WIDTH * NUM_VOICES)-1:0] voice_in_flat;
 
-    assign voice_array[0] = voice_0;
-    assign voice_array[1] = voice_1;
-    assign voice_array[2] = voice_2;
-    assign voice_array[3] = voice_3;
-    assign voice_array[4] = voice_4;
-    assign voice_array[5] = voice_5;
-    assign voice_array[6] = voice_6;
-    assign voice_array[7] = voice_7;
+    assign voice_in_flat[(0*DATA_WIDTH) +: DATA_WIDTH] = voice_0;
+    assign voice_in_flat[(1*DATA_WIDTH) +: DATA_WIDTH] = voice_1;
+    assign voice_in_flat[(2*DATA_WIDTH) +: DATA_WIDTH] = voice_2;
+    assign voice_in_flat[(3*DATA_WIDTH) +: DATA_WIDTH] = voice_3;
+    assign voice_in_flat[(4*DATA_WIDTH) +: DATA_WIDTH] = voice_4;
+    assign voice_in_flat[(5*DATA_WIDTH) +: DATA_WIDTH] = voice_5;
+    assign voice_in_flat[(6*DATA_WIDTH) +: DATA_WIDTH] = voice_6;
+    assign voice_in_flat[(7*DATA_WIDTH) +: DATA_WIDTH] = voice_7;
 
     // Instantiate the SystemVerilog voice_mixer module
     voice_mixer #(
@@ -44,7 +44,7 @@ module voice_mixer_wrapper #(
     ) voice_mixer_inst (
         .clk(clk),
         .rst(rst),
-        .voice_in(voice_array),
+        .voice_in_flat(voice_in_flat),
         .data_in_valid(data_in_valid),
         .mixed_out(mixed_out),
         .data_out_valid(data_out_valid)

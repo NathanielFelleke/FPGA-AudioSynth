@@ -5,10 +5,10 @@ module voice_mixer #(
 (
     input wire clk,
     input wire rst,
-    input wire signed [DATA_WIDTH-1:0] voice_in [NUM_VOICES-1:0],  // Array of voice inputs
-    input wire data_in_valid,                                       // High when input data is valid
-    output logic signed [DATA_WIDTH-1:0] mixed_out,                 // Mixed output
-    output logic data_out_valid                                     // High when output is valid
+    input wire signed [(DATA_WIDTH * NUM_VOICES)-1:0] voice_in_flat,  // Flattened array of voice inputs
+    input wire data_in_valid,                                          // High when input data is valid
+    output logic signed [DATA_WIDTH-1:0] mixed_out,                    // Mixed output
+    output logic data_out_valid                                        // High when output is valid
 );
 
     // Calculate number of tree stages needed (log2 of NUM_VOICES)
@@ -21,10 +21,10 @@ module voice_mixer #(
     // Valid signal pipeline - tracks data_in_valid through the pipeline stages
     logic valid_pipe [NUM_STAGES:0];
 
-    // Stage 0: Connect inputs directly
+    // Stage 0: Unpack flattened inputs
     always_comb begin
         for (int i = 0; i < NUM_VOICES; i++) begin
-            stage[0][i] = voice_in[i];
+            stage[0][i] = voice_in_flat[(i*DATA_WIDTH) +: DATA_WIDTH];
         end
         valid_pipe[0] = data_in_valid;
     end

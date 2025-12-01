@@ -1,13 +1,14 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x67B2F705CE4AEE4F",
+      "boundary_crc": "0xCC6CFA53B4580162",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../synth.gen/sources_1/bd/design_1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2025.1"
+      "tool_version": "2025.1",
+      "validated": "true"
     },
     "design_tree": {
       "processing_system7_0": "",
@@ -20,7 +21,10 @@
       "audio_fir_wrapper_0": "",
       "voice_control_interf_0": "",
       "voice_mixer_wrapper_0": "",
-      "adsr_envelope_wrapper_0": ""
+      "multi_voice_adsr_wra_0": "",
+      "ilconstant_0": "",
+      "ilconstant_1": "",
+      "ilconstant_2": ""
     },
     "interface_ports": {
       "DDR": {
@@ -116,27 +120,39 @@
           },
           "BA": {
             "physical_name": "DDR_ba",
-            "direction": "IO"
+            "direction": "IO",
+            "left": "2",
+            "right": "0"
           },
           "ADDR": {
             "physical_name": "DDR_addr",
-            "direction": "IO"
+            "direction": "IO",
+            "left": "14",
+            "right": "0"
           },
           "DM": {
             "physical_name": "DDR_dm",
-            "direction": "IO"
+            "direction": "IO",
+            "left": "3",
+            "right": "0"
           },
           "DQ": {
             "physical_name": "DDR_dq",
-            "direction": "IO"
+            "direction": "IO",
+            "left": "31",
+            "right": "0"
           },
           "DQS_N": {
             "physical_name": "DDR_dqs_n",
-            "direction": "IO"
+            "direction": "IO",
+            "left": "3",
+            "right": "0"
           },
           "DQS_P": {
             "physical_name": "DDR_dqs_p",
-            "direction": "IO"
+            "direction": "IO",
+            "left": "3",
+            "right": "0"
           }
         }
       },
@@ -153,7 +169,9 @@
         "port_maps": {
           "MIO": {
             "physical_name": "FIXED_IO_mio",
-            "direction": "IO"
+            "direction": "IO",
+            "left": "53",
+            "right": "0"
           },
           "DDR_VRN": {
             "physical_name": "FIXED_IO_ddr_vrn",
@@ -1970,6 +1988,14 @@
             "mode": "Slave",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "8"
+              }
+            },
             "bridges": [
               "M00_AXI",
               "M01_AXI"
@@ -1989,6 +2015,26 @@
             "mode": "Master",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_READ_THREADS": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_WRITE_THREADS": {
+                "value": "1"
+              },
+              "RUSER_BITS_PER_BYTE": {
+                "value": "0"
+              },
+              "WUSER_BITS_PER_BYTE": {
+                "value": "0"
+              }
+            },
             "bd_attributes": {
               "TYPE": {
                 "value": "interior",
@@ -2000,6 +2046,26 @@
             "mode": "Master",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_READ_THREADS": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_WRITE_THREADS": {
+                "value": "1"
+              },
+              "RUSER_BITS_PER_BYTE": {
+                "value": "0"
+              },
+              "WUSER_BITS_PER_BYTE": {
+                "value": "0"
+              }
+            },
             "bd_attributes": {
               "TYPE": {
                 "value": "interior",
@@ -2042,12 +2108,26 @@
               "ASSOCIATED_RESET": {
                 "value": "rst",
                 "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
               }
             }
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
           },
           "data_in": {
             "direction": "I",
@@ -2108,12 +2188,26 @@
               "ASSOCIATED_RESET": {
                 "value": "rst",
                 "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
               }
             }
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
           },
           "voice_0": {
             "direction": "I",
@@ -2168,16 +2262,16 @@
           }
         }
       },
-      "adsr_envelope_wrapper_0": {
-        "vlnv": "xilinx.com:module_ref:adsr_envelope_wrapper:1.0",
+      "multi_voice_adsr_wra_0": {
+        "vlnv": "xilinx.com:module_ref:multi_voice_adsr_wrapper:1.0",
         "ip_revision": "1",
-        "xci_name": "design_1_adsr_envelope_wrapper_0_0",
-        "xci_path": "ip\\design_1_adsr_envelope_wrapper_0_0\\design_1_adsr_envelope_wrapper_0_0.xci",
-        "inst_hier_path": "adsr_envelope_wrapper_0",
+        "xci_name": "design_1_multi_voice_adsr_wra_0_0",
+        "xci_path": "ip\\design_1_multi_voice_adsr_wra_0_0\\design_1_multi_voice_adsr_wra_0_0.xci",
+        "inst_hier_path": "multi_voice_adsr_wra_0",
         "has_run_ip_tcl": "true",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "adsr_envelope_wrapper",
+          "ref_name": "multi_voice_adsr_wrapper",
           "boundary_crc": "0x0"
         },
         "ports": {
@@ -2188,15 +2282,26 @@
               "ASSOCIATED_RESET": {
                 "value": "rst",
                 "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
               }
             }
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
-          },
-          "note_on": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
           },
           "attack_time": {
             "direction": "I",
@@ -2218,7 +2323,47 @@
             "left": "15",
             "right": "0"
           },
-          "audio_in": {
+          "note_on": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "voice_0_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_1_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_2_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_3_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_4_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_5_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_6_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_7_in": {
             "direction": "I",
             "left": "31",
             "right": "0"
@@ -2226,7 +2371,42 @@
           "data_in_valid": {
             "direction": "I"
           },
-          "audio_out": {
+          "voice_0_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_1_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_2_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_3_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_4_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_5_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_6_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_7_out": {
             "direction": "O",
             "left": "31",
             "right": "0"
@@ -2235,6 +2415,25 @@
             "direction": "O"
           }
         }
+      },
+      "ilconstant_0": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_WIDTH": {
+            "value": "32"
+          }
+        }
+      },
+      "ilconstant_1": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "ilconstant_2": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0"
       }
     },
     "interface_nets": {
@@ -2270,12 +2469,6 @@
       }
     },
     "nets": {
-      "adsr_envelope_wrapper_0_audio_out": {
-        "ports": [
-          "adsr_envelope_wrapper_0/audio_out",
-          "voice_mixer_wrapper_0/voice_0"
-        ]
-      },
       "audio_fir_interface_0_coeffs": {
         "ports": [
           "audio_fir_interface_0/coeffs",
@@ -2294,6 +2487,80 @@
           "xpm_cdc_gen_1/src_in"
         ]
       },
+      "ilconstant_0_dout": {
+        "ports": [
+          "ilconstant_0/dout",
+          "multi_voice_adsr_wra_0/voice_0_in",
+          "multi_voice_adsr_wra_0/voice_1_in",
+          "multi_voice_adsr_wra_0/voice_2_in",
+          "multi_voice_adsr_wra_0/voice_3_in",
+          "multi_voice_adsr_wra_0/voice_4_in",
+          "multi_voice_adsr_wra_0/voice_5_in",
+          "multi_voice_adsr_wra_0/voice_6_in",
+          "multi_voice_adsr_wra_0/voice_7_in"
+        ]
+      },
+      "ilconstant_1_dout": {
+        "ports": [
+          "ilconstant_1/dout",
+          "multi_voice_adsr_wra_0/note_on"
+        ]
+      },
+      "ilconstant_2_dout": {
+        "ports": [
+          "ilconstant_2/dout",
+          "multi_voice_adsr_wra_0/data_in_valid"
+        ]
+      },
+      "multi_voice_adsr_wra_0_data_out_valid": {
+        "ports": [
+          "multi_voice_adsr_wra_0/data_out_valid",
+          "voice_mixer_wrapper_0/data_in_valid"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_0_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_0_out",
+          "voice_mixer_wrapper_0/voice_0"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_1_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_1_out",
+          "voice_mixer_wrapper_0/voice_1"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_2_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_2_out",
+          "voice_mixer_wrapper_0/voice_2"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_3_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_3_out",
+          "voice_mixer_wrapper_0/voice_3"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_4_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_4_out",
+          "voice_mixer_wrapper_0/voice_4"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_5_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_5_out",
+          "voice_mixer_wrapper_0/voice_5"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_6_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_6_out",
+          "voice_mixer_wrapper_0/voice_6",
+          "voice_mixer_wrapper_0/voice_7"
+        ]
+      },
       "processing_system7_0_FCLK_CLK0": {
         "ports": [
           "processing_system7_0/FCLK_CLK0",
@@ -2309,6 +2576,7 @@
           "xpm_cdc_gen_2/src_clk",
           "audio_fir_wrapper_0/clk",
           "voice_control_interf_0/s00_axi_aclk",
+          "multi_voice_adsr_wra_0/clk",
           "voice_mixer_wrapper_0/clk"
         ]
       },
@@ -2325,31 +2593,32 @@
           "axi_smc/aresetn",
           "audio_fir_wrapper_0/rst",
           "voice_control_interf_0/s00_axi_aresetn",
+          "multi_voice_adsr_wra_0/rst",
           "voice_mixer_wrapper_0/rst"
         ]
       },
       "voice_control_interf_0_attack_time": {
         "ports": [
           "voice_control_interf_0/attack_time",
-          "adsr_envelope_wrapper_0/attack_time"
+          "multi_voice_adsr_wra_0/attack_time"
         ]
       },
       "voice_control_interf_0_decay_time": {
         "ports": [
           "voice_control_interf_0/decay_time",
-          "adsr_envelope_wrapper_0/decay_time"
+          "multi_voice_adsr_wra_0/decay_time"
         ]
       },
       "voice_control_interf_0_release_time": {
         "ports": [
           "voice_control_interf_0/release_time",
-          "adsr_envelope_wrapper_0/release_time"
+          "multi_voice_adsr_wra_0/release_time"
         ]
       },
       "voice_control_interf_0_sustain_percent": {
         "ports": [
           "voice_control_interf_0/sustain_percent",
-          "adsr_envelope_wrapper_0/sustain_percent"
+          "multi_voice_adsr_wra_0/sustain_percent"
         ]
       },
       "voice_mixer_wrapper_0_data_out_valid": {

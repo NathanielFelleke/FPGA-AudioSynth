@@ -20,6 +20,9 @@ module adsr_envelope_wrapper #(
     output wire data_out_valid
 );
 
+    // Internal wire to connect ADSR output to mixer input
+    wire [ENVELOPE_WIDTH-1:0] envelope_out;
+
     // ADSR Envelope Generator
     adsr_envelope #(
         .RATE_WIDTH(RATE_WIDTH),

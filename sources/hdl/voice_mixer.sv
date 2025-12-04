@@ -1,6 +1,6 @@
 module voice_mixer #(
     parameter integer DATA_WIDTH = 32,
-    parameter integer NUM_VOICES = 8  // Must be a power of 2
+    parameter integer NUM_VOICES = 16  // Must be a power of 2
 )
 (
     input wire clk,

@@ -1,17 +1,28 @@
 module synth #(
-        parameter integer AUDIO_WIDTH = 32
+        parameter integer AUDIO_WIDTH = 32,
+        parameter integer NUM_VOICES = 8
     )
     (
         input wire clk,
         input wire rst,
         input wire midi_in,
-        output logic signed [AUDIO_WIDTH-1:0] audio_out
+        input wire octave_on,
+        output logic signed [AUDIO_WIDTH-1:0] voice_1_out,
+        output logic signed [AUDIO_WIDTH-1:0] voice_2_out,
+        output logic signed [AUDIO_WIDTH-1:0] voice_3_out,
+        output logic signed [AUDIO_WIDTH-1:0] voice_4_out,
+        output logic signed [AUDIO_WIDTH-1:0] voice_5_out,
+        output logic signed [AUDIO_WIDTH-1:0] voice_6_out,
+        output logic signed [AUDIO_WIDTH-1:0] voice_7_out,
+        output logic signed [AUDIO_WIDTH-1:0] voice_8_out,
+        output logic signed [NUM_VOICES-1:0] ons_out
     );
-    logic [127:0] note_plays;
-    logic [127:0][2:0] note_vels;
+
+    logic [NUM_VOICES-1:0][2:0] note_vels;
+    logic [NUM_VOICES-1:0][6:0] note_notes;
     logic [1:0] wave_type;
 
-    midi_rx midi_receiver(.clk(clk), .rst(rst), .data_in(midi_in), .note_out(note_plays), .velocity_out(note_vels), .wave_out(wave_type));
+    midi_rx midi_receiver(.clk(clk), .rst(rst), .data_in(midi_in), .on_out(ons_out), .velocity_out(note_vels), .wave_out(wave_type), .note_out(note_notes));
 
     logic [127:0][32:0] note_freqs;
     assign note_freqs[0] = 32'd702;
@@ -142,44 +153,26 @@ module synth #(
     assign note_freqs[125] = 32'd959857;
     assign note_freqs[126] = 32'd1016933;
     assign note_freqs[127] = 32'd1077403;
-    // = [32'd702,32'd743,32'd788,32'd835,32'd884,32'd937,32'd993,32'd1052,32'd1114,32'd1181,32'd1251,32'd1325,
-    //                                   32'd1404,32'd1487,32'd1576,32'd1670,32'd1769,32'd1874,32'd1986,32'd2104,32'd2229,32'd2362,32'd2502,32'd2651,
-    //                                   32'd2808,32'd2975,32'd3152,32'd3340,32'd3539,32'd3749,32'd3972,32'd4208,32'd4458,32'd4724,32'd5004,32'd5302,
-    //                                   32'd5617,32'd5951,32'd6305,32'd6680,32'd7078,32'd7498,32'd7944,32'd8417,32'd8917,32'd9448,32'd10009,32'd10605,
-    //                                   32'd11235,32'd11903,32'd12611,32'd13361,32'd14156,32'd14997,32'd15889,32'd16834,32'd17835,32'd18896,32'd20019,32'd21210,
-    //                                   32'd22471,32'd23807,32'd25223,32'd26722,32'd28312,32'd29995,32'd31779,32'd33668,32'd35670,32'd37792,32'd40039,32'd42420,
-    //                                   32'd44942,32'd47614,32'd50446,32'd53445,32'd56624,32'd59991,32'd63558,32'd67337,32'd71341,32'd75584,32'd80078,32'd84840,
-    //                                   32'd89885,32'd95229,32'd100892,32'd106891,32'd113248,32'd119982,32'd127116,32'd134675,32'd142683,32'd151168,32'd160156,32'd169680,
-    //                                   32'd179770,32'd190459,32'd201785,32'd213783,32'd226496,32'd239964,32'd254233,32'd269350,32'd285367,32'd302336,32'd320313,32'd339360,
-    //                                   32'd359540,32'd380919,32'd403570,32'd427567,32'd452992,32'd479928,32'd508466,32'd538701,32'd570734,32'd604672,32'd640627,32'd678721,
-    //                                   32'd719080,32'd761839,32'd807140,32'd855135,32'd905984,32'd959857,32'd1016933,32'd1077403];
 
-    logic signed [127:0][AUDIO_WIDTH-1:0] osc_out;
-    logic signed [127:0][AUDIO_WIDTH-1:0] notes_xvel;
-    logic signed [127:0][AUDIO_WIDTH-1:0] env_out;
-    logic signed [31:0][AUDIO_WIDTH-1:0] notes_im1;
-    logic signed [7:0][AUDIO_WIDTH-1:0] notes_im2;
-    logic signed [1:0][AUDIO_WIDTH-1:0] notes_im3;
+    logic signed [7:0][AUDIO_WIDTH-1:0] osc_out;
+    logic signed [7:0][AUDIO_WIDTH-1:0] oct_osc_out;
+    logic signed [7:0][AUDIO_WIDTH-1:0] notes_xvel;
 
     genvar i;
     generate
-        for (i=0; i < 128; i++) begin
-            oscillator osc_inst(.clk(clk), .rst(rst), .wave_type(wave_type), .step_in(1), .PHASE_INCR(note_freqs[i]), .data_out(osc_out[i]));
-            assign notes_xvel[i] = $signed(osc_out[i])*(note_vels[i]+1);
-            envelope env_inst(.clk(clk), .rst(rst), .data_in(notes_xvel[i]), .play(note_plays[i]), .attack_len(32'd80), .release_len(32'd50), .data_out(env_out[i]));
+        for (i=0; i < 16; i++) begin
+            oscillator osc_inst(.clk(clk), .rst(rst), .wave_type(wave_type), .step_in(1), .PHASE_INCR(note_freqs[note_notes[i]]), .data_out(osc_out[i]));
+            oscillator oct_osc_inst(.clk(clk), .rst(rst), .wave_type(wave_type), .step_in(1), .PHASE_INCR(note_freqs[note_notes[i]]<<1), .data_out(oct_osc_out[i]));
         end
     endgenerate
 
-    always_ff @(posedge clk) begin
-        for (int j = 0; j<32; j++) begin
-            notes_im1[j] <= $signed(env_out[j]) + $signed(env_out[j+32]) + $signed(env_out[j+64]) + $signed(env_out[j+96]);
-        end
-        for (int j = 0; j<8; j++) begin
-            notes_im2[j] <= $signed(notes_im1[j]) + $signed(notes_im1[j+8]) + $signed(notes_im1[j+16]) + $signed(notes_im1[j+24]);
-        end
-        notes_im3[0] <= $signed(notes_im2[0]) + $signed(notes_im2[1]) + $signed(notes_im2[2]) + $signed(notes_im2[3]);
-        notes_im3[1] <= $signed(notes_im2[4]) + $signed(notes_im2[5]) + $signed(notes_im2[6]) + $signed(notes_im2[7]);
-    end
-    assign audio_out = $signed(notes_im3[0]) + $signed(notes_im3[1]);
+    assign voice_1_out = (octave_on)? $signed(osc_out[0])*(note_vels[0]+1)+$signed(oct_osc_out[0])*(note_vels[0]+1) : $signed(osc_out[0])*(note_vels[0]+1);
+    assign voice_2_out = (octave_on)? $signed(osc_out[1])*(note_vels[1]+1)+$signed(oct_osc_out[1])*(note_vels[1]+1) : $signed(osc_out[1])*(note_vels[1]+1);
+    assign voice_3_out = (octave_on)? $signed(osc_out[2])*(note_vels[2]+1)+$signed(oct_osc_out[2])*(note_vels[2]+1) : $signed(osc_out[2])*(note_vels[2]+1);
+    assign voice_4_out = (octave_on)? $signed(osc_out[3])*(note_vels[3]+1)+$signed(oct_osc_out[3])*(note_vels[3]+1) : $signed(osc_out[3])*(note_vels[3]+1);
+    assign voice_5_out = (octave_on)? $signed(osc_out[4])*(note_vels[4]+1)+$signed(oct_osc_out[4])*(note_vels[4]+1) : $signed(osc_out[4])*(note_vels[4]+1);
+    assign voice_6_out = (octave_on)? $signed(osc_out[5])*(note_vels[5]+1)+$signed(oct_osc_out[5])*(note_vels[5]+1) : $signed(osc_out[5])*(note_vels[5]+1);
+    assign voice_7_out = (octave_on)? $signed(osc_out[6])*(note_vels[6]+1)+$signed(oct_osc_out[6])*(note_vels[6]+1) : $signed(osc_out[6])*(note_vels[6]+1);
+    assign voice_8_out = (octave_on)? $signed(osc_out[7])*(note_vels[7]+1)+$signed(oct_osc_out[7])*(note_vels[7]+1) : $signed(osc_out[7])*(note_vels[7]+1);
 
 endmodule

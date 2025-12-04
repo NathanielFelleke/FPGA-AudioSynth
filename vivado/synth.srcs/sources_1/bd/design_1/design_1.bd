@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xCC6CFA53B4580162",
+      "boundary_crc": "0x6E54B4EEC3F55938",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../synth.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -22,10 +22,18 @@
       "voice_control_interf_0": "",
       "voice_mixer_wrapper_0": "",
       "multi_voice_adsr_wra_0": "",
+      "ilconstant_2": "",
+      "effect_mux_wrapper_0": "",
+      "synth_wrapper_0": "",
+      "ilslice_0": "",
+      "ilslice_1": "",
+      "ilslice_2": "",
+      "i2s_transmitter_0": "",
       "ilconstant_0": "",
       "ilconstant_1": "",
-      "ilconstant_2": "",
-      "effect_mux_wrapper_0": ""
+      "ilconstant_3": "",
+      "ilconstant_4": "",
+      "ilslice_3": ""
     },
     "interface_ports": {
       "DDR": {
@@ -197,12 +205,42 @@
         }
       }
     },
+    "ports": {
+      "btns": {
+        "direction": "I",
+        "left": "3",
+        "right": "0"
+      },
+      "midi_in": {
+        "direction": "I"
+      },
+      "lrclk": {
+        "direction": "O"
+      },
+      "sdata_o": {
+        "direction": "O"
+      },
+      "blck": {
+        "direction": "O"
+      },
+      "leds": {
+        "direction": "O",
+        "left": "3",
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "4",
+            "value_src": "user_prop"
+          }
+        }
+      }
+    },
     "components": {
       "processing_system7_0": {
         "vlnv": "xilinx.com:ip:processing_system7:5.5",
         "ip_revision": "7",
         "xci_name": "design_1_processing_system7_0_0",
-        "xci_path": "ip\\design_1_processing_system7_0_0\\design_1_processing_system7_0_0.xci",
+        "xci_path": "ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xci",
         "inst_hier_path": "processing_system7_0",
         "has_run_ip_tcl": "true",
         "parameters": {
@@ -302,8 +340,14 @@
           "PCW_CAN0_PERIPHERAL_CLKSRC": {
             "value": "External"
           },
+          "PCW_CAN0_PERIPHERAL_ENABLE": {
+            "value": "0"
+          },
           "PCW_CAN1_PERIPHERAL_CLKSRC": {
             "value": "External"
+          },
+          "PCW_CAN1_PERIPHERAL_ENABLE": {
+            "value": "0"
           },
           "PCW_CAN_PERIPHERAL_CLKSRC": {
             "value": "IO PLL"
@@ -626,6 +670,24 @@
           "PCW_FPGA_FCLK0_ENABLE": {
             "value": "1"
           },
+          "PCW_GP0_EN_MODIFIABLE_TXN": {
+            "value": "1"
+          },
+          "PCW_GP0_NUM_READ_THREADS": {
+            "value": "4"
+          },
+          "PCW_GP0_NUM_WRITE_THREADS": {
+            "value": "4"
+          },
+          "PCW_GP1_EN_MODIFIABLE_TXN": {
+            "value": "1"
+          },
+          "PCW_GP1_NUM_READ_THREADS": {
+            "value": "4"
+          },
+          "PCW_GP1_NUM_WRITE_THREADS": {
+            "value": "4"
+          },
           "PCW_GPIO_BASEADDR": {
             "value": "0xE000A000"
           },
@@ -642,6 +704,12 @@
             "value": "MIO"
           },
           "PCW_GPIO_PERIPHERAL_ENABLE": {
+            "value": "0"
+          },
+          "PCW_I2C0_PERIPHERAL_ENABLE": {
+            "value": "0"
+          },
+          "PCW_I2C1_PERIPHERAL_ENABLE": {
             "value": "0"
           },
           "PCW_I2C_RESET_ENABLE": {
@@ -1292,6 +1360,9 @@
           "PCW_PERIPHERAL_BOARD_PRESET": {
             "value": "None"
           },
+          "PCW_PJTAG_PERIPHERAL_ENABLE": {
+            "value": "0"
+          },
           "PCW_PLL_BYPASSMODE_ENABLE": {
             "value": "0"
           },
@@ -1418,6 +1489,12 @@
           "PCW_TPIU_PERIPHERAL_CLKSRC": {
             "value": "External"
           },
+          "PCW_TRACE_INTERNAL_WIDTH": {
+            "value": "2"
+          },
+          "PCW_TRACE_PERIPHERAL_ENABLE": {
+            "value": "0"
+          },
           "PCW_TTC0_CLK0_PERIPHERAL_CLKSRC": {
             "value": "CPU_1X"
           },
@@ -1436,6 +1513,9 @@
           "PCW_TTC0_CLK2_PERIPHERAL_DIVISOR0": {
             "value": "1"
           },
+          "PCW_TTC0_PERIPHERAL_ENABLE": {
+            "value": "0"
+          },
           "PCW_TTC1_CLK0_PERIPHERAL_CLKSRC": {
             "value": "CPU_1X"
           },
@@ -1453,6 +1533,9 @@
           },
           "PCW_TTC1_CLK2_PERIPHERAL_DIVISOR0": {
             "value": "1"
+          },
+          "PCW_TTC1_PERIPHERAL_ENABLE": {
+            "value": "0"
           },
           "PCW_UART0_BASEADDR": {
             "value": "0xE0000000"
@@ -1783,6 +1866,12 @@
           },
           "PCW_WDT_PERIPHERAL_DIVISOR0": {
             "value": "1"
+          },
+          "PCW_WDT_PERIPHERAL_ENABLE": {
+            "value": "0"
+          },
+          "preset": {
+            "value": "None"
           }
         },
         "interface_ports": {
@@ -1926,7 +2015,7 @@
         "vlnv": "xilinx.com:user:audio_fir_interface:1.0",
         "ip_revision": "3",
         "xci_name": "design_1_audio_fir_interface_0_0",
-        "xci_path": "ip\\design_1_audio_fir_interface_0_0\\design_1_audio_fir_interface_0_0.xci",
+        "xci_path": "ip/design_1_audio_fir_interface_0_0/design_1_audio_fir_interface_0_0.xci",
         "inst_hier_path": "audio_fir_interface_0",
         "has_run_ip_tcl": "true"
       },
@@ -1934,7 +2023,7 @@
         "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
         "ip_revision": "5",
         "xci_name": "design_1_xpm_cdc_gen_0_0",
-        "xci_path": "ip\\design_1_xpm_cdc_gen_0_0\\design_1_xpm_cdc_gen_0_0.xci",
+        "xci_path": "ip/design_1_xpm_cdc_gen_0_0/design_1_xpm_cdc_gen_0_0.xci",
         "inst_hier_path": "xpm_cdc_gen_0",
         "has_run_ip_tcl": "true",
         "parameters": {
@@ -1947,7 +2036,7 @@
         "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
         "ip_revision": "5",
         "xci_name": "design_1_xpm_cdc_gen_1_0",
-        "xci_path": "ip\\design_1_xpm_cdc_gen_1_0\\design_1_xpm_cdc_gen_1_0.xci",
+        "xci_path": "ip/design_1_xpm_cdc_gen_1_0/design_1_xpm_cdc_gen_1_0.xci",
         "inst_hier_path": "xpm_cdc_gen_1",
         "has_run_ip_tcl": "true",
         "parameters": {
@@ -1960,7 +2049,7 @@
         "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
         "ip_revision": "5",
         "xci_name": "design_1_xpm_cdc_gen_1_1",
-        "xci_path": "ip\\design_1_xpm_cdc_gen_1_1\\design_1_xpm_cdc_gen_1_1.xci",
+        "xci_path": "ip/design_1_xpm_cdc_gen_1_1/design_1_xpm_cdc_gen_1_1.xci",
         "inst_hier_path": "xpm_cdc_gen_2",
         "has_run_ip_tcl": "true",
         "parameters": {
@@ -1973,12 +2062,12 @@
         "vlnv": "xilinx.com:ip:smartconnect:1.0",
         "ip_revision": "27",
         "xci_name": "design_1_axi_smc_0",
-        "xci_path": "ip\\design_1_axi_smc_0\\design_1_axi_smc_0.xci",
+        "xci_path": "ip/design_1_axi_smc_0/design_1_axi_smc_0.xci",
         "inst_hier_path": "axi_smc",
         "has_run_ip_tcl": "true",
         "parameters": {
           "NUM_MI": {
-            "value": "2"
+            "value": "3"
           },
           "NUM_SI": {
             "value": "1"
@@ -1999,11 +2088,12 @@
             },
             "bridges": [
               "M00_AXI",
-              "M01_AXI"
+              "M01_AXI",
+              "M02_AXI"
             ],
             "bd_attributes": {
               "BRIDGES": {
-                "value": "M00_AXI:M01_AXI",
+                "value": "M00_AXI:M01_AXI:M02_AXI",
                 "value_src": "auto"
               },
               "TYPE": {
@@ -2073,6 +2163,37 @@
                 "value_src": "default"
               }
             }
+          },
+          "M02_AXI": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_READ_THREADS": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "8"
+              },
+              "NUM_WRITE_THREADS": {
+                "value": "1"
+              },
+              "RUSER_BITS_PER_BYTE": {
+                "value": "0"
+              },
+              "WUSER_BITS_PER_BYTE": {
+                "value": "0"
+              }
+            },
+            "bd_attributes": {
+              "TYPE": {
+                "value": "interior",
+                "value_src": "default"
+              }
+            }
           }
         }
       },
@@ -2080,7 +2201,7 @@
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "ip_revision": "17",
         "xci_name": "design_1_rst_ps7_0_100M_0",
-        "xci_path": "ip\\design_1_rst_ps7_0_100M_0\\design_1_rst_ps7_0_100M_0.xci",
+        "xci_path": "ip/design_1_rst_ps7_0_100M_0/design_1_rst_ps7_0_100M_0.xci",
         "inst_hier_path": "rst_ps7_0_100M",
         "has_run_ip_tcl": "true"
       },
@@ -2088,7 +2209,7 @@
         "vlnv": "xilinx.com:module_ref:audio_fir_wrapper:1.0",
         "ip_revision": "1",
         "xci_name": "design_1_audio_fir_wrapper_0_1",
-        "xci_path": "ip\\design_1_audio_fir_wrapper_0_1\\design_1_audio_fir_wrapper_0_1.xci",
+        "xci_path": "ip/design_1_audio_fir_wrapper_0_1/design_1_audio_fir_wrapper_0_1.xci",
         "inst_hier_path": "audio_fir_wrapper_0",
         "has_run_ip_tcl": "true",
         "parameters": {
@@ -2165,7 +2286,7 @@
         "vlnv": "xilinx.com:user:voice_control_interface:1.0",
         "ip_revision": "2",
         "xci_name": "design_1_voice_control_interf_0_0",
-        "xci_path": "ip\\design_1_voice_control_interf_0_0\\design_1_voice_control_interf_0_0.xci",
+        "xci_path": "ip/design_1_voice_control_interf_0_0/design_1_voice_control_interf_0_0.xci",
         "inst_hier_path": "voice_control_interf_0",
         "has_run_ip_tcl": "true"
       },
@@ -2173,7 +2294,7 @@
         "vlnv": "xilinx.com:module_ref:voice_mixer_wrapper:1.0",
         "ip_revision": "1",
         "xci_name": "design_1_voice_mixer_wrapper_0_0",
-        "xci_path": "ip\\design_1_voice_mixer_wrapper_0_0\\design_1_voice_mixer_wrapper_0_0.xci",
+        "xci_path": "ip/design_1_voice_mixer_wrapper_0_0/design_1_voice_mixer_wrapper_0_0.xci",
         "inst_hier_path": "voice_mixer_wrapper_0",
         "has_run_ip_tcl": "true",
         "reference_info": {
@@ -2267,7 +2388,7 @@
         "vlnv": "xilinx.com:module_ref:multi_voice_adsr_wrapper:1.0",
         "ip_revision": "1",
         "xci_name": "design_1_multi_voice_adsr_wra_0_0",
-        "xci_path": "ip\\design_1_multi_voice_adsr_wra_0_0\\design_1_multi_voice_adsr_wra_0_0.xci",
+        "xci_path": "ip/design_1_multi_voice_adsr_wra_0_0/design_1_multi_voice_adsr_wra_0_0.xci",
         "inst_hier_path": "multi_voice_adsr_wra_0",
         "has_run_ip_tcl": "true",
         "reference_info": {
@@ -2417,22 +2538,6 @@
           }
         }
       },
-      "ilconstant_0": {
-        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
-        "parameters": {
-          "CONST_WIDTH": {
-            "value": "32"
-          }
-        }
-      },
-      "ilconstant_1": {
-        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
-        "parameters": {
-          "CONST_WIDTH": {
-            "value": "8"
-          }
-        }
-      },
       "ilconstant_2": {
         "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0"
       },
@@ -2440,7 +2545,7 @@
         "vlnv": "xilinx.com:module_ref:effect_mux_wrapper:1.0",
         "ip_revision": "1",
         "xci_name": "design_1_effect_mux_wrapper_0_0",
-        "xci_path": "ip\\design_1_effect_mux_wrapper_0_0\\design_1_effect_mux_wrapper_0_0.xci",
+        "xci_path": "ip/design_1_effect_mux_wrapper_0_0/design_1_effect_mux_wrapper_0_0.xci",
         "inst_hier_path": "effect_mux_wrapper_0",
         "has_run_ip_tcl": "true",
         "reference_info": {
@@ -2494,10 +2599,22 @@
             "direction": "O"
           },
           "enable_bitcrush": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "PortWidth": {
+                "value": "1",
+                "value_src": "user_prop"
+              }
+            }
           },
           "enable_delay": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "PortWidth": {
+                "value": "1",
+                "value_src": "user_prop"
+              }
+            }
           },
           "bit_depth": {
             "direction": "I",
@@ -2515,6 +2632,210 @@
             "right": "0"
           }
         }
+      },
+      "synth_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:synth_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_synth_wrapper_0_0",
+        "xci_path": "ip/design_1_synth_wrapper_0_0/design_1_synth_wrapper_0_0.xci",
+        "inst_hier_path": "synth_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "synth_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "midi_in": {
+            "direction": "I"
+          },
+          "octave_on": {
+            "direction": "I",
+            "parameters": {
+              "PortWidth": {
+                "value": "1",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "notes_on": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "voice_1_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_2_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_3_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_4_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_5_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_6_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_7_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "voice_8_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "ilslice_0": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "ilslice_1": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "1"
+          },
+          "DIN_TO": {
+            "value": "1"
+          },
+          "DIN_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "ilslice_2": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "2"
+          },
+          "DIN_TO": {
+            "value": "2"
+          },
+          "DIN_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "i2s_transmitter_0": {
+        "vlnv": "xilinx.com:ip:i2s_transmitter:1.0",
+        "ip_revision": "10",
+        "xci_name": "design_1_i2s_transmitter_0_0",
+        "xci_path": "ip/design_1_i2s_transmitter_0_0/design_1_i2s_transmitter_0_0.xci",
+        "inst_hier_path": "i2s_transmitter_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "C_32BIT_LR": {
+            "value": "0"
+          }
+        }
+      },
+      "ilconstant_0": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "3"
+          }
+        }
+      },
+      "ilconstant_1": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "5"
+          }
+        }
+      },
+      "ilconstant_3": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "ilconstant_4": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "ilslice_3": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "3"
+          },
+          "DIN_WIDTH": {
+            "value": "8"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2528,6 +2849,12 @@
         "interface_ports": [
           "axi_smc/M01_AXI",
           "voice_control_interf_0/S00_AXI"
+        ]
+      },
+      "axi_smc_M02_AXI": {
+        "interface_ports": [
+          "axi_smc/M02_AXI",
+          "i2s_transmitter_0/s_axi_ctrl"
         ]
       },
       "processing_system7_0_DDR": {
@@ -2580,29 +2907,108 @@
           "effect_mux_wrapper_0/sample_valid"
         ]
       },
+      "btns_1": {
+        "ports": [
+          "btns",
+          "ilslice_0/Din",
+          "ilslice_1/Din",
+          "ilslice_2/Din"
+        ]
+      },
+      "effect_mux_wrapper_0_audio_out": {
+        "ports": [
+          "effect_mux_wrapper_0/audio_out",
+          "i2s_transmitter_0/s_axis_aud_tdata"
+        ]
+      },
+      "effect_mux_wrapper_0_audio_out_valid": {
+        "ports": [
+          "effect_mux_wrapper_0/audio_out_valid",
+          "i2s_transmitter_0/s_axis_aud_tvalid"
+        ]
+      },
+      "i2s_transmitter_0_lrclk_out": {
+        "ports": [
+          "i2s_transmitter_0/lrclk_out",
+          "lrclk"
+        ]
+      },
+      "i2s_transmitter_0_sclk_out": {
+        "ports": [
+          "i2s_transmitter_0/sclk_out",
+          "blck"
+        ]
+      },
+      "i2s_transmitter_0_sdata_0_out": {
+        "ports": [
+          "i2s_transmitter_0/sdata_0_out",
+          "sdata_o"
+        ]
+      },
       "ilconstant_0_dout": {
         "ports": [
           "ilconstant_0/dout",
-          "multi_voice_adsr_wra_0/voice_0_in",
-          "multi_voice_adsr_wra_0/voice_1_in",
-          "multi_voice_adsr_wra_0/voice_2_in",
-          "multi_voice_adsr_wra_0/voice_3_in",
-          "multi_voice_adsr_wra_0/voice_4_in",
-          "multi_voice_adsr_wra_0/voice_5_in",
-          "multi_voice_adsr_wra_0/voice_6_in",
-          "multi_voice_adsr_wra_0/voice_7_in"
+          "i2s_transmitter_0/s_axis_aud_tid"
         ]
       },
       "ilconstant_1_dout": {
         "ports": [
           "ilconstant_1/dout",
-          "multi_voice_adsr_wra_0/note_on"
+          "effect_mux_wrapper_0/bit_depth"
         ]
       },
       "ilconstant_2_dout": {
         "ports": [
           "ilconstant_2/dout",
-          "multi_voice_adsr_wra_0/data_in_valid"
+          "multi_voice_adsr_wra_0/data_in_valid",
+          "audio_fir_interface_0/s00_axi_aresetn",
+          "voice_control_interf_0/s00_axi_aresetn",
+          "axi_smc/aresetn",
+          "i2s_transmitter_0/s_axi_ctrl_aresetn",
+          "i2s_transmitter_0/s_axis_aud_aresetn",
+          "i2s_transmitter_0/aud_mrst"
+        ]
+      },
+      "ilconstant_3_dout": {
+        "ports": [
+          "ilconstant_3/dout",
+          "effect_mux_wrapper_0/delay_samples"
+        ]
+      },
+      "ilconstant_4_dout": {
+        "ports": [
+          "ilconstant_4/dout",
+          "effect_mux_wrapper_0/feedback_amount"
+        ]
+      },
+      "ilslice_0_Dout": {
+        "ports": [
+          "ilslice_0/Dout",
+          "synth_wrapper_0/octave_on"
+        ]
+      },
+      "ilslice_1_Dout": {
+        "ports": [
+          "ilslice_1/Dout",
+          "effect_mux_wrapper_0/enable_bitcrush"
+        ]
+      },
+      "ilslice_2_Dout": {
+        "ports": [
+          "ilslice_2/Dout",
+          "effect_mux_wrapper_0/enable_delay"
+        ]
+      },
+      "ilslice_3_Dout": {
+        "ports": [
+          "ilslice_3/Dout",
+          "leds"
+        ]
+      },
+      "midi_in_1": {
+        "ports": [
+          "midi_in",
+          "synth_wrapper_0/midi_in"
         ]
       },
       "multi_voice_adsr_wra_0_data_out_valid": {
@@ -2650,7 +3056,12 @@
       "multi_voice_adsr_wra_0_voice_6_out": {
         "ports": [
           "multi_voice_adsr_wra_0/voice_6_out",
-          "voice_mixer_wrapper_0/voice_6",
+          "voice_mixer_wrapper_0/voice_6"
+        ]
+      },
+      "multi_voice_adsr_wra_0_voice_7_out": {
+        "ports": [
+          "multi_voice_adsr_wra_0/voice_7_out",
           "voice_mixer_wrapper_0/voice_7"
         ]
       },
@@ -2668,10 +3079,14 @@
           "xpm_cdc_gen_2/dest_clk",
           "xpm_cdc_gen_2/src_clk",
           "voice_control_interf_0/s00_axi_aclk",
+          "effect_mux_wrapper_0/clk",
           "multi_voice_adsr_wra_0/clk",
-          "audio_fir_wrapper_0/clk",
           "voice_mixer_wrapper_0/clk",
-          "effect_mux_wrapper_0/clk"
+          "synth_wrapper_0/clk",
+          "i2s_transmitter_0/s_axi_ctrl_aclk",
+          "i2s_transmitter_0/aud_mclk",
+          "i2s_transmitter_0/s_axis_aud_aclk",
+          "audio_fir_wrapper_0/clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -2683,13 +3098,66 @@
       "rst_ps7_0_100M_peripheral_aresetn": {
         "ports": [
           "rst_ps7_0_100M/peripheral_aresetn",
-          "audio_fir_interface_0/s00_axi_aresetn",
-          "axi_smc/aresetn",
-          "voice_control_interf_0/s00_axi_aresetn",
+          "effect_mux_wrapper_0/reset",
           "multi_voice_adsr_wra_0/rst",
-          "audio_fir_wrapper_0/rst",
           "voice_mixer_wrapper_0/rst",
-          "effect_mux_wrapper_0/reset"
+          "synth_wrapper_0/rst",
+          "audio_fir_wrapper_0/rst"
+        ]
+      },
+      "synth_wrapper_0_notes_on": {
+        "ports": [
+          "synth_wrapper_0/notes_on",
+          "multi_voice_adsr_wra_0/note_on",
+          "ilslice_3/Din"
+        ]
+      },
+      "synth_wrapper_0_voice_1_out": {
+        "ports": [
+          "synth_wrapper_0/voice_1_out",
+          "multi_voice_adsr_wra_0/voice_0_in"
+        ]
+      },
+      "synth_wrapper_0_voice_2_out": {
+        "ports": [
+          "synth_wrapper_0/voice_2_out",
+          "multi_voice_adsr_wra_0/voice_1_in"
+        ]
+      },
+      "synth_wrapper_0_voice_3_out": {
+        "ports": [
+          "synth_wrapper_0/voice_3_out",
+          "multi_voice_adsr_wra_0/voice_2_in"
+        ]
+      },
+      "synth_wrapper_0_voice_4_out": {
+        "ports": [
+          "synth_wrapper_0/voice_4_out",
+          "multi_voice_adsr_wra_0/voice_3_in"
+        ]
+      },
+      "synth_wrapper_0_voice_5_out": {
+        "ports": [
+          "synth_wrapper_0/voice_5_out",
+          "multi_voice_adsr_wra_0/voice_4_in"
+        ]
+      },
+      "synth_wrapper_0_voice_6_out": {
+        "ports": [
+          "synth_wrapper_0/voice_6_out",
+          "multi_voice_adsr_wra_0/voice_5_in"
+        ]
+      },
+      "synth_wrapper_0_voice_7_out": {
+        "ports": [
+          "synth_wrapper_0/voice_7_out",
+          "multi_voice_adsr_wra_0/voice_6_in"
+        ]
+      },
+      "synth_wrapper_0_voice_8_out": {
+        "ports": [
+          "synth_wrapper_0/voice_8_out",
+          "multi_voice_adsr_wra_0/voice_7_in"
         ]
       },
       "voice_control_interf_0_attack_time": {
@@ -2758,6 +3226,11 @@
                 "range": "64K",
                 "offset_base_param": "C_S00_AXI_BASEADDR",
                 "offset_high_param": "C_S00_AXI_HIGHADDR"
+              },
+              "SEG_i2s_transmitter_0_Reg": {
+                "address_block": "/i2s_transmitter_0/s_axi_ctrl/Reg",
+                "offset": "0x43C20000",
+                "range": "64K"
               },
               "SEG_voice_control_interf_0_S00_AXI_reg": {
                 "address_block": "/voice_control_interf_0/S00_AXI/S00_AXI_reg",

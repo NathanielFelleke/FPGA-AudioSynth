@@ -160,19 +160,22 @@ module synth #(
 
     genvar i;
     generate
-        for (i=0; i < 16; i++) begin
+        for (i=0; i < 8; i++) begin
             oscillator osc_inst(.clk(clk), .rst(rst), .wave_type(wave_type), .step_in(1), .PHASE_INCR(note_freqs[note_notes[i]]), .data_out(osc_out[i]));
             oscillator oct_osc_inst(.clk(clk), .rst(rst), .wave_type(wave_type), .step_in(1), .PHASE_INCR(note_freqs[note_notes[i]]<<1), .data_out(oct_osc_out[i]));
         end
     endgenerate
 
-    assign voice_1_out = (octave_on)? $signed(osc_out[0])*(note_vels[0]+1)+$signed(oct_osc_out[0])*(note_vels[0]+1) : $signed(osc_out[0])*(note_vels[0]+1);
-    assign voice_2_out = (octave_on)? $signed(osc_out[1])*(note_vels[1]+1)+$signed(oct_osc_out[1])*(note_vels[1]+1) : $signed(osc_out[1])*(note_vels[1]+1);
-    assign voice_3_out = (octave_on)? $signed(osc_out[2])*(note_vels[2]+1)+$signed(oct_osc_out[2])*(note_vels[2]+1) : $signed(osc_out[2])*(note_vels[2]+1);
-    assign voice_4_out = (octave_on)? $signed(osc_out[3])*(note_vels[3]+1)+$signed(oct_osc_out[3])*(note_vels[3]+1) : $signed(osc_out[3])*(note_vels[3]+1);
-    assign voice_5_out = (octave_on)? $signed(osc_out[4])*(note_vels[4]+1)+$signed(oct_osc_out[4])*(note_vels[4]+1) : $signed(osc_out[4])*(note_vels[4]+1);
-    assign voice_6_out = (octave_on)? $signed(osc_out[5])*(note_vels[5]+1)+$signed(oct_osc_out[5])*(note_vels[5]+1) : $signed(osc_out[5])*(note_vels[5]+1);
-    assign voice_7_out = (octave_on)? $signed(osc_out[6])*(note_vels[6]+1)+$signed(oct_osc_out[6])*(note_vels[6]+1) : $signed(osc_out[6])*(note_vels[6]+1);
-    assign voice_8_out = (octave_on)? $signed(osc_out[7])*(note_vels[7]+1)+$signed(oct_osc_out[7])*(note_vels[7]+1) : $signed(osc_out[7])*(note_vels[7]+1);
+    // velocity scaling with with gain compensation for 32-bit oscillators (to prevent overflow)
+    //right shift by 3 bits so it can fit
+    //if both oscillators (need to shift by 1 as well)
+    assign voice_1_out = (octave_on)? (($signed(osc_out[0]) + $signed(oct_osc_out[0])) >>> 1) * (note_vels[0]+1) >>> 3 : ($signed(osc_out[0]) * (note_vels[0]+1)) >>> 3;
+    assign voice_2_out = (octave_on)? (($signed(osc_out[1]) + $signed(oct_osc_out[1])) >>> 1) * (note_vels[1]+1) >>> 3 : ($signed(osc_out[1]) * (note_vels[1]+1)) >>> 3;
+    assign voice_3_out = (octave_on)? (($signed(osc_out[2]) + $signed(oct_osc_out[2])) >>> 1) * (note_vels[2]+1) >>> 3 : ($signed(osc_out[2]) * (note_vels[2]+1)) >>> 3;
+    assign voice_4_out = (octave_on)? (($signed(osc_out[3]) + $signed(oct_osc_out[3])) >>> 1) * (note_vels[3]+1) >>> 3 : ($signed(osc_out[3]) * (note_vels[3]+1)) >>> 3;
+    assign voice_5_out = (octave_on)? (($signed(osc_out[4]) + $signed(oct_osc_out[4])) >>> 1) * (note_vels[4]+1) >>> 3 : ($signed(osc_out[4]) * (note_vels[4]+1)) >>> 3;
+    assign voice_6_out = (octave_on)? (($signed(osc_out[5]) + $signed(oct_osc_out[5])) >>> 1) * (note_vels[5]+1) >>> 3 : ($signed(osc_out[5]) * (note_vels[5]+1)) >>> 3;
+    assign voice_7_out = (octave_on)? (($signed(osc_out[6]) + $signed(oct_osc_out[6])) >>> 1) * (note_vels[6]+1) >>> 3 : ($signed(osc_out[6]) * (note_vels[6]+1)) >>> 3;
+    assign voice_8_out = (octave_on)? (($signed(osc_out[7]) + $signed(oct_osc_out[7])) >>> 1) * (note_vels[7]+1) >>> 3 : ($signed(osc_out[7]) * (note_vels[7]+1)) >>> 3;
 
 endmodule

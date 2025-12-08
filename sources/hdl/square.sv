@@ -1,15 +1,14 @@
 module square_generator (
   input wire clk_in,
-  input wire rst_in, //clock and reset
-  input wire step_in, //trigger a phase step (rate at which you run sine generator)
+  input wire rst_in,
+  input wire step_in,
   input wire [31:0] PHASE_INCR,
-  output logic signed [7:0] amp_out); //output phase in 2's complement
+  output logic signed [31:0] amp_out);
 
   logic [31:0] phase;
-  logic [7:0] amp;
-  logic [7:0] amp_pre;
 
-  assign amp_out = (phase[31])? 32'h0000007F: 32'hFFFFFF80;
+  // True 32-bit square wave: full positive or full negative
+  assign amp_out = (phase[31])? -32'sd2147483647 : 32'sd2147483647;
 
   always_ff @(posedge clk_in)begin
     if (rst_in)begin

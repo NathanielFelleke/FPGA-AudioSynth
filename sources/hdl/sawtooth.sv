@@ -1,14 +1,16 @@
 module sawtooth_generator (
   input wire clk_in,
-  input wire rst_in, //clock and reset
-  input wire step_in, //trigger a phase step (rate at which you run sine generator)
+  input wire rst_in,
+  input wire step_in,
   input wire [31:0] PHASE_INCR,
-  output logic signed [31:0] amp_out); //output phase in 2's complement
+  output logic signed [31:0] amp_out);
 
   logic [31:0] phase;
-  logic [31:0] amp_pre;
-  assign amp_pre = (phase[31])? ({24'b0,~phase[31],phase[30:24]}) : ({24'hFFFFFF,~phase[31],phase[30:24]}); //2's comp output (if not scaling)
-  assign amp_out = $signed(amp_pre); //decrease volume so it isn't too loud!
+
+  // True 32-bit sawtooth: use full phase as amplitude
+  // Phase goes from 0 to 2^32-1, we want -2^31 to +2^31-1
+  // Simply reinterpret phase as signed (phase wraps from max positive to max negative)
+  assign amp_out = $signed(phase);
 
   always_ff @(posedge clk_in)begin
     if (rst_in)begin

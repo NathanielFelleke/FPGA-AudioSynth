@@ -1,16 +1,29 @@
 module triangle_generator (
   input wire clk_in,
-  input wire rst_in, //clock and reset
-  input wire step_in, //trigger a phase step (rate at which you run sine generator)
+  input wire rst_in,
+  input wire step_in,
   input wire [31:0] PHASE_INCR,
-  output logic signed [31:0] amp_out); //output phase in 2's complement
+  output logic signed [31:0] amp_out);
 
   logic [31:0] phase;
-  logic [7:0] amp;
-  logic [31:0] amp_pre;
-  assign amp = (phase[31])? {phase[30:24], 1'b0}: 8'hFF-(phase[30:24]<<1);
-  assign amp_pre = (amp[7])? ({24'b0,~amp[7],amp[6:0]}) : ({24'hFFFFFF,~amp[7],amp[6:0]});
-  assign amp_out = $signed(amp_pre); //decrease volume so it isn't too loud!
+  logic signed [31:0] triangle;
+
+  // True 32-bit triangle wave
+  // First half (0 to π): rising from -max to +max
+  // Second half (π to 2π): falling from +max to -max
+  always_comb begin
+    if (phase[31] == 1'b0) begin
+      // First half: 0 to 0x7FFFFFFF
+      // Map to -2^31 to +2^31-1 by shifting and inverting
+      triangle = {phase[30:0], 1'b0} - 32'sd2147483648;
+    end else begin
+      // Second half: 0x80000000 to 0xFFFFFFFF
+      // Map to +2^31-1 down to -2^31
+      triangle = 32'sd2147483647 - {phase[30:0], 1'b0};
+    end
+  end
+
+  assign amp_out = triangle;
 
   always_ff @(posedge clk_in)begin
     if (rst_in)begin

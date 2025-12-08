@@ -75,8 +75,8 @@ module voice_mixer #(
         end
     endgenerate
 
-    // Final output is the result of the last stage
-    assign mixed_out = stage[NUM_STAGES][0];
+    // need to right shift by log2(NUM_VOICES) to normalize for number of voices
+    assign mixed_out = $signed(stage[NUM_STAGES][0]) >>> $clog2(NUM_VOICES);
     assign data_out_valid = valid_pipe[NUM_STAGES];
 
 endmodule

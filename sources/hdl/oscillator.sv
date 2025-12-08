@@ -11,7 +11,7 @@ module oscillator #
         output logic signed [DATA_WIDTH-1 : 0] data_out
     );
 
-    logic [DATA_WIDTH-1:0] sin_out, sq_out, saw_out, tri_out;
+    logic signed [DATA_WIDTH-1:0] sin_out, sq_out, saw_out, tri_out;
     sine_generator my_sine(.clk_in(clk), .rst_in(rst), .step_in(step_in), .PHASE_INCR(PHASE_INCR), .amp_out(sin_out));
     square_generator my_square(.clk_in(clk), .rst_in(rst), .step_in(step_in), .PHASE_INCR(PHASE_INCR), .amp_out(sq_out));
     sawtooth_generator my_sawtooth(.clk_in(clk), .rst_in(rst), .step_in(step_in), .PHASE_INCR(PHASE_INCR), .amp_out(saw_out));

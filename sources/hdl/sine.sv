@@ -103,10 +103,18 @@ module sine_lut(input wire [9:0] phase_in, input wire clk_in, output logic signe
     sine_rom[252] = 32'sd2146836865; sine_rom[253] = 32'sd2147119824; sine_rom[254] = 32'sd2147321945; sine_rom[255] = 32'sd2147443221;
   end
 
+  logic [1:0] quadrant_delayed;
+  logic signed [31:0] signed_out;
+
   always_ff @(posedge clk_in) begin
     quarter_amp <= sine_rom[quarter_phase];
+    quadrant_delayed <= quadrant;  // Delay quadrant to match ROM pipeline
   end
 
-  assign amp_out = (quadrant[1]) ? -quarter_amp : quarter_amp;
+  // Apply quadrant symmetry for sine wave
+  // Quadrants 0,1 (0-180°): positive half of sine
+  // Quadrants 2,3 (180-360°): negative half of sine
+  assign signed_out = (quadrant_delayed[1]) ? -quarter_amp : quarter_amp;
+  assign amp_out = signed_out;
 
 endmodule

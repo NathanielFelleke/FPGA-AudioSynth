@@ -302,29 +302,37 @@ async def test_zero_delay(dut):
     outputs = []
     valids = []
     inputs = []
-    
+
     test_values = [2000, 3000, -1000, 500, 0, 4000, -2000, 1000]
-    
-    for i, val in enumerate(test_values):
-        dut.sample_valid.value = 1
-        dut.audio_in.value = val & 0xFFFFFFFF  # Handle negative values
-        inputs.append(val)
-        
+    NUM_EXTRA_CYCLES = 12  # Account for 8-cycle pipeline latency
+
+    for i in range(len(test_values) + NUM_EXTRA_CYCLES):
+        if i < len(test_values):
+            val = test_values[i]
+            dut.sample_valid.value = 1
+            dut.audio_in.value = val & 0xFFFFFFFF  # Handle negative values
+            inputs.append(val)
+        else:
+            # Continue clocking to let pipeline flush
+            dut.sample_valid.value = 1
+            dut.audio_in.value = 0
+            inputs.append(0)
+
         await RisingEdge(dut.clk)
-        
+
         output_raw = safe_int(dut.audio_out)
         output = to_signed_32bit(output_raw)
         valid = safe_int(dut.audio_out_valid)
         outputs.append(output)
         valids.append(valid)
-        print(f"Zero Delay Cycle {i}: input={val}, valid={valid}, output={output}")
+        print(f"Zero Delay Cycle {i}: input={inputs[-1]}, valid={valid}, output={output}")
 
     dut.sample_valid.value = 0
 
-    # With zero delay, output should appear quickly (accounting for pipeline latency)
+    # With zero delay and 8-cycle pipeline latency, output should appear after latency
     non_zero = [(i, o) for i, (v, o) in enumerate(zip(valids, outputs)) if v == 1 and o != 0]
     assert len(non_zero) > 0, "Expected output with zero delay"
-    print(f"✓ Zero delay test passed, found {len(non_zero)} non-zero outputs")
+    print(f"✓ Zero delay test passed, found {len(non_zero)} non-zero outputs starting at cycle {non_zero[0][0] if non_zero else 'N/A'}")
 
 
 def test_runner():

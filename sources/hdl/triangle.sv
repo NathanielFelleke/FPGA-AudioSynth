@@ -6,24 +6,23 @@ module triangle_generator (
   output logic signed [31:0] amp_out);
 
   logic [31:0] phase;
-  logic signed [31:0] triangle;
+  logic [31:0] triangle_unsigned;
 
-  // True 32-bit triangle wave
-  // First half (0 to π): rising from -max to +max
-  // Second half (π to 2π): falling from +max to -max
+  // True 32-bit triangle wave centered at zero
+  // First half (phase[31]=0): rising from 0 to max
+  // Second half (phase[31]=1): falling from max to 0
   always_comb begin
     if (phase[31] == 1'b0) begin
-      // First half: 0 to 0x7FFFFFFF
-      // Map to -2^31 to +2^31-1 by shifting and inverting
-      triangle = {phase[30:0], 1'b0} - 32'sd2147483648;
+      // Rising: use phase[30:0] shifted left
+      triangle_unsigned = {phase[30:0], 1'b0};
     end else begin
-      // Second half: 0x80000000 to 0xFFFFFFFF
-      // Map to +2^31-1 down to -2^31
-      triangle = 32'sd2147483647 - {phase[30:0], 1'b0};
+      // Falling: invert phase[30:0] and shift left
+      triangle_unsigned = {~phase[30:0], 1'b0};
     end
   end
 
-  assign amp_out = triangle;
+  // Center around zero by XORing with 0x80000000 (flip sign bit)
+  assign amp_out = $signed(triangle_unsigned ^ 32'h80000000);
 
   always_ff @(posedge clk_in)begin
     if (rst_in)begin

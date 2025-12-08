@@ -18,10 +18,17 @@ module variable_delay_buffer #(
     // --- Write pointer: points to next write location ---
     logic [ADDR_WIDTH-1:0] wr_ptr;
 
-    // --- Read pointer: wr_ptr - delay_samples ---
+    // --- Read pointer: wr_ptr - delay_samples (PIPELINED) ---
     // Modular arithmetic handles wrap naturally for circular buffer
     logic [ADDR_WIDTH-1:0] rd_ptr;
-    assign rd_ptr = wr_ptr - delay_samples;
+
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            rd_ptr <= '0;
+        end else begin
+            rd_ptr <= wr_ptr - delay_samples;
+        end
+    end
 
     // --- RAM output ---
     logic [DATA_WIDTH-1:0] ram_out;
@@ -62,6 +69,17 @@ module variable_delay_buffer #(
         end
     end
 
+    // --- Pipeline the valid comparison ---
+    logic valid_check;
+
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            valid_check <= 1'b0;
+        end else begin
+            valid_check <= (write_count >= delay_samples);
+        end
+    end
+
     // --- Output and valid logic ---
     always_ff @(posedge clk) begin
         if (reset) begin
@@ -77,11 +95,8 @@ module variable_delay_buffer #(
                 write_count <= write_count + 1'b1;
             end
 
-            // FIX: Valid is computed fresh each cycle, not "set and forget"
-            // Output is valid when:
-            // 1. We're actively processing a sample (sample_valid), AND
-            // 2. We have enough samples buffered for the requested delay
-            out_sample_valid <= sample_valid && (write_count >= delay_samples);
+            // Use pipelined valid check
+            out_sample_valid <= sample_valid && valid_check;
         end
     end
 

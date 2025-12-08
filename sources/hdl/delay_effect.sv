@@ -2,7 +2,7 @@ module delay_effect #(
     parameter ADDR_WIDTH = 16,      // 2^16 = 65536 samples (~1.36s at 48kHz)
     parameter DATA_WIDTH = 32,      // 32-bit internal data width
     parameter FEEDBACK_WIDTH = 8,   // 8-bit feedback control
-    parameter LATENCY = 2           // Pipeline latency in cycles
+    parameter LATENCY = 8           // Pipeline latency in cycles (2 feedback + 3 buffer + 3 mixer)
 )(
     input  wire                         clk,
     input  wire                         reset,
@@ -31,31 +31,68 @@ module delay_effect #(
     // =========================================================================
     logic signed [DATA_WIDTH-1:0] delayed_sample;
     logic delayed_sample_valid;
-    
+
     // =========================================================================
-    // Feedback calculation
+    // Feedback calculation - PIPELINED
     // =========================================================================
-    wire signed [DATA_WIDTH+FEEDBACK_WIDTH-1:0] feedback_scaled;
-    assign feedback_scaled = delayed_sample * feedback_amount;
-    
-    wire signed [DATA_WIDTH-1:0] feedback_signal;
-    assign feedback_signal = feedback_scaled >>> FEEDBACK_WIDTH;
-    
-    // Sum with overflow detection
-    wire signed [DATA_WIDTH:0] feedback_sum;
-    assign feedback_sum = audio_in + feedback_signal;
-    
-    // Saturate to prevent overflow
-    wire signed [DATA_WIDTH-1:0] feedback_saturated;
-    assign feedback_saturated = (feedback_sum > MAX_POSITIVE) ? MAX_POSITIVE :
-                                (feedback_sum < MAX_NEGATIVE) ? MAX_NEGATIVE :
-                                feedback_sum[DATA_WIDTH-1:0];
-    
-    // =========================================================================
-    // Mode selection: feedback or feedforward
-    // =========================================================================
-    wire signed [DATA_WIDTH-1:0] buffer_input;
-    assign buffer_input = mode ? feedback_saturated : audio_in;
+    // Stage 1: Multiply
+    logic signed [DATA_WIDTH+FEEDBACK_WIDTH-1:0] feedback_scaled;
+    logic signed [DATA_WIDTH-1:0] audio_in_stage1;
+    logic sample_valid_stage1;
+    logic mode_stage1;
+
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            feedback_scaled <= '0;
+            audio_in_stage1 <= '0;
+            sample_valid_stage1 <= 1'b0;
+            mode_stage1 <= 1'b0;
+        end else begin
+            feedback_scaled <= delayed_sample * $signed({1'b0, feedback_amount});
+            audio_in_stage1 <= audio_in;
+            sample_valid_stage1 <= sample_valid;
+            mode_stage1 <= mode;
+        end
+    end
+
+    // Stage 2: Shift and add with saturation
+    logic signed [DATA_WIDTH-1:0] feedback_signal;
+    logic signed [DATA_WIDTH:0] feedback_sum;
+    logic signed [DATA_WIDTH-1:0] feedback_saturated;
+    logic signed [DATA_WIDTH-1:0] buffer_input;
+    logic signed [DATA_WIDTH-1:0] audio_in_stage2;
+    logic sample_valid_stage2;
+
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            feedback_signal <= '0;
+            feedback_sum <= '0;
+            feedback_saturated <= '0;
+            buffer_input <= '0;
+            audio_in_stage2 <= '0;
+            sample_valid_stage2 <= 1'b0;
+        end else begin
+            // Shift down feedback
+            feedback_signal <= feedback_scaled >>> FEEDBACK_WIDTH;
+
+            // Add with overflow detection
+            feedback_sum <= audio_in_stage1 + (feedback_scaled >>> FEEDBACK_WIDTH);
+
+            // Saturate
+            if (feedback_sum > MAX_POSITIVE)
+                feedback_saturated <= MAX_POSITIVE;
+            else if (feedback_sum < MAX_NEGATIVE)
+                feedback_saturated <= MAX_NEGATIVE;
+            else
+                feedback_saturated <= feedback_sum[DATA_WIDTH-1:0];
+
+            // Mode selection: feedback or feedforward
+            buffer_input <= mode_stage1 ? feedback_saturated : audio_in_stage1;
+
+            audio_in_stage2 <= audio_in_stage1;
+            sample_valid_stage2 <= sample_valid_stage1;
+        end
+    end
     
     // =========================================================================
     // Variable delay buffer
@@ -66,45 +103,60 @@ module delay_effect #(
     ) delay_buf (
         .clk(clk),
         .reset(reset),
-        
-        .sample_valid(sample_valid),
+
+        .sample_valid(sample_valid_stage2),
         .in_sample(buffer_input),
         .delay_samples(delay_samples),
-        
+
         .out_sample(delayed_sample),
         .out_sample_valid(delayed_sample_valid)
     );
     
     // =========================================================================
-    // Output mixer: Single effect amount control
+    // Output mixer: Single effect amount control - PIPELINED
     // dry_amount = 255 - effect_amount
     // wet_amount = effect_amount
     // =========================================================================
-    wire signed [DATA_WIDTH+8-1:0] dry_scaled;
-    wire signed [DATA_WIDTH+8-1:0] wet_scaled;
-    wire signed [DATA_WIDTH+8:0] mixed_sum;  // Extra bit for overflow detection
-    wire signed [DATA_WIDTH+8-1:0] mixed_output;
+    // Stage 1: Multiply dry and wet
+    logic signed [DATA_WIDTH+8-1:0] dry_scaled;
+    logic signed [DATA_WIDTH+8-1:0] wet_scaled;
+    logic delayed_sample_valid_stage1;
 
-    // Scale dry and wet signals
-    assign dry_scaled = audio_in * (8'd255 - effect_amount);
-    assign wet_scaled = delayed_sample * effect_amount;
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            dry_scaled <= '0;
+            wet_scaled <= '0;
+            delayed_sample_valid_stage1 <= 1'b0;
+        end else begin
+            dry_scaled <= audio_in_stage2 * (8'd255 - effect_amount);
+            wet_scaled <= delayed_sample * effect_amount;
+            delayed_sample_valid_stage1 <= delayed_sample_valid;
+        end
+    end
 
-    // Mix together (keep extra bit for overflow detection)
-    assign mixed_sum = dry_scaled + wet_scaled;
+    // Stage 2: Mix and scale
+    logic signed [DATA_WIDTH+8:0] mixed_sum;
+    logic signed [DATA_WIDTH+8-1:0] mixed_output;
 
-    // Scale down by 256 with saturation
-    assign mixed_output = mixed_sum >>> 8;
-    
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            mixed_sum <= '0;
+            mixed_output <= '0;
+            audio_out_valid <= 1'b0;
+        end else begin
+            mixed_sum <= dry_scaled + wet_scaled;
+            mixed_output <= (dry_scaled + wet_scaled) >>> 8;
+            audio_out_valid <= delayed_sample_valid_stage1;
+        end
+    end
+
     // =========================================================================
     // Output register
-    // Take the scaled output and register it
     // =========================================================================
     always_ff @(posedge clk) begin
         if (reset) begin
             audio_out <= '0;
-            audio_out_valid <= 1'b0;
         end else begin
-            audio_out_valid <= delayed_sample_valid;
             audio_out <= mixed_output[DATA_WIDTH-1:0];
         end
     end

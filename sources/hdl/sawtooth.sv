@@ -7,10 +7,10 @@ module sawtooth_generator (
 
   logic [31:0] phase;
 
-  // True 32-bit sawtooth: use full phase as amplitude
+  // True 32-bit sawtooth centered at zero
   // Phase goes from 0 to 2^32-1, we want -2^31 to +2^31-1
-  // Simply reinterpret phase as signed (phase wraps from max positive to max negative)
-  assign amp_out = $signed(phase);
+  // XOR with 0x80000000 to flip the MSB, effectively subtracting 2^31
+  assign amp_out = $signed(phase ^ 32'h80000000);
 
   always_ff @(posedge clk_in)begin
     if (rst_in)begin

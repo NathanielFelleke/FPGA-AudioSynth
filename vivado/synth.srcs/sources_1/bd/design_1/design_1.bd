@@ -1,14 +1,13 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x6E54B4EEC3F55938",
+      "boundary_crc": "0x3DD2C865236DE7C5",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../synth.gen/sources_1/bd/design_1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
-      "synth_flow_mode": "None",
-      "tool_version": "2025.1",
-      "validated": "true"
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2025.1"
     },
     "design_tree": {
       "processing_system7_0": "",
@@ -33,7 +32,13 @@
       "ilconstant_1": "",
       "ilconstant_3": "",
       "ilconstant_4": "",
-      "ilslice_3": ""
+      "ilslice_3": "",
+      "xfft_0": "",
+      "rgb2dvi_0": "",
+      "ilconstant_5": "",
+      "ilconstant_6": "",
+      "fft_input_wrapper_0": "",
+      "fft_mag_wrapper_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -226,13 +231,26 @@
       "leds": {
         "direction": "O",
         "left": "3",
-        "right": "0",
-        "parameters": {
-          "PortWidth": {
-            "value": "4",
-            "value_src": "user_prop"
-          }
-        }
+        "right": "0"
+      },
+      "hdmi_out_clk_p": {
+        "direction": "O"
+      },
+      "hdmi_out_clk_n": {
+        "direction": "O"
+      },
+      "hdmi_out_data_p": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "hdmi_out_data_n": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "hdmi_out_hpd": {
+        "direction": "O"
       }
     },
     "components": {
@@ -1358,7 +1376,7 @@
             "value": "200"
           },
           "PCW_PERIPHERAL_BOARD_PRESET": {
-            "value": "None"
+            "value": "part0"
           },
           "PCW_PJTAG_PERIPHERAL_ENABLE": {
             "value": "0"
@@ -2830,6 +2848,269 @@
             "value": "8"
           }
         }
+      },
+      "xfft_0": {
+        "vlnv": "xilinx.com:ip:xfft:9.1",
+        "ip_revision": "14",
+        "xci_name": "design_1_xfft_0_0",
+        "xci_path": "ip\\design_1_xfft_0_0\\design_1_xfft_0_0.xci",
+        "inst_hier_path": "xfft_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "implementation_options": {
+            "value": "pipelined_streaming_io"
+          },
+          "input_width": {
+            "value": "16"
+          },
+          "number_of_stages_using_block_ram_for_data_and_phase_factors": {
+            "value": "3"
+          },
+          "output_ordering": {
+            "value": "natural_order"
+          },
+          "phase_factor_width": {
+            "value": "16"
+          },
+          "rounding_modes": {
+            "value": "truncation"
+          },
+          "scaling_options": {
+            "value": "scaled"
+          },
+          "target_clock_frequency": {
+            "value": "100"
+          }
+        }
+      },
+      "rgb2dvi_0": {
+        "vlnv": "digilentinc.com:ip:rgb2dvi:1.4",
+        "ip_revision": "8",
+        "xci_name": "design_1_rgb2dvi_0_0",
+        "xci_path": "ip\\design_1_rgb2dvi_0_0\\design_1_rgb2dvi_0_0.xci",
+        "inst_hier_path": "rgb2dvi_0",
+        "has_run_ip_tcl": "true"
+      },
+      "ilconstant_5": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1"
+          },
+          "CONST_WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "ilconstant_6": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "fft_input_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:fft_input_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_fft_input_wrapper_0_0",
+        "xci_path": "ip\\design_1_fft_input_wrapper_0_0\\design_1_fft_input_wrapper_0_0.xci",
+        "inst_hier_path": "fft_input_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "fft_input_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "interface_ports": {
+          "m_axis": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+            "parameters": {
+              "TDEST_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TID_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TUSER_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TREADY": {
+                "value": "1",
+                "value_src": "constant"
+              },
+              "HAS_TSTRB": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TKEEP": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TLAST": {
+                "value": "1",
+                "value_src": "constant"
+              }
+            },
+            "port_maps": {
+              "TDATA": {
+                "physical_name": "m_axis_tdata",
+                "direction": "O",
+                "left": "31",
+                "right": "0"
+              },
+              "TLAST": {
+                "physical_name": "m_axis_tlast",
+                "direction": "O"
+              },
+              "TVALID": {
+                "physical_name": "m_axis_tvalid",
+                "direction": "O"
+              },
+              "TREADY": {
+                "physical_name": "m_axis_tready",
+                "direction": "I"
+              }
+            }
+          }
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_BUSIF": {
+                "value": "m_axis",
+                "value_src": "constant"
+              },
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "audio_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "audio_valid": {
+            "direction": "I"
+          }
+        }
+      },
+      "fft_mag_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:fft_mag_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_fft_mag_wrapper_0_0",
+        "xci_path": "ip\\design_1_fft_mag_wrapper_0_0\\design_1_fft_mag_wrapper_0_0.xci",
+        "inst_hier_path": "fft_mag_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "fft_mag_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "interface_ports": {
+          "s_axis": {
+            "mode": "Slave",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+            "parameters": {
+              "TDEST_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TID_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TUSER_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TREADY": {
+                "value": "1",
+                "value_src": "constant"
+              },
+              "HAS_TSTRB": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TKEEP": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TLAST": {
+                "value": "1",
+                "value_src": "constant"
+              }
+            },
+            "port_maps": {
+              "TDATA": {
+                "physical_name": "s_axis_tdata",
+                "direction": "I",
+                "left": "31",
+                "right": "0"
+              },
+              "TLAST": {
+                "physical_name": "s_axis_tlast",
+                "direction": "I"
+              },
+              "TVALID": {
+                "physical_name": "s_axis_tvalid",
+                "direction": "I"
+              },
+              "TREADY": {
+                "physical_name": "s_axis_tready",
+                "direction": "O"
+              }
+            }
+          }
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_BUSIF": {
+                "value": "s_axis",
+                "value_src": "constant"
+              },
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "mag_squared": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "mag_valid": {
+            "direction": "O"
+          },
+          "mag_last": {
+            "direction": "O"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2851,6 +3132,12 @@
           "i2s_transmitter_0/s_axi_ctrl"
         ]
       },
+      "fft_input_wrapper_0_m_axis": {
+        "interface_ports": [
+          "fft_input_wrapper_0/m_axis",
+          "xfft_0/S_AXIS_DATA"
+        ]
+      },
       "processing_system7_0_DDR": {
         "interface_ports": [
           "DDR",
@@ -2868,9 +3155,22 @@
           "processing_system7_0/M_AXI_GP0",
           "axi_smc/S00_AXI"
         ]
+      },
+      "xfft_0_M_AXIS_DATA": {
+        "interface_ports": [
+          "fft_mag_wrapper_0/s_axis",
+          "xfft_0/M_AXIS_DATA"
+        ]
       }
     },
     "nets": {
+      "Net": {
+        "ports": [
+          "fft_input_wrapper_0/clk",
+          "xfft_0/aclk",
+          "fft_mag_wrapper_0/clk"
+        ]
+      },
       "audio_fir_interface_0_coeffs": {
         "ports": [
           "audio_fir_interface_0/coeffs",
@@ -2912,13 +3212,15 @@
       "effect_mux_wrapper_0_audio_out": {
         "ports": [
           "effect_mux_wrapper_0/audio_out",
-          "i2s_transmitter_0/s_axis_aud_tdata"
+          "i2s_transmitter_0/s_axis_aud_tdata",
+          "fft_input_wrapper_0/audio_in"
         ]
       },
       "effect_mux_wrapper_0_audio_out_valid": {
         "ports": [
           "effect_mux_wrapper_0/audio_out_valid",
-          "i2s_transmitter_0/s_axis_aud_tvalid"
+          "i2s_transmitter_0/s_axis_aud_tvalid",
+          "fft_input_wrapper_0/audio_valid"
         ]
       },
       "i2s_transmitter_0_lrclk_out": {
@@ -2973,6 +3275,18 @@
         "ports": [
           "ilconstant_4/dout",
           "effect_mux_wrapper_0/feedback_amount"
+        ]
+      },
+      "ilconstant_5_dout": {
+        "ports": [
+          "ilconstant_5/dout",
+          "hdmi_out_hpd"
+        ]
+      },
+      "ilconstant_6_dout": {
+        "ports": [
+          "ilconstant_6/dout",
+          "rgb2dvi_0/aRst"
         ]
       },
       "ilslice_0_Dout": {
@@ -3089,6 +3403,30 @@
           "rst_ps7_0_100M/ext_reset_in"
         ]
       },
+      "rgb2dvi_0_TMDS_Clk_n": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Clk_n",
+          "hdmi_out_clk_n"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Clk_p": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Clk_p",
+          "hdmi_out_clk_p"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Data_n": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Data_n",
+          "hdmi_out_data_n"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Data_p": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Data_p",
+          "hdmi_out_data_p"
+        ]
+      },
       "rst_ps7_0_100M_peripheral_aresetn": {
         "ports": [
           "rst_ps7_0_100M/peripheral_aresetn",
@@ -3096,7 +3434,9 @@
           "multi_voice_adsr_wra_0/rst",
           "voice_mixer_wrapper_0/rst",
           "audio_fir_wrapper_0/rst",
-          "synth_wrapper_0/rst"
+          "synth_wrapper_0/rst",
+          "fft_input_wrapper_0/rst",
+          "fft_mag_wrapper_0/rst"
         ]
       },
       "synth_wrapper_0_notes_on": {

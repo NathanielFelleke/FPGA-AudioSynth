@@ -54,7 +54,7 @@ end
     logic [31:0] mag_norm_p1;
     logic        valid_p1, last_p1;
     
-    always_ff @(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk) begin
         if (rst) begin
             log_int_p1  <= '0;
             mag_norm_p1 <= '0;

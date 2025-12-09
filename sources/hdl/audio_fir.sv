@@ -25,9 +25,9 @@ module audio_fir #(
             data_out_valid <= 0;
         end else begin
             if(data_in_valid) begin
-                sums[NUM_COEFFS-1] <= data_in * coeffs[NUM_COEFFS-1];  // get sum of n-15 term
+                sums[NUM_COEFFS-1] <= $signed(data_in) * $signed(coeffs[NUM_COEFFS-1]);  // get sum of n-15 term
                 for(int i = NUM_COEFFS-2; i >= 0; i = i - 1) begin //get all sums
-                    sums[i] <= sums[i+1] + data_in * coeffs[i];
+                    sums[i] <= $signed(sums[i+1]) + $signed(data_in) * $signed(coeffs[i]);
                 end
                 data_out_valid <= 1'b1; //data is valid
             end

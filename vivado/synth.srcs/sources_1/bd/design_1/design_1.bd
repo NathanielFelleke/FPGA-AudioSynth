@@ -43,7 +43,8 @@
       "clk_wiz_1": "",
       "fft_bin_filter_wrapp_0": "",
       "fft_mag_wrapper_0": "",
-      "log_scale_wrapper_0": ""
+      "log_scale_wrapper_0": "",
+      "waterfall_buffer_wra_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -3465,6 +3466,101 @@
             "direction": "O"
           }
         }
+      },
+      "waterfall_buffer_wra_0": {
+        "vlnv": "xilinx.com:module_ref:waterfall_buffer_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_waterfall_buffer_wra_0_0",
+        "xci_path": "ip\\design_1_waterfall_buffer_wra_0_0\\design_1_waterfall_buffer_wra_0_0.xci",
+        "inst_hier_path": "waterfall_buffer_wra_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "waterfall_buffer_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "wr_clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "wr_rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "wr_rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "log_in": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "log_valid": {
+            "direction": "I"
+          },
+          "log_last": {
+            "direction": "I"
+          },
+          "rd_clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rd_rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "rd_rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "rd_bin": {
+            "direction": "I",
+            "left": "8",
+            "right": "0"
+          },
+          "rd_row": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "rd_data": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -3553,7 +3649,8 @@
       "clk_wiz_0_clk_out1": {
         "ports": [
           "clk_wiz_0/clk_out1",
-          "rgb2dvi_0/PixelClk"
+          "rgb2dvi_0/PixelClk",
+          "waterfall_buffer_wra_0/rd_clk"
         ]
       },
       "clk_wiz_1_clk_out1": {
@@ -3698,6 +3795,24 @@
           "leds"
         ]
       },
+      "log_scale_wrapper_0_log_last": {
+        "ports": [
+          "log_scale_wrapper_0/log_last",
+          "waterfall_buffer_wra_0/log_last"
+        ]
+      },
+      "log_scale_wrapper_0_log_out": {
+        "ports": [
+          "log_scale_wrapper_0/log_out",
+          "waterfall_buffer_wra_0/log_in"
+        ]
+      },
+      "log_scale_wrapper_0_log_valid": {
+        "ports": [
+          "log_scale_wrapper_0/log_valid",
+          "waterfall_buffer_wra_0/log_valid"
+        ]
+      },
       "midi_in_1": {
         "ports": [
           "midi_in",
@@ -3784,7 +3899,8 @@
           "clk_wiz_1/clk_in1",
           "fft_mag_wrapper_0/clk",
           "fft_bin_filter_wrapp_0/clk",
-          "log_scale_wrapper_0/clk"
+          "log_scale_wrapper_0/clk",
+          "waterfall_buffer_wra_0/wr_clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -3830,7 +3946,8 @@
           "axi_smc/aresetn",
           "fft_mag_wrapper_0/rst",
           "fft_bin_filter_wrapp_0/rst",
-          "log_scale_wrapper_0/rst"
+          "log_scale_wrapper_0/rst",
+          "waterfall_buffer_wra_0/wr_rst"
         ]
       },
       "synth_wrapper_0_note_on": {

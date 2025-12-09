@@ -8,7 +8,7 @@ module waterfall_buffer (
     
     //25 Mhz clock (which runs video logic) reading from
     input  logic        rd_clk,
-    input  logic        rd_rst_n,
+    input  logic        rd_rst,
     input  logic [8:0]  rd_bin,
     input  logic [7:0]  rd_row,
     output logic [7:0]  rd_data

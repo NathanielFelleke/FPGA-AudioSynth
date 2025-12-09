@@ -6,7 +6,7 @@ module waterfall_buffer_wrapper (
     input  wire        log_last,
 
     input  wire        rd_clk,
-    input  wire        rd_rst_n,
+    input  wire        rd_rst,
     input  wire [8:0]  rd_bin,
     input  wire [7:0]  rd_row,
     output wire [7:0]  rd_data
@@ -19,7 +19,7 @@ module waterfall_buffer_wrapper (
         .log_valid(log_valid),
         .log_last(log_last),
         .rd_clk(rd_clk),
-        .rd_rst_n(rd_rst_n),
+        .rd_rst(rd_rst),
         .rd_bin(rd_bin),
         .rd_row(rd_row),
         .rd_data(rd_data)

@@ -3555,7 +3555,7 @@
       },
       "effect_interface_0": {
         "vlnv": "xilinx.com:user:effect_interface:1.0",
-        "ip_revision": "1",
+        "ip_revision": "3",
         "xci_name": "design_1_effect_interface_0_0",
         "xci_path": "ip\\design_1_effect_interface_0_0\\design_1_effect_interface_0_0.xci",
         "inst_hier_path": "effect_interface_0",

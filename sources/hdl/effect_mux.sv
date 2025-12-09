@@ -17,8 +17,9 @@ module effect_mux #(
     input  wire [4:0] bit_depth,
 
     // DELAY PARAMETERS
-    input  wire [15:0]  delay_samples,
-    input  wire [7:0]  feedback_amount
+    input  wire [15:0]  delay_num_samples,
+    input  wire [7:0]  feedback_amount,
+    input  wire [7:0]  delay_effect_amount
 );
 
     // Stage 1: Bitcrush effect (optional)
@@ -80,9 +81,9 @@ module effect_mux #(
         .audio_in(stage1_out),
         .audio_out(delay_out),
         .audio_out_valid(delay_valid),
-        .delay_samples(delay_samples),
-        .feedback_amount(feedback_amount),
-        .effect_amount(8'd255),  // Always 100% wet (effect is the processed signal)
+        .delay_samples(delay_num_samples),
+        .feedback_amount(delay_feedback_amount),
+        .effect_amount(delay_effect_amount),  // Always 100% wet (effect is the processed signal)
         .mode(1'b1)              // Feedback mode
     );
 

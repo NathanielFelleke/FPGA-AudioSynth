@@ -41,7 +41,12 @@
 		output wire [C_S00_AXI_DATA_WIDTH-1 : 0] s00_axi_rdata,
 		output wire [1 : 0] s00_axi_rresp,
 		output wire  s00_axi_rvalid,
-		input wire  s00_axi_rready
+		input wire  s00_axi_rready,
+		output wire  enable_bitcrush,
+		output wire  enable_delay, 
+		output wire [4:0] bit_depth,
+		output wire [15:0] delay_samples,
+		output wire [7:0]  feedback_amount
 	);
 // Instantiation of Axi Bus Interface S00_AXI
 	effect_interface_slave_lite_v1_0_S00_AXI # ( 
@@ -68,7 +73,12 @@
 		.S_AXI_RDATA(s00_axi_rdata),
 		.S_AXI_RRESP(s00_axi_rresp),
 		.S_AXI_RVALID(s00_axi_rvalid),
-		.S_AXI_RREADY(s00_axi_rready)
+		.S_AXI_RREADY(s00_axi_rready),
+		.enable_bitcrush(enable_bitcrush),
+		.enable_delay(enable_delay),
+		.delay_samples(delay_samples),
+		.bit_depth(bit_dpeth),
+		.feedback_amount(feedback_amount)
 	);
 
 	// Add user logic here

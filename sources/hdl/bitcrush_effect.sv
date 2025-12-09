@@ -3,7 +3,7 @@ module bitcrush_effect #(
     parameter LATENCY = 1            // Pipeline latency in cycles
 )(
     input  wire                         clk,
-    input  wire                         reset,
+    input  wire                         rst,
 
     // Audio stream
     input  wire                         sample_valid,
@@ -24,7 +24,7 @@ module bitcrush_effect #(
     assign crushed_sample = $signed(audio_in >>> shift_amount) << shift_amount;
 
     always_ff @(posedge clk) begin
-        if (reset) begin
+        if (rst) begin
             audio_out <= '0;
             audio_out_valid <= 1'b0;
         end else begin

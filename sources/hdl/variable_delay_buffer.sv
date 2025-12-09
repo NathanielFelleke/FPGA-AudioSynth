@@ -1,102 +1,80 @@
 module variable_delay_buffer #(
-    parameter ADDR_WIDTH = 16,  // 2^16 = 65536 samples
+    parameter ADDR_WIDTH = 16,
     parameter DATA_WIDTH = 32
 )(
-    input  wire                     clk,
-    input  wire                     reset,
+    input  wire                      clk,
+    input  wire                      rst,
 
-    input  wire                     sample_valid,
-    input  wire [DATA_WIDTH-1:0]    in_sample,
-    input  wire [ADDR_WIDTH-1:0]    delay_samples,
+    input  wire                      sample_valid,
+    input  wire [DATA_WIDTH-1:0]     in_sample,
+    input  wire [ADDR_WIDTH-1:0]     delay_samples,
 
-    output logic [DATA_WIDTH-1:0]   out_sample,
-    output logic                    out_sample_valid
+    output logic [DATA_WIDTH-1:0]     out_sample,
+    output logic                      out_sample_valid
 );
 
     localparam RAM_DEPTH = (1 << ADDR_WIDTH);
 
-    // --- Write pointer: points to next write location ---
     logic [ADDR_WIDTH-1:0] wr_ptr;
-
-    // --- Read pointer: wr_ptr - delay_samples (PIPELINED) ---
-    // Modular arithmetic handles wrap naturally for circular buffer
     logic [ADDR_WIDTH-1:0] rd_ptr;
+    logic [DATA_WIDTH-1:0] ram_out; 
+    logic [2:0] valid_pipe;
 
+    //update the pointers when valid data
     always_ff @(posedge clk) begin
-        if (reset) begin
+        if (rst) begin
+            wr_ptr <= '0;
             rd_ptr <= '0;
-        end else begin
+        end else if (sample_valid) begin
+            wr_ptr <= wr_ptr + 1'b1;
+        
             rd_ptr <= wr_ptr - delay_samples;
         end
     end
 
-    // --- RAM output ---
-    logic [DATA_WIDTH-1:0] ram_out;
-
-    // --- Xilinx dual port RAM ---
+    // Xilinx Dual Port BRAM Instantiation
     xilinx_true_dual_port_read_first_2_clock_ram #(
         .RAM_WIDTH(DATA_WIDTH),
         .RAM_DEPTH(RAM_DEPTH),
-        .RAM_PERFORMANCE("LOW_LATENCY")
+        .RAM_PERFORMANCE("HIGH_PERFORMANCE"), // Enforces 2-cycle latency with output register
+        .INIT_FILE("")
     ) ram_inst (
-        .addra (wr_ptr),
-        .addrb (rd_ptr),
-        .dina  (in_sample),
-        .dinb  ({DATA_WIDTH{1'b0}}),
-        .clka  (clk),
-        .clkb  (clk),
-        .wea   (sample_valid),
-        .web   (1'b0),
-        .ena   (1'b1),
-        .enb   (1'b1),
-        .rsta  (1'b0),
-        .rstb  (1'b0),
-        .regcea(1'b1),
-        .regceb(1'b1),
-        .douta (),
-        .doutb (ram_out)
+        // Port A (Write)
+        .addra  (wr_ptr),
+        .dina   (in_sample),
+        .wea    (sample_valid),
+        .clka   (clk),
+        .ena    (1'b1),
+        .rsta   (1'b0),
+        .regcea (1'b1),
+        .douta  (),
+
+        // Port B (Read)
+        .addrb  (rd_ptr),
+        .dinb   ('0),
+        .web    (1'b0),
+        .clkb   (clk),
+        .enb    (1'b1),
+        .rstb   (1'b0),
+        .regceb (1'b1),
+        .doutb  (ram_out)
     );
 
-    // --- Track total samples written ---
-    logic [ADDR_WIDTH-1:0] write_count;
-
-    // --- Write pointer management ---
+    //pipeline the output
     always_ff @(posedge clk) begin
-        if (reset) begin
-            wr_ptr <= '0;
-        end else if (sample_valid) begin
-            wr_ptr <= wr_ptr + 1'b1;
-        end
-    end
-
-    // --- Pipeline the valid comparison ---
-    logic valid_check;
-
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            valid_check <= 1'b0;
-        end else begin
-            valid_check <= (write_count >= delay_samples);
-        end
-    end
-
-    // --- Output and valid logic ---
-    always_ff @(posedge clk) begin
-        if (reset) begin
+        if (rst) begin
             out_sample       <= '0;
+            valid_pipe       <= '0;
             out_sample_valid <= 1'b0;
-            write_count      <= '0;
         end else begin
-            // Always capture RAM output (continuously reading from rd_ptr)
+            // output data
             out_sample <= ram_out;
+            
+            valid_pipe[0] <= sample_valid;
+            valid_pipe[1] <= valid_pipe[0];
+            valid_pipe[2] <= valid_pipe[1]; 
 
-            // Track samples written (saturate at max to prevent overflow)
-            if (sample_valid && write_count < {ADDR_WIDTH{1'b1}}) begin
-                write_count <= write_count + 1'b1;
-            end
-
-            // Use pipelined valid check
-            out_sample_valid <= sample_valid && valid_check;
+            out_sample_valid <= valid_pipe[2]; 
         end
     end
 

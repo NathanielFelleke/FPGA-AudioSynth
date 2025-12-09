@@ -1,25 +1,24 @@
 module effect_mux #(
     parameter DATA_WIDTH = 32
 )(
-    input  wire                         clk,
-    input  wire                         reset,
+    input  wire clk,
+    input  wire rst,
 
-    // Audio stream
-    input  wire                         sample_valid,
+    input  wire sample_valid, //AXI STREAM IN
     input  wire signed [DATA_WIDTH-1:0] audio_in,
     output logic signed [DATA_WIDTH-1:0] audio_out,
-    output logic                        audio_out_valid,
+    output logic audio_out_valid,
 
-    // Effect enable/bypass controls
-    input  wire                         enable_bitcrush,
-    input  wire                         enable_delay,
+    // ENABLE CONTROLS
+    input  wire  enable_bitcrush,
+    input  wire  enable_delay,
 
-    // Bitcrush parameters
-    input  wire [4:0]                   bit_depth,
+    // BITCRUSH PARAMETERS
+    input  wire [4:0] bit_depth,
 
-    // Delay parameters
-    input  wire [15:0]                  delay_samples,
-    input  wire [7:0]                   feedback_amount
+    // DELAY PARAMETERS
+    input  wire [15:0]  delay_samples,
+    input  wire [7:0]  feedback_amount
 );
 
     // Stage 1: Bitcrush effect (optional)
@@ -34,7 +33,7 @@ module effect_mux #(
         .LATENCY(1)
     ) bitcrush_inst (
         .clk(clk),
-        .reset(reset),
+        .rst(rst),
         .sample_valid(sample_valid),
         .audio_in(audio_in),
         .audio_out(bitcrush_out),
@@ -51,7 +50,7 @@ module effect_mux #(
         .LATENCY(1)
     ) bitcrush_bypass_inst (
         .clk(clk),
-        .reset(reset),
+        .rst(rst),
         .sample_valid(sample_valid),
         .audio_in(audio_in),
         .audio_out(bitcrush_bypass_out),
@@ -76,7 +75,7 @@ module effect_mux #(
         .LATENCY(8)
     ) delay_inst (
         .clk(clk),
-        .reset(reset),
+        .rst(rst),
         .sample_valid(stage1_valid),
         .audio_in(stage1_out),
         .audio_out(delay_out),
@@ -96,7 +95,7 @@ module effect_mux #(
         .LATENCY(8)
     ) delay_bypass_inst (
         .clk(clk),
-        .reset(reset),
+        .rst(rst),
         .sample_valid(stage1_valid),
         .audio_in(stage1_out),
         .audio_out(delay_bypass_out),
@@ -111,7 +110,7 @@ module effect_mux #(
     // Output register
     // =========================================================================
     always_ff @(posedge clk) begin
-        if (reset) begin
+        if (rst) begin
             audio_out <= '0;
             audio_out_valid <= 1'b0;
         end else begin

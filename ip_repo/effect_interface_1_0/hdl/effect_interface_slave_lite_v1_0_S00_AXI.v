@@ -78,7 +78,12 @@
 		output wire  S_AXI_RVALID,
 		// Read ready. This signal indicates that the master can
     		// accept the read data and response information.
-		input wire  S_AXI_RREADY
+		input wire  S_AXI_RREADY,
+		output wire  enable_bitcrush,
+		output wire  enable_delay, 
+		output wire [4:0] bit_depth,
+		output wire [15:0] delay_samples,
+		output wire [7:0]  feedback_amount
 	);
 
 	// AXI4LITE signals

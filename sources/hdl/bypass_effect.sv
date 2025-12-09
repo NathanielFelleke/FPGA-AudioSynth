@@ -3,7 +3,7 @@ module bypass_effect #(  //a module that can passthrough with same latency as an
     parameter LATENCY = 1
 )(
     input  wire                         clk,
-    input  wire                         reset,
+    input  wire                         rst,
     input  wire                         sample_valid,
     input  wire signed [DATA_WIDTH-1:0] audio_in,
     output logic signed [DATA_WIDTH-1:0] audio_out,
@@ -22,7 +22,7 @@ module bypass_effect #(  //a module that can passthrough with same latency as an
             logic valid_pipeline [LATENCY];
 
             always_ff @(posedge clk) begin
-                if (reset) begin
+                if (rst) begin
                     for (int i = 0; i < LATENCY; i++) begin
                         pipeline[i] <= '0;
                         valid_pipeline[i] <= 1'b0;

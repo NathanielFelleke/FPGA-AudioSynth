@@ -1,124 +1,129 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"2.06137",
-   "Default View_TopLeft":"2368,815",
+   "Default View_ScaleFactor":"1.05198",
+   "Default View_TopLeft":"-52,0",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 11 -x 3640 -y 470 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 11 -x 3640 -y 500 -defaultsOSRD
-preplace port port-id_midi_in -pg 1 -lvl 0 -x 0 -y 310 -defaultsOSRD
-preplace port port-id_lrclk -pg 1 -lvl 11 -x 3640 -y 1280 -defaultsOSRD
-preplace port port-id_sdata_o -pg 1 -lvl 11 -x 3640 -y 1540 -defaultsOSRD
-preplace port port-id_blck -pg 1 -lvl 11 -x 3640 -y 1310 -defaultsOSRD
-preplace port port-id_hdmi_out_clk_p -pg 1 -lvl 11 -x 3640 -y 1390 -defaultsOSRD
-preplace port port-id_hdmi_out_clk_n -pg 1 -lvl 11 -x 3640 -y 1420 -defaultsOSRD
-preplace port port-id_hdmi_out_hpd -pg 1 -lvl 11 -x 3640 -y 1600 -defaultsOSRD
-preplace portBus btns -pg 1 -lvl 0 -x 0 -y 850 -defaultsOSRD
-preplace portBus leds -pg 1 -lvl 11 -x 3640 -y 410 -defaultsOSRD
-preplace portBus hdmi_out_data_p -pg 1 -lvl 11 -x 3640 -y 1450 -defaultsOSRD
-preplace portBus hdmi_out_data_n -pg 1 -lvl 11 -x 3640 -y 1480 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 1 -x 210 -y 520 -defaultsOSRD
-preplace inst audio_fir_interface_0 -pg 1 -lvl 3 -x 980 -y 770 -defaultsOSRD
-preplace inst xpm_cdc_gen_0 -pg 1 -lvl 5 -x 1690 -y 570 -defaultsOSRD
-preplace inst xpm_cdc_gen_1 -pg 1 -lvl 5 -x 1690 -y 730 -defaultsOSRD
-preplace inst xpm_cdc_gen_2 -pg 1 -lvl 5 -x 1690 -y 890 -defaultsOSRD
-preplace inst axi_smc -pg 1 -lvl 2 -x 600 -y 770 -defaultsOSRD
-preplace inst rst_ps7_0_100M -pg 1 -lvl 2 -x 600 -y 590 -defaultsOSRD
-preplace inst audio_fir_wrapper_0 -pg 1 -lvl 6 -x 2010 -y 610 -defaultsOSRD
-preplace inst voice_control_interf_0 -pg 1 -lvl 3 -x 980 -y 90 -defaultsOSRD
-preplace inst voice_mixer_wrapper_0 -pg 1 -lvl 5 -x 1690 -y 210 -defaultsOSRD
-preplace inst multi_voice_adsr_wra_0 -pg 1 -lvl 4 -x 1360 -y 230 -defaultsOSRD
-preplace inst ilconstant_2 -pg 1 -lvl 1 -x 210 -y 790 -defaultsOSRD
-preplace inst effect_mux_wrapper_0 -pg 1 -lvl 7 -x 2360 -y 880 -defaultsOSRD
-preplace inst synth_wrapper_0 -pg 1 -lvl 3 -x 980 -y 300 -defaultsOSRD
-preplace inst ilslice_0 -pg 1 -lvl 2 -x 600 -y 370 -defaultsOSRD
-preplace inst ilslice_1 -pg 1 -lvl 6 -x 2010 -y 800 -defaultsOSRD
-preplace inst ilslice_2 -pg 1 -lvl 6 -x 2010 -y 900 -defaultsOSRD
-preplace inst i2s_transmitter_0 -pg 1 -lvl 3 -x 980 -y 1290 -defaultsOSRD
-preplace inst ilconstant_0 -pg 1 -lvl 2 -x 600 -y 1250 -defaultsOSRD
-preplace inst ilconstant_1 -pg 1 -lvl 6 -x 2010 -y 1000 -defaultsOSRD
-preplace inst ilconstant_3 -pg 1 -lvl 6 -x 2010 -y 1100 -defaultsOSRD
-preplace inst ilconstant_4 -pg 1 -lvl 6 -x 2010 -y 1200 -defaultsOSRD
-preplace inst ilslice_3 -pg 1 -lvl 10 -x 3400 -y 410 -defaultsOSRD
-preplace inst xfft_0 -pg 1 -lvl 9 -x 3020 -y 1090 -defaultsOSRD
-preplace inst rgb2dvi_0 -pg 1 -lvl 10 -x 3400 -y 1500 -defaultsOSRD
-preplace inst ilconstant_5 -pg 1 -lvl 10 -x 3400 -y 1680 -defaultsOSRD
-preplace inst ilconstant_6 -pg 1 -lvl 9 -x 3020 -y 1540 -defaultsOSRD
-preplace inst fft_input_wrapper_0 -pg 1 -lvl 8 -x 2690 -y 1030 -defaultsOSRD
-preplace inst fft_mag_wrapper_0 -pg 1 -lvl 10 -x 3400 -y 1050 -defaultsOSRD
-preplace netloc audio_fir_interface_0_coeffs 1 3 2 NJ 750 1530
-preplace netloc audio_fir_interface_0_enable 1 3 2 NJ 790 1530
-preplace netloc audio_fir_interface_0_scaler 1 3 2 NJ 770 1550
-preplace netloc audio_fir_wrapper_0_data_out 1 6 1 2170 600n
-preplace netloc audio_fir_wrapper_0_data_out_valid 1 6 1 2160 620n
-preplace netloc btns_1 1 0 6 NJ 850 410 850 NJ 850 1190J 810 NJ 810 1870
-preplace netloc effect_mux_wrapper_0_audio_out 1 2 6 830 1130 NJ 1130 NJ 1130 1830J 1270 2150J 1250 2540
-preplace netloc effect_mux_wrapper_0_audio_out_valid 1 2 6 820 1120 NJ 1120 NJ 1120 1870J 1260 NJ 1260 2530
-preplace netloc i2s_transmitter_0_lrclk_out 1 3 8 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ
-preplace netloc i2s_transmitter_0_sclk_out 1 3 8 NJ 1300 NJ 1300 NJ 1300 NJ 1300 NJ 1300 NJ 1300 NJ 1300 3590J
-preplace netloc i2s_transmitter_0_sdata_0_out 1 3 8 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 3590J
-preplace netloc ilconstant_0_dout 1 2 1 NJ 1250
-preplace netloc ilconstant_1_dout 1 6 1 2150J 920n
-preplace netloc ilconstant_2_dout 1 1 3 400 860 810 440 1140J
-preplace netloc ilconstant_3_dout 1 6 1 2170J 940n
-preplace netloc ilconstant_4_dout 1 6 1 2190J 960n
-preplace netloc ilslice_0_Dout 1 2 1 790J 330n
-preplace netloc ilslice_1_Dout 1 6 1 2150J 800n
-preplace netloc ilslice_2_Dout 1 6 1 NJ 900
-preplace netloc ilslice_3_Dout 1 10 1 NJ 410
-preplace netloc midi_in_1 1 0 3 NJ 310 NJ 310 NJ
-preplace netloc multi_voice_adsr_wra_0_data_out_valid 1 4 1 N 310
-preplace netloc multi_voice_adsr_wra_0_voice_0_out 1 4 1 N 150
-preplace netloc multi_voice_adsr_wra_0_voice_1_out 1 4 1 N 170
-preplace netloc multi_voice_adsr_wra_0_voice_2_out 1 4 1 N 190
-preplace netloc multi_voice_adsr_wra_0_voice_3_out 1 4 1 N 210
-preplace netloc multi_voice_adsr_wra_0_voice_4_out 1 4 1 N 230
-preplace netloc multi_voice_adsr_wra_0_voice_5_out 1 4 1 N 250
-preplace netloc multi_voice_adsr_wra_0_voice_6_out 1 4 1 N 270
-preplace netloc multi_voice_adsr_wra_0_voice_7_out 1 4 1 N 290
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 7 20 630 430 490 800 490 1180 450 1540 490 1870 490 2180J
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 1 1 N 570
-preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 2 8 780 450 1160 440 1530 440 1850 460 2190 740 2550 930 NJ 930 3200J
-preplace netloc synth_wrapper_0_notes_on 1 3 7 1130 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 3200J
-preplace netloc synth_wrapper_0_voice_1_out 1 3 1 N 220
-preplace netloc synth_wrapper_0_voice_2_out 1 3 1 N 240
-preplace netloc synth_wrapper_0_voice_3_out 1 3 1 N 260
-preplace netloc synth_wrapper_0_voice_4_out 1 3 1 N 280
-preplace netloc synth_wrapper_0_voice_5_out 1 3 1 N 300
-preplace netloc synth_wrapper_0_voice_6_out 1 3 1 N 320
-preplace netloc synth_wrapper_0_voice_7_out 1 3 1 N 340
-preplace netloc synth_wrapper_0_voice_8_out 1 3 1 N 360
-preplace netloc voice_control_interf_0_attack_time 1 3 1 1190 60n
-preplace netloc voice_control_interf_0_decay_time 1 3 1 1170 80n
-preplace netloc voice_control_interf_0_release_time 1 3 1 1140 120n
-preplace netloc voice_control_interf_0_sustain_percent 1 3 1 1150 100n
-preplace netloc voice_mixer_wrapper_0_data_out_valid 1 5 1 1840 220n
-preplace netloc voice_mixer_wrapper_0_mixed_out 1 5 1 1860 200n
-preplace netloc xpm_cdc_gen_0_dest_out 1 5 1 1830 570n
-preplace netloc xpm_cdc_gen_1_dest_out 1 5 1 1830 650n
-preplace netloc xpm_cdc_gen_2_dest_out 1 5 1 1850 670n
-preplace netloc rgb2dvi_0_TMDS_Clk_n 1 10 1 3600J 1420n
-preplace netloc rgb2dvi_0_TMDS_Data_p 1 10 1 3610J 1450n
-preplace netloc rgb2dvi_0_TMDS_Data_n 1 10 1 3580J 1480n
-preplace netloc rgb2dvi_0_TMDS_Clk_p 1 10 1 3570J 1390n
-preplace netloc ilconstant_5_dout 1 10 1 3570J 1600n
-preplace netloc ilconstant_6_dout 1 9 1 NJ 1540
-preplace netloc Net 1 7 3 2560 1120 2840 1250 3210J
-preplace netloc axi_smc_M00_AXI 1 2 1 N 750
-preplace netloc axi_smc_M01_AXI 1 2 1 770 70n
-preplace netloc axi_smc_M02_AXI 1 2 1 770 790n
-preplace netloc processing_system7_0_DDR 1 1 10 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ
-preplace netloc processing_system7_0_FIXED_IO 1 1 10 420J 480 NJ 480 NJ 480 NJ 480 NJ 480 NJ 480 NJ 480 NJ 480 NJ 480 3590J
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 420 530n
-preplace netloc fft_input_wrapper_0_m_axis 1 8 1 2820 1030n
-preplace netloc xfft_0_M_AXIS_DATA 1 9 1 N 990
-levelinfo -pg 1 0 210 600 980 1360 1690 2010 2360 2690 3020 3400 3640
-pagesize -pg 1 -db -bbox -sgen -110 0 3830 1740
+preplace port DDR -pg 1 -lvl 11 -x 3520 -y 760 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 11 -x 3520 -y 920 -defaultsOSRD
+preplace port port-id_midi_in -pg 1 -lvl 0 -x 0 -y 440 -defaultsOSRD
+preplace port port-id_lrclk -pg 1 -lvl 11 -x 3520 -y 1020 -defaultsOSRD
+preplace port port-id_sdata_o -pg 1 -lvl 11 -x 3520 -y 1080 -defaultsOSRD
+preplace port port-id_blck -pg 1 -lvl 11 -x 3520 -y 1050 -defaultsOSRD
+preplace port port-id_hdmi_out_clk_p -pg 1 -lvl 11 -x 3520 -y 1120 -defaultsOSRD
+preplace port port-id_hdmi_out_clk_n -pg 1 -lvl 11 -x 3520 -y 1150 -defaultsOSRD
+preplace port port-id_sysclk -pg 1 -lvl 0 -x 0 -y 1220 -defaultsOSRD
+preplace portBus btns -pg 1 -lvl 0 -x 0 -y 500 -defaultsOSRD
+preplace portBus leds -pg 1 -lvl 11 -x 3520 -y 980 -defaultsOSRD
+preplace portBus hdmi_out_data_p -pg 1 -lvl 11 -x 3520 -y 1180 -defaultsOSRD
+preplace portBus hdmi_out_data_n -pg 1 -lvl 11 -x 3520 -y 1210 -defaultsOSRD
+preplace portBus hdmi_out_hpd -pg 1 -lvl 11 -x 3520 -y 820 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 220 -y 900 -defaultsOSRD
+preplace inst audio_fir_interface_0 -pg 1 -lvl 3 -x 890 -y 670 -defaultsOSRD
+preplace inst xpm_cdc_gen_0 -pg 1 -lvl 5 -x 1650 -y 540 -defaultsOSRD
+preplace inst xpm_cdc_gen_1 -pg 1 -lvl 5 -x 1650 -y 680 -defaultsOSRD
+preplace inst xpm_cdc_gen_2 -pg 1 -lvl 5 -x 1650 -y 840 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -x 220 -y 690 -defaultsOSRD
+preplace inst audio_fir_wrapper_0 -pg 1 -lvl 6 -x 1970 -y 340 -defaultsOSRD
+preplace inst voice_control_interf_0 -pg 1 -lvl 3 -x 890 -y 220 -defaultsOSRD
+preplace inst voice_mixer_wrapper_0 -pg 1 -lvl 5 -x 1650 -y 280 -defaultsOSRD
+preplace inst multi_voice_adsr_wra_0 -pg 1 -lvl 4 -x 1310 -y 300 -defaultsOSRD
+preplace inst ilconstant_2 -pg 1 -lvl 2 -x 560 -y 790 -defaultsOSRD
+preplace inst effect_mux_wrapper_0 -pg 1 -lvl 7 -x 2340 -y 390 -defaultsOSRD
+preplace inst synth_wrapper_0 -pg 1 -lvl 3 -x 890 -y 430 -defaultsOSRD
+preplace inst ilslice_0 -pg 1 -lvl 2 -x 560 -y 500 -defaultsOSRD
+preplace inst ilslice_1 -pg 1 -lvl 6 -x 1970 -y 700 -defaultsOSRD
+preplace inst ilslice_2 -pg 1 -lvl 6 -x 1970 -y 600 -defaultsOSRD
+preplace inst i2s_transmitter_0 -pg 1 -lvl 3 -x 890 -y 1030 -defaultsOSRD
+preplace inst ilconstant_0 -pg 1 -lvl 2 -x 560 -y 990 -defaultsOSRD
+preplace inst ilconstant_1 -pg 1 -lvl 6 -x 1970 -y 80 -defaultsOSRD
+preplace inst ilconstant_3 -pg 1 -lvl 6 -x 1970 -y 180 -defaultsOSRD
+preplace inst ilconstant_4 -pg 1 -lvl 6 -x 1970 -y 500 -defaultsOSRD
+preplace inst ilslice_3 -pg 1 -lvl 10 -x 3330 -y 980 -defaultsOSRD
+preplace inst xfft_0 -pg 1 -lvl 9 -x 2970 -y 390 -defaultsOSRD
+preplace inst rgb2dvi_0 -pg 1 -lvl 10 -x 3330 -y 1160 -defaultsOSRD
+preplace inst ilconstant_5 -pg 1 -lvl 10 -x 3330 -y 820 -defaultsOSRD
+preplace inst ilconstant_6 -pg 1 -lvl 9 -x 2970 -y 1120 -defaultsOSRD
+preplace inst fft_input_wrapper_0 -pg 1 -lvl 8 -x 2650 -y 370 -defaultsOSRD
+preplace inst fft_mag_wrapper_0 -pg 1 -lvl 10 -x 3330 -y 390 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 9 -x 2970 -y 1220 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 2 -x 560 -y 670 -defaultsOSRD
+preplace netloc audio_fir_interface_0_coeffs 1 3 2 1040 560 NJ
+preplace netloc audio_fir_interface_0_enable 1 3 2 NJ 690 1480
+preplace netloc audio_fir_interface_0_scaler 1 3 2 NJ 670 1490
+preplace netloc audio_fir_wrapper_0_data_out 1 6 1 2120 330n
+preplace netloc audio_fir_wrapper_0_data_out_valid 1 6 1 N 350
+preplace netloc btns_1 1 0 6 NJ 500 430 570 NJ 570 NJ 570 1490J 460 1790
+preplace netloc clk_wiz_0_clk_out1 1 9 1 3150J 1180n
+preplace netloc effect_mux_wrapper_0_audio_out 1 2 1 N 970
+preplace netloc effect_mux_wrapper_0_audio_out1 1 7 1 N 380
+preplace netloc effect_mux_wrapper_0_audio_out_valid 1 2 1 N 1010
+preplace netloc effect_mux_wrapper_0_audio_out_valid1 1 7 1 N 400
+preplace netloc i2s_transmitter_0_lrclk_out 1 3 8 NJ 1020 NJ 1020 NJ 1020 NJ 1020 NJ 1020 NJ 1020 3160J 1040 3500J
+preplace netloc i2s_transmitter_0_sclk_out 1 3 8 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 3150J 1050 NJ
+preplace netloc i2s_transmitter_0_sdata_0_out 1 3 8 NJ 1060 NJ 1060 NJ 1060 NJ 1060 NJ 1060 NJ 1060 NJ 1060 3500J
+preplace netloc ilconstant_0_dout 1 2 1 NJ 990
+preplace netloc ilconstant_1_dout 1 6 1 2140J 80n
+preplace netloc ilconstant_2_dout 1 2 1 730 240n
+preplace netloc ilconstant_3_dout 1 6 1 2110J 180n
+preplace netloc ilconstant_4_dout 1 6 1 2170J 470n
+preplace netloc ilconstant_5_dout 1 10 1 NJ 820
+preplace netloc ilconstant_6_dout 1 9 1 3160J 1120n
+preplace netloc ilslice_0_Dout 1 2 1 700J 460n
+preplace netloc ilslice_1_Dout 1 6 1 2150J 390n
+preplace netloc ilslice_2_Dout 1 6 1 2160J 410n
+preplace netloc ilslice_3_Dout 1 10 1 NJ 980
+preplace netloc midi_in_1 1 0 3 NJ 440 NJ 440 NJ
+preplace netloc multi_voice_adsr_wra_0_data_out_valid 1 4 1 N 380
+preplace netloc multi_voice_adsr_wra_0_voice_0_out 1 4 1 N 220
+preplace netloc multi_voice_adsr_wra_0_voice_1_out 1 4 1 N 240
+preplace netloc multi_voice_adsr_wra_0_voice_2_out 1 4 1 N 260
+preplace netloc multi_voice_adsr_wra_0_voice_3_out 1 4 1 N 280
+preplace netloc multi_voice_adsr_wra_0_voice_4_out 1 4 1 N 300
+preplace netloc multi_voice_adsr_wra_0_voice_5_out 1 4 1 N 320
+preplace netloc multi_voice_adsr_wra_0_voice_6_out 1 4 1 N 340
+preplace netloc multi_voice_adsr_wra_0_voice_7_out 1 4 1 N 360
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 10 20 790 430 860 720 120 1060 80 1500 80 1820 10 2160 250 2510 460 2790 510 3150J
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 1010 410
+preplace netloc rgb2dvi_0_TMDS_Clk_n 1 10 1 3500J 1150n
+preplace netloc rgb2dvi_0_TMDS_Clk_p 1 10 1 3500J 1120n
+preplace netloc rgb2dvi_0_TMDS_Data_n 1 10 1 3500J 1200n
+preplace netloc rgb2dvi_0_TMDS_Data_p 1 10 1 NJ 1180
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 9 410 420 710 130 1070 90 1510 120 1830 20 2130 530 2520 520 NJ 520 3160
+preplace netloc synth_wrapper_0_note_on 1 3 7 1100 510 1480J 450 1800J 980 NJ 980 NJ 980 NJ 980 NJ
+preplace netloc synth_wrapper_0_voice_1_out1 1 3 1 1040 290n
+preplace netloc synth_wrapper_0_voice_2_out1 1 3 1 1050 310n
+preplace netloc synth_wrapper_0_voice_3_out1 1 3 1 1060 330n
+preplace netloc synth_wrapper_0_voice_4_out1 1 3 1 1070 350n
+preplace netloc synth_wrapper_0_voice_5_out1 1 3 1 1110 370n
+preplace netloc synth_wrapper_0_voice_6_out1 1 3 1 1120 390n
+preplace netloc synth_wrapper_0_voice_7_out1 1 3 1 1130 410n
+preplace netloc synth_wrapper_0_voice_8_out1 1 3 1 1140 430n
+preplace netloc sysclk_1 1 0 9 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ
+preplace netloc voice_control_interf_0_attack_time 1 3 1 N 190
+preplace netloc voice_control_interf_0_decay_time 1 3 1 N 210
+preplace netloc voice_control_interf_0_release_time 1 3 1 N 250
+preplace netloc voice_control_interf_0_sustain_percent 1 3 1 N 230
+preplace netloc voice_mixer_wrapper_0_data_out_valid 1 5 1 1790 290n
+preplace netloc voice_mixer_wrapper_0_mixed_out 1 5 1 1800 270n
+preplace netloc xpm_cdc_gen_0_dest_out 1 5 1 1810 360n
+preplace netloc xpm_cdc_gen_1_dest_out 1 5 1 1820 380n
+preplace netloc xpm_cdc_gen_2_dest_out 1 5 1 1830 400n
+preplace netloc fft_input_wrapper_0_m_axis1 1 8 1 N 370
+preplace netloc processing_system7_0_DDR 1 1 10 NJ 850 740J 760 NJ 760 NJ 760 NJ 760 NJ 760 NJ 760 NJ 760 NJ 760 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 10 NJ 870 NJ 870 NJ 870 1510J 920 NJ 920 NJ 920 NJ 920 NJ 920 NJ 920 NJ
+preplace netloc xfft_0_M_AXIS_DATA1 1 9 1 N 330
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 420 650n
+preplace netloc axi_smc_M00_AXI 1 2 1 N 650
+preplace netloc axi_smc_M01_AXI 1 2 1 700 670n
+preplace netloc axi_smc_M02_AXI 1 2 1 690 200n
+levelinfo -pg 1 0 220 560 890 1310 1650 1970 2340 2650 2970 3330 3520
+pagesize -pg 1 -db -bbox -sgen -110 0 3710 1280
 "
 }
 {
-   "da_axi4_cnt":"4",
-   "da_clkrst_cnt":"13",
+   "da_axi4_cnt":"10",
+   "da_clkrst_cnt":"15",
    "da_ps7_cnt":"1"
 }

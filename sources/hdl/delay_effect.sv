@@ -2,7 +2,7 @@ module delay_effect #(
     parameter ADDR_WIDTH = 16,
     parameter DATA_WIDTH = 32,
     parameter FEEDBACK_WIDTH = 8,
-    parameter LATENCY = 8 // Total calculated latency will be used for valid signal
+    parameter LATENCY = 7 // Total calculated latency will be used for valid signal
 )(
     input  wire                       clk,
     input  wire                       rst,
@@ -139,8 +139,8 @@ module delay_effect #(
         end else begin
             // delayed_sample_valid is delayed sample's valid signal (3 cycles delay)
             if (delayed_sample_valid) begin
-                dry_scaled <= dry_mixer_input * (8'd255 - effect_amount);
-                wet_scaled <= delayed_sample * effect_amount;
+                dry_scaled <= $signed(dry_mixer_input) * $signed(8'd255 - effect_amount);
+                wet_scaled <= $signed(delayed_sample) * $signed(effect_amount);
             end else begin
                 dry_scaled <= '0;
                 wet_scaled <= '0;

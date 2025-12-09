@@ -72,7 +72,7 @@ module effect_mux #(
         .ADDR_WIDTH(16),
         .DATA_WIDTH(DATA_WIDTH),
         .FEEDBACK_WIDTH(8),
-        .LATENCY(8)
+        .LATENCY(7)
     ) delay_inst (
         .clk(clk),
         .rst(rst),
@@ -92,7 +92,7 @@ module effect_mux #(
 
     bypass_effect #(
         .DATA_WIDTH(DATA_WIDTH),
-        .LATENCY(8)
+        .LATENCY(7)
     ) delay_bypass_inst (
         .clk(clk),
         .rst(rst),

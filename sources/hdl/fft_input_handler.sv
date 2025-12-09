@@ -26,7 +26,7 @@ module fft_input_handler #(
     assign last_sample = (sample_ctr == FFT_SIZE - 1);
 
     logic signed [FFT_WIDTH-1:0] audio_scaled;
-    assign audio_scaled  = audio_in >>> SHIFT; //SCALES THE AUDIO
+    assign audio_scaled  = $signed(audio_in >>> SHIFT); //SCALES THE AUDIO
 
     
 

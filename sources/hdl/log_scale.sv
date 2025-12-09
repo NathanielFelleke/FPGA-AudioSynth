@@ -72,7 +72,7 @@ end
             last_p1     <= mag_last;
 
             //stage 2
-            log_out   <= {log_int_p1, mag_norm_p1[30:28]};
+            log_out   <= {log_int_p1, mag_norm_p1[31:29]};
             log_valid <= valid_p1;
             log_last  <= last_p1;
         end

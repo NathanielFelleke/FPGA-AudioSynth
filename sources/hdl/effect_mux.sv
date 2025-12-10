@@ -18,7 +18,7 @@ module effect_mux #(
 
     // DELAY PARAMETERS
     input  wire [15:0]  delay_num_samples,
-    input  wire [7:0]  feedback_amount,
+    input  wire [7:0]  delay_feedback_amount,
     input  wire [7:0]  delay_effect_amount
 );
 

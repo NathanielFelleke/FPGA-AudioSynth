@@ -79,7 +79,7 @@
 		.enable_delay(enable_delay),
 		.delay_num_samples(delay_num_samples),
 		.bit_depth(bit_depth),
-		.feedback_amount(delay_feedback_amount),
+		.delay_feedback_amount(delay_feedback_amount),
 		.delay_effect_amount(delay_effect_amount)
 	);
 

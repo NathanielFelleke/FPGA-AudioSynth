@@ -65,7 +65,7 @@ set_property -dict {PACKAGE_PIN M14 IOSTANDARD LVCMOS33} [get_ports {leds[3]}];
 #set_property PULLUP true [get_ports {pmodb_gpio_tri_io[7]}];
 #
 ### Arduino GPIO
-#set_property -dict {PACKAGE_PIN T14 IOSTANDARD LVCMOS33} [get_ports {arduino_gpio_tri_io[0]}];
+set_property -dict {PACKAGE_PIN T14 IOSTANDARD LVCMOS33} [get_ports midi_in];
 #set_property -dict {PACKAGE_PIN U12 IOSTANDARD LVCMOS33} [get_ports {arduino_gpio_tri_io[1]}];
 #set_property -dict {PACKAGE_PIN U13 IOSTANDARD LVCMOS33} [get_ports {arduino_gpio_tri_io[2]}];
 #set_property -dict {PACKAGE_PIN V13 IOSTANDARD LVCMOS33} [get_ports {arduino_gpio_tri_io[3]}];
@@ -187,7 +187,7 @@ set_property -dict {PACKAGE_PIN R19 IOSTANDARD LVCMOS33} [get_ports {hdmi_out_hp
 ###        38       |      GPIO20     |     RP_IO20_R   |    SPIO1_MOSI
 ###        40       |      GPIO21     |     RP_IO21_R   |    SPIO1_SCLK
 ### RPi GPIO 27-8 are mapped to rpi_gpio_tri_io[19:0]
-set_property -dict { PACKAGE_PIN F19   IOSTANDARD LVCMOS33 } [get_ports midi_in];
+##set_property -dict { PACKAGE_PIN F19   IOSTANDARD LVCMOS33 } [get_ports midi_in];
 #set_property -dict { PACKAGE_PIN V10   IOSTANDARD LVCMOS33 } [get_ports { rpi_gpio_tri_io[1]  }];
 #set_property -dict { PACKAGE_PIN V8    IOSTANDARD LVCMOS33 } [get_ports { rpi_gpio_tri_io[2] }];
 #set_property -dict { PACKAGE_PIN W10   IOSTANDARD LVCMOS33 } [get_ports { rpi_gpio_tri_io[3] }];

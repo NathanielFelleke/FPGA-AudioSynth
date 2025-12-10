@@ -598,16 +598,16 @@
     assign bit_depth = bit_depth_r;
     
     reg  enable_delay_r;
-    assign enable_bitcrush = enable_delay_r;
+    assign enable_delay = enable_delay_r;
 
 	reg [15:0] delay_num_samples_r;
 	assign delay_num_samples = delay_num_samples_r;
 
 	reg [7:0]  delay_feedback_amount_r;
-    assign delay_feedback_amount = feedback_amount_r;
+    assign delay_feedback_amount = delay_feedback_amount_r;
 
 	reg [7:0] delay_effect_amount_r;
-    assign delay_feedback_amount = delay_effect_amount_r;
+    assign delay_effect_amount = delay_effect_amount_r;
     
     
 	always @(*)begin

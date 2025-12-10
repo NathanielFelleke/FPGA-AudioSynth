@@ -5,7 +5,7 @@ module effect_mux_wrapper #(
     parameter DATA_WIDTH = 32
 )(
     input wire                         clk,
-    input wire                         reset,
+    input wire                         rst,
 
     // Audio stream
     input wire                         sample_valid,
@@ -21,8 +21,9 @@ module effect_mux_wrapper #(
     input wire [4:0]                   bit_depth,
 
     // Delay parameters
-    input wire [15:0]                  delay_samples,
-    input wire [7:0]                   feedback_amount
+    input wire [15:0]                  delay_num_samples,
+    input wire [7:0]                   delay_feedback_amount,
+    input wire [7:0]                   delay_effect_amount
 );
 
     // Internal signals
@@ -34,7 +35,7 @@ module effect_mux_wrapper #(
         .DATA_WIDTH(DATA_WIDTH)
     ) effect_mux_inst (
         .clk(clk),
-        .reset(reset),
+        .rst(rst),
         .sample_valid(sample_valid),
         .audio_in(audio_in),
         .audio_out(audio_out_internal),
@@ -42,8 +43,9 @@ module effect_mux_wrapper #(
         .enable_bitcrush(enable_bitcrush),
         .enable_delay(enable_delay),
         .bit_depth(bit_depth),
-        .delay_samples(delay_samples),
-        .feedback_amount(feedback_amount)
+        .delay_num_samples(delay_num_samples),
+        .delay_feedback_amount(delay_feedback_amount),
+        .delay_effect_amount(delay_effect_amount)
     );
 
     // Assign internal signals to outputs

@@ -35,65 +35,51 @@ def generate_signed_8bit_sine_waves(sample_rate, duration,frequencies, amplitude
         result+=scaled_wave.astype(np.int32)
     return (time_points,result)
 
-coeffs = [-2,-3,-4,0,9,21,32,36,32,21,9,0,-4,-3,-2] #low pass
-# coeffs = [-3,14,-20,6,16,-5,-41,68,-41,-5,16,6,-20,14,-3] #high pass
-#time and signal input:
 t,si = generate_signed_8bit_sine_waves(
     sample_rate=100e6,
     duration=10e-6,
-    frequencies=[100e5],
+    frequencies=[400e5],
     amplitudes=[4]
 )
 
 plays = []
-for i in range(1000):
-    if (i>200 and i<600):# or (i>925 and i<950):
-        plays.append(1)
+for i in range(100):
+    if (i>10 and i<18):
+        plays.append(int(si[i]))
     else:
         plays.append(0)            
 
-
-# #print(si)
-# model_output = lfilter(coeffs, [1.0], si)
-# #my_output = np.zeros(1000)
-
 @cocotb.test()
 async def test_a(dut):
-    my_output = np.zeros(1000)
+    my_output = np.zeros(100)
     """cocotb test for messing with verilog simulation"""
     cocotb.start_soon(Clock(dut.clk, 10, units="ns").start(start_high=False))
     dut.rst.value = 1
     await RisingEdge(dut.clk)
     await FallingEdge(dut.clk)
     dut.rst.value = 0
-    dut.attack_len.value = 150
-    dut.decay_len.value = 150
-    dut.sustain_level.value = 80
-    dut.release_len.value = 300
-    for i in range(1000):
-        #print(dut.t_phase.value.integer, dut.state.value)
-        dut.play.value = plays[i]
-        dut.data_in.value = int(si[i])
+    dut.decay_weight.value = 1
+    dut.delay_len.value = 10
+    for i in range(100):
+        dut.data_in.value = plays[i]
         if i != 0:
             my_output[i-1] += dut.data_out.value.signed_integer
         await Timer(10,'ns')
-    my_output[999] += dut.data_out.value.signed_integer
+    my_output[99] += dut.data_out.value.signed_integer
     plt.figure()
-    plt.plot(t,[int(i) for i in si])
-    plt.plot(t,my_output)
+    plt.plot(my_output)
     plt.show()
-
 
 def test_runner():
     """Simulate the counter using the Python runner."""
     hdl_toplevel_lang = os.getenv("HDL_TOPLEVEL_LANG", "verilog")
     sim = os.getenv("SIM", "icarus")
     proj_path = Path(__file__).resolve().parent.parent
-    sys.path.append(str(proj_path / "envelope" / "model"))
-    sources = [proj_path / "hdl" / "envelope.sv"]
+    sys.path.append(str(proj_path / "delay" / "model"))
+    sources = [proj_path / "hdl" / "delay.sv", proj_path / "hdl" / "xilinx_true_dual_port_read_first_2_clock_ram.sv"]
     build_test_args = ["-Wall"]
     sys.path.append(str(proj_path / "sim"))
-    hdl_toplevel = "envelope"
+    hdl_toplevel = "delay"
     runner = get_runner(sim)
     runner.build(
         sources=sources,

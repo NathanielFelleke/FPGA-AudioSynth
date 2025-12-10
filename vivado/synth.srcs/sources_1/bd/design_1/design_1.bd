@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xBD3446D471C2D7C",
+      "boundary_crc": "0x6F9DC045F2B41001",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../synth.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -37,15 +37,28 @@
       "log_scale_wrapper_0": "",
       "waterfall_buffer_wra_0": "",
       "axi_smc": "",
-      "ila_0": "",
       "video_handler_wrapper_0": "",
       "hdmi_control_wrapper_0": "",
       "color_mapping_wrapper_0": "",
       "x_mapping_wrapper_0": "",
       "proc_sys_reset_0": "",
-      "effect_interface_0": "",
       "proc_sys_reset_1": "",
-      "ilconstant_7": ""
+      "ilconstant_7": "",
+      "xpm_cdc_gen_0": "",
+      "xpm_cdc_gen_1": "",
+      "xpm_cdc_gen_2": "",
+      "xpm_cdc_gen_3": "",
+      "xpm_cdc_gen_4": "",
+      "xpm_cdc_gen_5": "",
+      "xpm_cdc_gen_6": "",
+      "xpm_cdc_gen_7": "",
+      "effect_interface_0": "",
+      "xpm_cdc_gen_8": "",
+      "xpm_cdc_gen_9": "",
+      "xpm_cdc_gen_10": "",
+      "xpm_cdc_gen_11": "",
+      "xpm_cdc_gen_12": "",
+      "ilslice_1": ""
     },
     "interface_ports": {
       "DDR": {
@@ -294,6 +307,11 @@
       "hdmi_out_hpd": {
         "direction": "O",
         "left": "0",
+        "right": "0"
+      },
+      "sws": {
+        "direction": "I",
+        "left": "1",
         "right": "0"
       }
     },
@@ -2561,10 +2579,20 @@
             }
           },
           "octave_on": {
+            "direction": "I"
+          },
+          "sw_in": {
             "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "btn_in": {
+            "direction": "I",
+            "left": "2",
+            "right": "0",
             "parameters": {
               "PortWidth": {
-                "value": "1",
+                "value": "3",
                 "value_src": "user_prop"
               }
             }
@@ -3509,28 +3537,6 @@
           }
         }
       },
-      "ila_0": {
-        "vlnv": "xilinx.com:ip:ila:6.2",
-        "ip_revision": "18",
-        "xci_name": "design_1_ila_0_0",
-        "xci_path": "ip/design_1_ila_0_0/design_1_ila_0_0.xci",
-        "inst_hier_path": "ila_0",
-        "has_run_ip_tcl": "true",
-        "parameters": {
-          "C_DATA_DEPTH": {
-            "value": "32768"
-          },
-          "C_MONITOR_TYPE": {
-            "value": "Native"
-          },
-          "C_NUM_OF_PROBES": {
-            "value": "4"
-          },
-          "C_PROBE0_WIDTH": {
-            "value": "32"
-          }
-        }
-      },
       "video_handler_wrapper_0": {
         "vlnv": "xilinx.com:module_ref:video_handler_wrapper:1.0",
         "ip_revision": "1",
@@ -3821,14 +3827,6 @@
         "inst_hier_path": "proc_sys_reset_0",
         "has_run_ip_tcl": "true"
       },
-      "effect_interface_0": {
-        "vlnv": "xilinx.com:user:effect_interface:1.0",
-        "ip_revision": "5",
-        "xci_name": "design_1_effect_interface_0_0",
-        "xci_path": "ip/design_1_effect_interface_0_0/design_1_effect_interface_0_0.xci",
-        "inst_hier_path": "effect_interface_0",
-        "has_run_ip_tcl": "true"
-      },
       "proc_sys_reset_1": {
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "ip_revision": "17",
@@ -3845,6 +3843,197 @@
           },
           "CONST_WIDTH": {
             "value": "1"
+          }
+        }
+      },
+      "xpm_cdc_gen_0": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_0_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_0_0/design_1_xpm_cdc_gen_0_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "xpm_cdc_gen_1": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_0_1",
+        "xci_path": "ip/design_1_xpm_cdc_gen_0_1/design_1_xpm_cdc_gen_0_1.xci",
+        "inst_hier_path": "xpm_cdc_gen_1",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "xpm_cdc_gen_2": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_0_2",
+        "xci_path": "ip/design_1_xpm_cdc_gen_0_2/design_1_xpm_cdc_gen_0_2.xci",
+        "inst_hier_path": "xpm_cdc_gen_2",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "7"
+          }
+        }
+      },
+      "xpm_cdc_gen_3": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_0_3",
+        "xci_path": "ip/design_1_xpm_cdc_gen_0_3/design_1_xpm_cdc_gen_0_3.xci",
+        "inst_hier_path": "xpm_cdc_gen_3",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "xpm_cdc_gen_4": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_4_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_4_0/design_1_xpm_cdc_gen_4_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_4",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "xpm_cdc_gen_5": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_5_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_5_0/design_1_xpm_cdc_gen_5_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_5",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "xpm_cdc_gen_6": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_6_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_6_0/design_1_xpm_cdc_gen_6_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_6",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "xpm_cdc_gen_7": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_7_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_7_0/design_1_xpm_cdc_gen_7_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_7",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "5"
+          }
+        }
+      },
+      "effect_interface_0": {
+        "vlnv": "xilinx.com:user:effect_interface:1.0",
+        "ip_revision": "10",
+        "xci_name": "design_1_effect_interface_0_0",
+        "xci_path": "ip/design_1_effect_interface_0_0/design_1_effect_interface_0_0.xci",
+        "inst_hier_path": "effect_interface_0",
+        "has_run_ip_tcl": "true"
+      },
+      "xpm_cdc_gen_8": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_8_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_8_0/design_1_xpm_cdc_gen_8_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_8",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "xpm_cdc_gen_9": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_9_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_9_0/design_1_xpm_cdc_gen_9_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_9",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "xpm_cdc_gen_10": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_10_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_10_0/design_1_xpm_cdc_gen_10_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_10",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "1024"
+          }
+        }
+      },
+      "xpm_cdc_gen_11": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_11_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_11_0/design_1_xpm_cdc_gen_11_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_11",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "xpm_cdc_gen_12": {
+        "vlnv": "xilinx.com:ip:xpm_cdc_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_xpm_cdc_gen_12_0",
+        "xci_path": "ip/design_1_xpm_cdc_gen_12_0/design_1_xpm_cdc_gen_12_0.xci",
+        "inst_hier_path": "xpm_cdc_gen_12",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "ilslice_1": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "3"
+          },
+          "DIN_TO": {
+            "value": "1"
+          },
+          "DIN_WIDTH": {
+            "value": "4"
           }
         }
       }
@@ -3907,19 +4096,19 @@
       "audio_fir_interface_0_coeffs": {
         "ports": [
           "audio_fir_interface_0/coeffs",
-          "audio_fir_wrapper_0/coeffs"
+          "xpm_cdc_gen_10/src_in"
         ]
       },
       "audio_fir_interface_0_enable": {
         "ports": [
           "audio_fir_interface_0/enable",
-          "audio_fir_wrapper_0/enable"
+          "xpm_cdc_gen_12/src_in"
         ]
       },
       "audio_fir_interface_0_scaler": {
         "ports": [
           "audio_fir_interface_0/scaler",
-          "audio_fir_wrapper_0/scaler"
+          "xpm_cdc_gen_11/src_in"
         ]
       },
       "audio_fir_wrapper_0_data_out": {
@@ -3937,7 +4126,8 @@
       "btns_1": {
         "ports": [
           "btns",
-          "ilslice_0/Din"
+          "ilslice_0/Din",
+          "ilslice_1/Din"
         ]
       },
       "clk_wiz_0_clk_out1": {
@@ -3968,53 +4158,51 @@
       "effect_interface_0_bit_depth": {
         "ports": [
           "effect_interface_0/bit_depth",
-          "effect_mux_wrapper_0/bit_depth"
+          "xpm_cdc_gen_7/src_in"
         ]
       },
       "effect_interface_0_delay_effect_amount": {
         "ports": [
           "effect_interface_0/delay_effect_amount",
-          "effect_mux_wrapper_0/delay_effect_amount"
+          "xpm_cdc_gen_8/src_in"
         ]
       },
       "effect_interface_0_delay_feedback_amount": {
         "ports": [
           "effect_interface_0/delay_feedback_amount",
-          "effect_mux_wrapper_0/delay_feedback_amount"
+          "xpm_cdc_gen_9/src_in"
         ]
       },
       "effect_interface_0_delay_num_samples": {
         "ports": [
           "effect_interface_0/delay_num_samples",
-          "effect_mux_wrapper_0/delay_num_samples"
+          "xpm_cdc_gen_4/src_in"
         ]
       },
       "effect_interface_0_enable_bitcrush": {
         "ports": [
           "effect_interface_0/enable_bitcrush",
-          "effect_mux_wrapper_0/enable_bitcrush"
+          "xpm_cdc_gen_5/src_in"
         ]
       },
       "effect_interface_0_enable_delay": {
         "ports": [
           "effect_interface_0/enable_delay",
-          "effect_mux_wrapper_0/enable_delay"
+          "xpm_cdc_gen_6/src_in"
         ]
       },
       "effect_mux_wrapper_0_audio_out1": {
         "ports": [
           "effect_mux_wrapper_0/audio_out",
           "fft_input_wrapper_0/audio_in",
-          "i2s_transmitter_0/s_axis_aud_tdata",
-          "ila_0/probe0"
+          "i2s_transmitter_0/s_axis_aud_tdata"
         ]
       },
       "effect_mux_wrapper_0_audio_out_valid1": {
         "ports": [
           "effect_mux_wrapper_0/audio_out_valid",
           "fft_input_wrapper_0/audio_valid",
-          "i2s_transmitter_0/s_axis_aud_tvalid",
-          "ila_0/probe1"
+          "i2s_transmitter_0/s_axis_aud_tvalid"
         ]
       },
       "fft_bin_filter_wrapp_0_out_data": {
@@ -4159,6 +4347,12 @@
           "synth_wrapper_0/octave_on"
         ]
       },
+      "ilslice_1_Dout": {
+        "ports": [
+          "ilslice_1/Dout",
+          "synth_wrapper_0/btn_in"
+        ]
+      },
       "ilslice_3_Dout": {
         "ports": [
           "ilslice_3/Dout",
@@ -4186,7 +4380,6 @@
       "midi_in_1": {
         "ports": [
           "midi_in",
-          "ila_0/probe2",
           "synth_wrapper_0/midi_in"
         ]
       },
@@ -4262,18 +4455,43 @@
           "voice_mixer_wrapper_0/clk",
           "xfft_0/aclk",
           "fft_input_wrapper_0/clk",
-          "multi_voice_adsr_wra_0/clk",
           "i2s_transmitter_0/s_axis_aud_aclk",
           "clk_wiz_1/clk_in1",
           "fft_mag_wrapper_0/clk",
           "fft_bin_filter_wrapp_0/clk",
           "log_scale_wrapper_0/clk",
           "axi_smc/aclk",
-          "ila_0/clk",
           "effect_mux_wrapper_0/clk",
           "waterfall_buffer_wra_0/wr_clk",
-          "synth_wrapper_0/clk",
-          "effect_interface_0/s00_axi_aclk"
+          "multi_voice_adsr_wra_0/clk",
+          "xpm_cdc_gen_0/src_clk",
+          "xpm_cdc_gen_0/dest_clk",
+          "xpm_cdc_gen_1/src_clk",
+          "xpm_cdc_gen_1/dest_clk",
+          "xpm_cdc_gen_2/src_clk",
+          "xpm_cdc_gen_2/dest_clk",
+          "xpm_cdc_gen_3/src_clk",
+          "xpm_cdc_gen_3/dest_clk",
+          "xpm_cdc_gen_10/dest_clk",
+          "xpm_cdc_gen_10/src_clk",
+          "xpm_cdc_gen_11/dest_clk",
+          "xpm_cdc_gen_11/src_clk",
+          "xpm_cdc_gen_12/src_clk",
+          "xpm_cdc_gen_12/dest_clk",
+          "xpm_cdc_gen_7/src_clk",
+          "xpm_cdc_gen_7/dest_clk",
+          "xpm_cdc_gen_6/dest_clk",
+          "xpm_cdc_gen_6/src_clk",
+          "xpm_cdc_gen_5/dest_clk",
+          "xpm_cdc_gen_5/src_clk",
+          "xpm_cdc_gen_4/dest_clk",
+          "xpm_cdc_gen_4/src_clk",
+          "xpm_cdc_gen_9/src_clk",
+          "xpm_cdc_gen_9/dest_clk",
+          "xpm_cdc_gen_8/dest_clk",
+          "xpm_cdc_gen_8/src_clk",
+          "effect_interface_0/s00_axi_aclk",
+          "synth_wrapper_0/clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -4314,7 +4532,6 @@
           "audio_fir_wrapper_0/rst",
           "voice_mixer_wrapper_0/rst",
           "fft_input_wrapper_0/rst",
-          "multi_voice_adsr_wra_0/rst",
           "i2s_transmitter_0/s_axis_aud_aresetn",
           "fft_mag_wrapper_0/rst",
           "fft_bin_filter_wrapp_0/rst",
@@ -4322,8 +4539,15 @@
           "axi_smc/aresetn",
           "effect_mux_wrapper_0/rst",
           "waterfall_buffer_wra_0/wr_rst",
-          "synth_wrapper_0/rst",
-          "effect_interface_0/s00_axi_aresetn"
+          "multi_voice_adsr_wra_0/rst",
+          "effect_interface_0/s00_axi_aresetn",
+          "synth_wrapper_0/rst"
+        ]
+      },
+      "sws_1": {
+        "ports": [
+          "sws",
+          "synth_wrapper_0/sw_in"
         ]
       },
       "synth_wrapper_0_data_valid": {
@@ -4336,8 +4560,7 @@
         "ports": [
           "synth_wrapper_0/note_on",
           "ilslice_3/Din",
-          "multi_voice_adsr_wra_0/note_on",
-          "ila_0/probe3"
+          "multi_voice_adsr_wra_0/note_on"
         ]
       },
       "synth_wrapper_0_voice_1_out1": {
@@ -4427,25 +4650,25 @@
       "voice_control_interf_0_attack_time": {
         "ports": [
           "voice_control_interf_0/attack_time",
-          "multi_voice_adsr_wra_0/attack_time"
+          "xpm_cdc_gen_0/src_in"
         ]
       },
       "voice_control_interf_0_decay_time": {
         "ports": [
           "voice_control_interf_0/decay_time",
-          "multi_voice_adsr_wra_0/decay_time"
+          "xpm_cdc_gen_1/src_in"
         ]
       },
       "voice_control_interf_0_release_time": {
         "ports": [
           "voice_control_interf_0/release_time",
-          "multi_voice_adsr_wra_0/release_time"
+          "xpm_cdc_gen_3/src_in"
         ]
       },
       "voice_control_interf_0_sustain_percent": {
         "ports": [
           "voice_control_interf_0/sustain_percent",
-          "multi_voice_adsr_wra_0/sustain_percent"
+          "xpm_cdc_gen_2/src_in"
         ]
       },
       "voice_mixer_wrapper_0_data_out_valid": {
@@ -4494,6 +4717,84 @@
         "ports": [
           "xfft_0/s_axis_data_tready",
           "fft_input_wrapper_0/m_axis_tready"
+        ]
+      },
+      "xpm_cdc_gen_0_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_0/dest_out",
+          "multi_voice_adsr_wra_0/attack_time"
+        ]
+      },
+      "xpm_cdc_gen_10_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_10/dest_out",
+          "audio_fir_wrapper_0/coeffs"
+        ]
+      },
+      "xpm_cdc_gen_11_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_11/dest_out",
+          "audio_fir_wrapper_0/scaler"
+        ]
+      },
+      "xpm_cdc_gen_12_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_12/dest_out",
+          "audio_fir_wrapper_0/enable"
+        ]
+      },
+      "xpm_cdc_gen_1_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_1/dest_out",
+          "multi_voice_adsr_wra_0/decay_time"
+        ]
+      },
+      "xpm_cdc_gen_2_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_2/dest_out",
+          "multi_voice_adsr_wra_0/sustain_percent"
+        ]
+      },
+      "xpm_cdc_gen_3_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_3/dest_out",
+          "multi_voice_adsr_wra_0/release_time"
+        ]
+      },
+      "xpm_cdc_gen_4_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_4/dest_out",
+          "effect_mux_wrapper_0/delay_num_samples"
+        ]
+      },
+      "xpm_cdc_gen_5_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_5/dest_out",
+          "effect_mux_wrapper_0/enable_bitcrush"
+        ]
+      },
+      "xpm_cdc_gen_6_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_6/dest_out",
+          "effect_mux_wrapper_0/enable_delay"
+        ]
+      },
+      "xpm_cdc_gen_7_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_7/dest_out",
+          "effect_mux_wrapper_0/bit_depth"
+        ]
+      },
+      "xpm_cdc_gen_8_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_8/dest_out",
+          "effect_mux_wrapper_0/delay_effect_amount"
+        ]
+      },
+      "xpm_cdc_gen_9_dest_out": {
+        "ports": [
+          "xpm_cdc_gen_9/dest_out",
+          "effect_mux_wrapper_0/delay_feedback_amount"
         ]
       }
     },

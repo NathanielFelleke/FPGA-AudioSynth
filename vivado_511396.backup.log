@@ -1,0 +1,341 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Dec 10 14:12:03 2025
+# Process ID         : 511396
+# Current directory  : /home/ianh7095/Downloads/FPGA-AudioSynth
+# Command line       : vivado
+# Log file           : /home/ianh7095/Downloads/FPGA-AudioSynth/vivado.log
+# Journal file       : /home/ianh7095/Downloads/FPGA-AudioSynth/vivado.jou
+# Running On         : eecs-digital-34
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700
+# CPU Frequency      : 800.000 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33325 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 41915 MB
+# Available Virtual  : 26247 MB
+#-----------------------------------------------------------
+start_gui
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:emb-plus-vpr-4616:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/emb-plus-vpr-4616/1.0/board.xml as part xcve2302-sfva784-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:emb-plus-vpr-4616:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/emb-plus-vpr-4616/1.1/board.xml as part xcve2302-sfva784-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:v80:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/v80/1.0/board.xml as part xcv80-lsva4737-2mhp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:2.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/2.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.1/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.3 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.3/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.4 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.4/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.1/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.3 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.3/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.0/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.1/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.2/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek385:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek385/1.0/board.xml as part xc2ve3858-ssva2112-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.0/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.1/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.2/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:2.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/2.2/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.1/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.2/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.3 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.3/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180_newl:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180_newl/production/1.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180_newl:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180_newl/production/1.1/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.0/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.1/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.2/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.0/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.1/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.2/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+open_project /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.xpr
+Scanning sources...
+Finished scanning sources
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:emb-plus-vpr-4616:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/emb-plus-vpr-4616/1.0/board.xml as part xcve2302-sfva784-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:emb-plus-vpr-4616:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/emb-plus-vpr-4616/1.1/board.xml as part xcve2302-sfva784-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:v80:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/v80/1.0/board.xml as part xcv80-lsva4737-2mhp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:2.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/2.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.1/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.3 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.3/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.4 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.4/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.1/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.3 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.3/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.0/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.1/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.2/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek385:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek385/1.0/board.xml as part xc2ve3858-ssva2112-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.0/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.1/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.2/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:2.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/2.2/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.1/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.2/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.3 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.3/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180_newl:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180_newl/production/1.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180_newl:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180_newl/production/1.1/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.0/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.1/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.2/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.0/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.1 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.1/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.2 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.2/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at /tools/Xilinx/2025.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ianh7095/Downloads/FPGA-AudioSynth/ip_repo/effect_interface_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ianh7095/Downloads/FPGA-AudioSynth/ip_repo/voice_control_interface_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ianh7095/Downloads/FPGA-AudioSynth/ip_repo/audio_fir_interface_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ianh7095/Downloads/FPGA-AudioSynth/vivado-library'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/2025.1/Vivado/data/ip'.
+update_compile_order -fileset sources_1
+open_bd_design {/home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd}
+Reading block design file </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd>...
+Adding component instance block -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding component instance block -- xilinx.com:user:audio_fir_interface:1.0 - audio_fir_interface_0
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_0_100M
+Adding component instance block -- xilinx.com:module_ref:audio_fir_wrapper:1.0 - audio_fir_wrapper_0
+Adding component instance block -- xilinx.com:user:voice_control_interface:1.0 - voice_control_interf_0
+Adding component instance block -- xilinx.com:module_ref:voice_mixer_wrapper:1.0 - voice_mixer_wrapper_0
+Adding component instance block -- xilinx.com:module_ref:multi_voice_adsr_wrapper:1.0 - multi_voice_adsr_wra_0
+Adding component instance block -- xilinx.com:inline_hdl:ilconstant:1.0 - ilconstant_2
+Adding component instance block -- xilinx.com:module_ref:effect_mux_wrapper:1.0 - effect_mux_wrapper_0
+Adding component instance block -- xilinx.com:module_ref:synth_wrapper:1.0 - synth_wrapper_0
+Adding component instance block -- xilinx.com:inline_hdl:ilslice:1.0 - ilslice_0
+Adding component instance block -- xilinx.com:ip:i2s_transmitter:1.0 - i2s_transmitter_0
+Adding component instance block -- xilinx.com:inline_hdl:ilconstant:1.0 - ilconstant_0
+Adding component instance block -- xilinx.com:inline_hdl:ilslice:1.0 - ilslice_3
+Adding component instance block -- xilinx.com:ip:xfft:9.1 - xfft_0
+Adding component instance block -- digilentinc.com:ip:rgb2dvi:1.4 - rgb2dvi_0
+Adding component instance block -- xilinx.com:inline_hdl:ilconstant:1.0 - ilconstant_5
+Adding component instance block -- xilinx.com:inline_hdl:ilconstant:1.0 - ilconstant_6
+Adding component instance block -- xilinx.com:module_ref:fft_input_wrapper:1.0 - fft_input_wrapper_0
+Adding component instance block -- xilinx.com:ip:clk_wiz:6.0 - clk_wiz_0
+Adding component instance block -- xilinx.com:ip:clk_wiz:6.0 - clk_wiz_1
+Adding component instance block -- xilinx.com:module_ref:fft_bin_filter_wrapper:1.0 - fft_bin_filter_wrapp_0
+Adding component instance block -- xilinx.com:module_ref:fft_mag_wrapper:1.0 - fft_mag_wrapper_0
+Adding component instance block -- xilinx.com:module_ref:log_scale_wrapper:1.0 - log_scale_wrapper_0
+Adding component instance block -- xilinx.com:module_ref:waterfall_buffer_wrapper:1.0 - waterfall_buffer_wra_0
+Adding component instance block -- xilinx.com:ip:smartconnect:1.0 - axi_smc
+Adding component instance block -- xilinx.com:ip:ila:6.2 - ila_0
+INFO: [xilinx.com:ip:ila:6.2-6] /ila_0: AMD recommends using the System ILA IP in IP Integrator. The System ILA IP is functionally equivalent to an ILA and offers additional benefits in debugging interfaces both within IP Integrator and the Hardware Manager. Consult the Programming and Debug User Guide UG908 for further details.
+Adding component instance block -- xilinx.com:module_ref:video_handler_wrapper:1.0 - video_handler_wrapper_0
+Adding component instance block -- xilinx.com:module_ref:hdmi_control_wrapper:1.0 - hdmi_control_wrapper_0
+Adding component instance block -- xilinx.com:module_ref:color_mapping_wrapper:1.0 - color_mapping_wrapper_0
+Adding component instance block -- xilinx.com:module_ref:x_mapping_wrapper:1.0 - x_mapping_wrapper_0
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_0
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_1
+Adding component instance block -- xilinx.com:inline_hdl:ilconstant:1.0 - ilconstant_7
+Adding component instance block -- xilinx.com:ip:xpm_cdc_gen:1.0 - xpm_cdc_gen_0
+Adding component instance block -- xilinx.com:ip:xpm_cdc_gen:1.0 - xpm_cdc_gen_1
+Adding component instance block -- xilinx.com:ip:xpm_cdc_gen:1.0 - xpm_cdc_gen_2
+Adding component instance block -- xilinx.com:ip:xpm_cdc_gen:1.0 - xpm_cdc_gen_3
+Successfully read diagram <design_1> from block design file </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd>
+regenerate_bd_layout
+open_bd_design {/home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd}
+open_bd_design {/home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd}
+open_bd_design {/home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd}
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_4
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_5
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_6
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_7
+endgroup
+xpm_cdc_array_single  *****  1
+set_property CONFIG.WIDTH {1} [get_bd_cells xpm_cdc_gen_6]
+xpm_cdc_array_single  *****  1
+xpm_cdc_array_single  *****  1
+set_property CONFIG.WIDTH {1} [get_bd_cells xpm_cdc_gen_5]
+xpm_cdc_array_single  *****  1
+connect_bd_net [get_bd_pins xpm_cdc_gen_5/dest_out] [get_bd_pins effect_mux_wrapper_0/enable_bitcrush]
+connect_bd_net [get_bd_pins xpm_cdc_gen_6/dest_out] [get_bd_pins effect_mux_wrapper_0/enable_delay]
+xpm_cdc_array_single  *****  4
+set_property CONFIG.WIDTH {4} [get_bd_cells xpm_cdc_gen_7]
+xpm_cdc_array_single  *****  4
+xpm_cdc_array_single  *****  5
+set_property CONFIG.WIDTH {5} [get_bd_cells xpm_cdc_gen_7]
+xpm_cdc_array_single  *****  5
+connect_bd_net [get_bd_pins xpm_cdc_gen_7/dest_out] [get_bd_pins effect_mux_wrapper_0/delay_num_samples]
+undo
+INFO: [Common 17-17] undo 'connect_bd_net [get_bd_pins xpm_cdc_gen_7/dest_out] [get_bd_pins effect_mux_wrapper_0/delay_num_samples]'
+connect_bd_net [get_bd_pins xpm_cdc_gen_7/dest_out] [get_bd_pins effect_mux_wrapper_0/bit_depth]
+xpm_cdc_array_single  *****  16
+set_property CONFIG.WIDTH {16} [get_bd_cells xpm_cdc_gen_4]
+xpm_cdc_array_single  *****  16
+connect_bd_net [get_bd_pins xpm_cdc_gen_4/dest_out] [get_bd_pins effect_mux_wrapper_0/delay_num_samples]
+connect_bd_net [get_bd_pins xpm_cdc_gen_6/dest_clk] [get_bd_pins xpm_cdc_gen_6/src_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_5/dest_clk] [get_bd_pins xpm_cdc_gen_5/src_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_4/dest_clk] [get_bd_pins xpm_cdc_gen_4/src_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_5/src_clk] [get_bd_pins xpm_cdc_gen_4/dest_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_7/src_clk] [get_bd_pins xpm_cdc_gen_7/dest_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_6/src_clk] [get_bd_pins xpm_cdc_gen_5/dest_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_7/src_clk] [get_bd_pins xpm_cdc_gen_6/dest_clk]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:effect_interface:1.0 effect_interface_0
+endgroup
+connect_bd_net [get_bd_pins effect_interface_0/enable_delay] [get_bd_pins xpm_cdc_gen_6/src_in]
+connect_bd_net [get_bd_pins effect_interface_0/enable_bitcrush] [get_bd_pins xpm_cdc_gen_5/src_in]
+connect_bd_net [get_bd_pins effect_interface_0/delay_num_samples] [get_bd_pins xpm_cdc_gen_4/src_in]
+connect_bd_net [get_bd_pins effect_interface_0/bit_depth] [get_bd_pins xpm_cdc_gen_7/src_in]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_8
+endgroup
+xpm_cdc_array_single  *****  8
+set_property CONFIG.WIDTH {8} [get_bd_cells xpm_cdc_gen_8]
+xpm_cdc_array_single  *****  8
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_9
+endgroup
+xpm_cdc_array_single  *****  8
+set_property CONFIG.WIDTH {8} [get_bd_cells xpm_cdc_gen_9]
+xpm_cdc_array_single  *****  8
+connect_bd_net [get_bd_pins xpm_cdc_gen_9/src_clk] [get_bd_pins xpm_cdc_gen_9/dest_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_8/dest_clk] [get_bd_pins xpm_cdc_gen_8/src_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_9/src_clk] [get_bd_pins xpm_cdc_gen_8/src_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_9/src_in] [get_bd_pins effect_interface_0/delay_feedback_amount]
+connect_bd_net [get_bd_pins xpm_cdc_gen_9/dest_out] [get_bd_pins effect_mux_wrapper_0/delay_feedback_amount]
+connect_bd_net [get_bd_pins xpm_cdc_gen_8/src_in] [get_bd_pins effect_interface_0/delay_effect_amount]
+connect_bd_net [get_bd_pins xpm_cdc_gen_8/dest_out] [get_bd_pins effect_mux_wrapper_0/delay_effect_amount]
+save_bd_design
+WARNING: [BD 41-597] NET <Net1> has no source
+WARNING: [BD 41-597] NET <Net2> has no source
+Wrote  : </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd> 
+Wrote  : </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/ui/bd_1f5defd0.ui> 
+delete_bd_objs [get_bd_nets audio_fir_interface_0_coeffs]
+delete_bd_objs [get_bd_nets audio_fir_interface_0_scaler]
+delete_bd_objs [get_bd_nets audio_fir_interface_0_enable]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_10
+endgroup
+xpm_cdc_array_single  *****  1024
+set_property CONFIG.WIDTH {1024} [get_bd_cells xpm_cdc_gen_10]
+xpm_cdc_array_single  *****  1024
+connect_bd_net [get_bd_pins audio_fir_interface_0/scaler] [get_bd_pins xpm_cdc_gen_10/src_in]
+undo
+INFO: [Common 17-17] undo 'connect_bd_net [get_bd_pins audio_fir_interface_0/scaler] [get_bd_pins xpm_cdc_gen_10/src_in]'
+connect_bd_net [get_bd_pins audio_fir_interface_0/coeffs] [get_bd_pins xpm_cdc_gen_10/src_in]
+connect_bd_net [get_bd_pins xpm_cdc_gen_10/dest_clk] [get_bd_pins xpm_cdc_gen_10/src_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_10/src_clk] [get_bd_pins processing_system7_0/FCLK_CLK0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_11
+endgroup
+connect_bd_net [get_bd_pins xpm_cdc_gen_11/dest_clk] [get_bd_pins xpm_cdc_gen_11/src_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_11/src_clk] [get_bd_pins processing_system7_0/FCLK_CLK0]
+xpm_cdc_array_single  *****  16
+startgroup
+set_property CONFIG.WIDTH {16} [get_bd_cells xpm_cdc_gen_11]
+xpm_cdc_array_single  *****  16
+endgroup
+connect_bd_net [get_bd_pins xpm_cdc_gen_11/src_in] [get_bd_pins audio_fir_interface_0/scaler]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xpm_cdc_gen:1.0 xpm_cdc_gen_12
+endgroup
+connect_bd_net [get_bd_pins xpm_cdc_gen_12/src_clk] [get_bd_pins xpm_cdc_gen_12/dest_clk]
+connect_bd_net [get_bd_pins xpm_cdc_gen_12/src_clk] [get_bd_pins processing_system7_0/FCLK_CLK0]
+xpm_cdc_array_single  *****  1
+startgroup
+set_property CONFIG.WIDTH {1} [get_bd_cells xpm_cdc_gen_12]
+xpm_cdc_array_single  *****  1
+endgroup
+connect_bd_net [get_bd_pins audio_fir_interface_0/enable] [get_bd_pins xpm_cdc_gen_12/src_in]
+connect_bd_net [get_bd_pins xpm_cdc_gen_10/dest_out] [get_bd_pins audio_fir_wrapper_0/coeffs]
+connect_bd_net [get_bd_pins xpm_cdc_gen_11/dest_out] [get_bd_pins audio_fir_wrapper_0/scaler]
+connect_bd_net [get_bd_pins xpm_cdc_gen_12/dest_out] [get_bd_pins audio_fir_wrapper_0/enable]
+regenerate_bd_layout
+connect_bd_net [get_bd_pins xpm_cdc_gen_5/src_clk] [get_bd_pins processing_system7_0/FCLK_CLK0]
+connect_bd_net [get_bd_pins xpm_cdc_gen_8/src_clk] [get_bd_pins processing_system7_0/FCLK_CLK0]
+save_bd_design
+Wrote  : </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd> 
+Wrote  : </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/ui/bd_1f5defd0.ui> 
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {/processing_system7_0/FCLK_CLK0 (100 MHz)} Clk_slave {Auto} Clk_xbar {/processing_system7_0/FCLK_CLK0 (100 MHz)} Master {/processing_system7_0/M_AXI_GP0} Slave {/effect_interface_0/S00_AXI} ddr_seg {Auto} intc_ip {/axi_smc} master_apm {0}}  [get_bd_intf_pins effect_interface_0/S00_AXI]
+Slave segment '/effect_interface_0/S00_AXI/S00_AXI_reg' is being assigned into address space '/processing_system7_0/Data' at <0x43C3_0000 [ 64K ]>.
+save_bd_design
+Wrote  : </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd> 
+Wrote  : </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/ui/bd_1f5defd0.ui> 
+reset_run synth_1
+launch_runs synth_1 -jobs 12
+WARNING: [HDL 9-3756] overwriting previous definition of module 'xilinx_single_port_ram_read_first' [/home/ianh7095/Downloads/FPGA-AudioSynth/sources/hdl/xilinx_single_port_ram_read_first.sv:10]
+WARNING: [filemgmt 20-1318] Duplicate Design Unit 'xilinx_single_port_ram_read_first()' found in library 'xil_defaultlib'
+Duplicate found at line 10 of file /home/ianh7095/Downloads/FPGA-AudioSynth/sources/hdl/xilinx_single_port_ram_read_first.v
+	(Active) Duplicate found at line 10 of file /home/ianh7095/Downloads/FPGA-AudioSynth/sources/hdl/xilinx_single_port_ram_read_first.sv
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+WARNING: [IP_Flow 19-3374] An attempt to modify the value of disabled parameter 'PRIM_IN_FREQ' from '125.000' to '100.000' has been ignored for IP 'clk_wiz_0'
+WARNING: [BD 41-702] Propagation TCL tries to overwrite USER strength parameter PCW_M_AXI_GP0_FREQMHZ(10) on '/processing_system7_0' with propagated value(100). Command ignored
+INFO: [BD 5-943] Reserving offset range <0x43C0_0000 [ 64K ]> from slave interface '/axi_smc/S00_AXI' to master interface '/axi_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x43C2_0000 [ 64K ]> from slave interface '/axi_smc/S00_AXI' to master interface '/axi_smc/M01_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x43C1_0000 [ 64K ]> from slave interface '/axi_smc/S00_AXI' to master interface '/axi_smc/M02_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x43C3_0000 [ 64K ]> from slave interface '/axi_smc/S00_AXI' to master interface '/axi_smc/M03_AXI'. This will be used by smartconnect on path for routing.
+INFO: [xilinx.com:ip:smartconnect:1.0-1] design_1_axi_smc_2: SmartConnect design_1_axi_smc_2 is in Low-Area Mode.
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+INFO: [xilinx.com:ip:clk_wiz:6.0-1] /clk_wiz_1 clk_wiz propagate
+INFO: [xilinx.com:ip:clk_wiz:6.0-1] /clk_wiz_0 clk_wiz propagate
+INFO: [xilinx.com:ip:xfft:9.1-913] /xfft_0 input_width has been set to manual on the GUI. It will not be updated during validation with a propagated value.
+CRITICAL WARNING: [BD 41-759] The input pins (listed below) are either not connected or do not have a source port, and they don't have a tie-off specified. These pins are tied-off to all 0's to avoid error in Implementation flow.
+Please check your design and connect them as needed: 
+/i2s_transmitter_0/aud_mrst
+/xfft_0/s_axis_config_tvalid
+
+Wrote  : </home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.srcs/sources_1/bd/design_1/design_1.bd> 
+Verilog Output written to : /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.gen/sources_1/bd/design_1/synth/design_1.v
+Verilog Output written to : /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.gen/sources_1/bd/design_1/sim/design_1.v
+Verilog Output written to : /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
+Exporting to file /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.gen/sources_1/bd/design_1/ip/design_1_axi_smc_2/bd_0/hw_handoff/design_1_axi_smc_2.hwh
+Generated Hardware Definition File /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.gen/sources_1/bd/design_1/ip/design_1_axi_smc_2/bd_0/synth/design_1_axi_smc_2.hwdef
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_smc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_1 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_2 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_3 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_4 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_5 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_6 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block effect_interface_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_8 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_9 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_10 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_11 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xpm_cdc_gen_12 .
+Exporting to file /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh
+Generated Hardware Definition File /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.gen/sources_1/bd/design_1/synth/design_1.hwdef
+[Wed Dec 10 14:20:07 2025] Launched design_1_axi_smc_2_synth_1, design_1_xpm_cdc_gen_0_2_synth_1, design_1_xpm_cdc_gen_0_0_synth_1, design_1_xpm_cdc_gen_0_1_synth_1, design_1_xpm_cdc_gen_0_3_synth_1, design_1_effect_interface_0_0_synth_1, design_1_xpm_cdc_gen_9_0_synth_1, design_1_xpm_cdc_gen_7_0_synth_1, design_1_xpm_cdc_gen_8_0_synth_1, design_1_xpm_cdc_gen_6_0_synth_1, design_1_xpm_cdc_gen_5_0_synth_1, design_1_xpm_cdc_gen_4_0_synth_1, design_1_xpm_cdc_gen_12_0_synth_1, design_1_xpm_cdc_gen_11_0_synth_1, design_1_xpm_cdc_gen_10_0_synth_1...
+Run output will be captured here:
+design_1_axi_smc_2_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_axi_smc_2_synth_1/runme.log
+design_1_xpm_cdc_gen_0_2_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_0_2_synth_1/runme.log
+design_1_xpm_cdc_gen_0_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_0_0_synth_1/runme.log
+design_1_xpm_cdc_gen_0_1_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_0_1_synth_1/runme.log
+design_1_xpm_cdc_gen_0_3_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_0_3_synth_1/runme.log
+design_1_effect_interface_0_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_effect_interface_0_0_synth_1/runme.log
+design_1_xpm_cdc_gen_9_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_9_0_synth_1/runme.log
+design_1_xpm_cdc_gen_7_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_7_0_synth_1/runme.log
+design_1_xpm_cdc_gen_8_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_8_0_synth_1/runme.log
+design_1_xpm_cdc_gen_6_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_6_0_synth_1/runme.log
+design_1_xpm_cdc_gen_5_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_5_0_synth_1/runme.log
+design_1_xpm_cdc_gen_4_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_4_0_synth_1/runme.log
+design_1_xpm_cdc_gen_12_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_12_0_synth_1/runme.log
+design_1_xpm_cdc_gen_11_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_11_0_synth_1/runme.log
+design_1_xpm_cdc_gen_10_0_synth_1: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/design_1_xpm_cdc_gen_10_0_synth_1/runme.log
+[Wed Dec 10 14:20:07 2025] Launched synth_1...
+Run output will be captured here: /home/ianh7095/Downloads/FPGA-AudioSynth/vivado/synth.runs/synth_1/runme.log
+launch_runs: Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 12524.605 ; gain = 611.258 ; free physical = 10195 ; free virtual = 21665

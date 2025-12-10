@@ -1,161 +1,130 @@
-// Simplified MIDI RX based on reference implementation
 module midi_rx
-  #(
-    parameter INPUT_CLOCK_FREQ = 100_000_000,
-    parameter BAUD_RATE = 31_250 // MIDI Standard
-   )
-   (
-    input wire         clk,
-    input wire         rst,
-    input wire         data_in,
-
-    // 8 Voices
-    output logic [7:0]       on_out,       // 1 = Note is Active
-    output logic [7:0][2:0]  velocity_out, // 3-bit Velocity per voice
-    output logic [7:0][6:0]  note_out      // Note Number per voice
-   );
-
-   localparam BAUD_BIT_PERIOD = INPUT_CLOCK_FREQ/BAUD_RATE; // 3200 for 100MHz
-
-   // Input synchronizer (2-FF chain to prevent metastability)
-   logic        data_in_sync1;
-   logic        data_in_sync2;
-   logic        data_in_prev;
-
-   // UART State Machine
-   logic        uart_state;  // 0=IDLE, 1=READ
-   logic [3:0]  bit_count;
-   logic [15:0] cycle_count;
-   logic [7:0]  rx_data;
-   logic        rx_done;
-
-   // MIDI Parsing State Variables
-   logic [7:0]  last_status;
-   logic [7:0]  stored_note;
-   logic        expecting_vel;
-
-   // Free channel finder
-   logic [3:0] free_channel;
-   assign free_channel =
-       (~on_out[0])? 4'd0 : (~on_out[1])? 4'd1 : (~on_out[2])? 4'd2 :
-       (~on_out[3])? 4'd3 : (~on_out[4])? 4'd4 : (~on_out[5])? 4'd5 :
-       (~on_out[6])? 4'd6 : (~on_out[7])? 4'd7 : 4'd8;
-
-   // UART State Machine (matches reference from jzkmath)
+  #( 
+    parameter INPUT_CLOCK_FREQ = 100_000_000, 
+    parameter BAUD_RATE = 31_250 // Unused, kept for compatibility
+   ) 
+   ( 
+    input wire          clk, 
+    input wire          rst, 
+    input wire          data_in, 
+ 
+    // 8 Voices 
+    output logic [7:0]       on_out,       
+    output logic [7:0][2:0]  velocity_out, 
+    output logic [7:0][6:0]  note_out      
+   ); 
+ 
+   // ==========================================================================
+   // TIMING CONFIGURATION
+   // ==========================================================================
+   // 120 BPM = 0.5s per beat. 
+   localparam BEAT_TICKS = INPUT_CLOCK_FREQ / 2; 
+ 
+   // ==========================================================================
+   // SONG ROM (Twinkle Twinkle)
+   // ==========================================================================
+   // We store: {Note Number (7 bits), Duration in Beats (2 bits), Velocity (3 bits)}
+   // Total width = 12 bits
+   logic [11:0] song_rom [0:13];
+   
+   initial begin
+      // Format: { NOTE, DURATION, VELOCITY }
+      
+      // Phrase 1: "Twin-kle Twin-kle Lit-tle Star..."
+      song_rom[0]  = {7'd60, 2'd1, 3'd7}; // C4, 1 beat,  Loud (Downbeat)
+      song_rom[1]  = {7'd60, 2'd1, 3'd5}; // C4, 1 beat,  Soft
+      song_rom[2]  = {7'd67, 2'd1, 3'd6}; // G4, 1 beat,  Medium
+      song_rom[3]  = {7'd67, 2'd1, 3'd5}; // G4, 1 beat,  Soft
+      song_rom[4]  = {7'd69, 2'd1, 3'd6}; // A4, 1 beat,  Medium
+      song_rom[5]  = {7'd69, 2'd1, 3'd5}; // A4, 1 beat,  Soft
+      song_rom[6]  = {7'd67, 2'd2, 3'd7}; // G4, 2 BEATS, Loud (End of phrase)
+      
+      // Phrase 2: "How I won-der what you are..."
+      song_rom[7]  = {7'd65, 2'd1, 3'd6}; // F4, 1 beat,  Medium
+      song_rom[8]  = {7'd65, 2'd1, 3'd5}; // F4, 1 beat,  Soft
+      song_rom[9]  = {7'd64, 2'd1, 3'd6}; // E4, 1 beat,  Medium
+      song_rom[10] = {7'd64, 2'd1, 3'd5}; // E4, 1 beat,  Soft
+      song_rom[11] = {7'd62, 2'd1, 3'd6}; // D4, 1 beat,  Medium
+      song_rom[12] = {7'd62, 2'd1, 3'd5}; // D4, 1 beat,  Soft
+      song_rom[13] = {7'd60, 2'd2, 3'd7}; // C4, 2 BEATS, Loud (End)
+   end
+ 
+   // ==========================================================================
+   // SEQUENCER LOGIC
+   // ==========================================================================
+   typedef enum {START, NOTE_ON, SUSTAIN, NOTE_OFF, GAP} state_t;
+   state_t state;
+   
+   logic [31:0] timer;
+   logic [3:0]  note_index;
+   logic [31:0] current_note_duration; // Calculated based on ROM
+ 
    always_ff @(posedge clk) begin
-      if(rst) begin
-         // Synchronizer chain
-         data_in_sync1 <= 1;
-         data_in_sync2 <= 1;
-         data_in_prev <= 1;
-
-         uart_state <= 0;
-         bit_count <= 0;
-         cycle_count <= 0;
-         rx_data <= 0;
-         rx_done <= 0;
-
-         on_out <= 0;
-         velocity_out <= 0;
-         note_out <= 0;
-         last_status <= 0;
-         stored_note <= 0;
-         expecting_vel <= 0;
-      end
-      else begin
-         // Two-stage synchronizer for metastability protection
-         data_in_sync1 <= data_in;
-         data_in_sync2 <= data_in_sync1;
-         data_in_prev <= data_in_sync2;
-
-         // State Machine
-         case(uart_state)
-            1'b0: begin // IDLE
-               rx_done <= 0;
-               // Edge detect: Look for high-to-low transition (start bit)
-               if(data_in_prev == 1 && data_in_sync2 == 0) begin
-                  uart_state <= 1;
-                  bit_count <= 0;
-                  cycle_count <= 0;
-               end
+      if (rst) begin
+         on_out       <= 8'b0;
+         velocity_out <= '0;
+         note_out     <= '0;
+         state        <= START;
+         timer        <= 0;
+         note_index   <= 0;
+      end else begin
+         case (state)
+            START: begin
+               // Small delay at startup
+               if (timer > INPUT_CLOCK_FREQ/4) begin
+                  timer <= 0;
+                  state <= NOTE_ON;
+               end else timer <= timer + 1;
             end
-
-            1'b1: begin // READ
-               cycle_count <= cycle_count + 1;
-
-               // Skip start bit (wait BAUD_BIT_PERIOD/2)
-               if(cycle_count == BAUD_BIT_PERIOD/2 && bit_count == 0) begin
-                  cycle_count <= 0;
-                  bit_count <= 1; // Mark that we've skipped start bit
-               end
-
-               // Sample data bits (8 bits total)
-               else if(cycle_count == BAUD_BIT_PERIOD && bit_count >= 1 && bit_count <= 8) begin
-                  // LSB first: shift right, new bit enters at MSB
-                  // Use synchronized signal!
-                  rx_data <= {data_in_sync2, rx_data[7:1]};
-                  bit_count <= bit_count + 1;
-                  cycle_count <= 0;
-               end
-
-               // Check stop bit
-               else if(cycle_count == BAUD_BIT_PERIOD && bit_count == 9 && data_in_sync2 == 1) begin
-                  rx_done <= 1;
-                  uart_state <= 0; // Back to IDLE
-                  bit_count <= 0;
-                  cycle_count <= 0;
-               end
-
-               // Framing error - no valid stop bit
-               else if(cycle_count == BAUD_BIT_PERIOD && bit_count == 9 && data_in_sync2 == 0) begin
-                  uart_state <= 0; // Abort, back to IDLE
-                  bit_count <= 0;
-                  cycle_count <= 0;
-               end
+ 
+            NOTE_ON: begin
+               // 1. Read from ROM
+               logic [6:0] note_val;
+               logic [1:0] dur_beats;
+               logic [2:0] vel_val;
+               
+               {note_val, dur_beats, vel_val} = song_rom[note_index];
+ 
+               // 2. Apply to Channel 0 (Simulating single finger playing)
+               on_out[0]       <= 1'b1;
+               note_out[0]     <= note_val;
+               velocity_out[0] <= vel_val;
+               
+               // 3. Calculate hold time (90% of total duration for "Human" feel)
+               // If duration is 1 beat, hold for 0.9 beats. 
+               // If duration is 2 beats, hold for 1.9 beats.
+               current_note_duration <= (BEAT_TICKS * dur_beats * 9) / 10;
+               
+               timer <= 0;
+               state <= SUSTAIN;
+            end
+ 
+            SUSTAIN: begin
+               if (timer >= current_note_duration) begin
+                  state <= NOTE_OFF;
+                  timer <= 0;
+               end else timer <= timer + 1;
+            end
+ 
+            NOTE_OFF: begin
+               on_out[0] <= 1'b0; // Lift finger
+               state     <= GAP;
+               timer     <= 0;
+            end
+ 
+            GAP: begin
+               // The "Gap" fills the remaining 10% of the beat time
+               // We approximate this by waiting a fixed small amount 
+               // to ensure the Note Off is registered by your synth.
+               if (timer >= (BEAT_TICKS / 10)) begin
+                  timer <= 0;
+                  if (note_index == 13) note_index <= 0;
+                  else note_index <= note_index + 1;
+                  
+                  state <= NOTE_ON;
+               end else timer <= timer + 1;
             end
          endcase
-
-         // MIDI Processing (on rx_done pulse)
-         if(rx_done) begin
-            // Status byte (bit 7 = 1)
-            if(rx_data[7] == 1) begin
-               if(rx_data < 8'hF0) begin
-                  last_status <= rx_data;
-                  expecting_vel <= 0;
-               end
-            end
-            // Data byte (bit 7 = 0)
-            else begin
-               if(expecting_vel == 0) begin
-                  // This is the note number
-                  stored_note <= rx_data;
-                  expecting_vel <= 1;
-               end
-               else begin
-                  // This is the velocity - trigger action
-                  expecting_vel <= 0;
-
-                  // Note ON (0x90)
-                  if(last_status[7:4] == 4'h9 && rx_data > 0) begin
-                     if(free_channel != 8) begin
-                        on_out[free_channel] <= 1;
-                        note_out[free_channel] <= stored_note[6:0];
-                        velocity_out[free_channel] <= rx_data[7:5];
-                     end
-                  end
-
-                  // Note OFF (0x80 or 0x90 with vel=0)
-                  else if(last_status[7:4] == 4'h8 || (last_status[7:4] == 4'h9 && rx_data == 0)) begin
-                     for(int i=0; i<8; i=i+1) begin
-                        if(on_out[i] && note_out[i] == stored_note[6:0]) begin
-                           on_out[i] <= 0;
-                        end
-                     end
-                  end
-               end
-            end
-         end
       end
    end
-
 endmodule

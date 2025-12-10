@@ -1,16 +1,3 @@
-My apologies. I see exactly what you mean now. You want the **exact** structure of your reference UART code (using `if/else if`, specific states 0-4, and the `BAUD_BIT_PERIOD` logic), but modified to handle **MSB-first** data collection and integrated with the MIDI processing logic you need.
-
-Here is the `midi_rx` module rebuilt from scratch using your specific template and timing logic.
-
-### Key Changes to Match Your Request:
-
-1.  **Structure:** Copied your `uart_receive` state machine structure exactly (States 0-4, `BAUD_BIT_PERIOD` calculations).
-2.  **MSB Logic:** In `state == 2` (Data), I changed the bit assignment to `temp_data[7 - data_counter] <= data_in`. This ensures the first bit received goes to the MSB (Bit 7).
-3.  **Integration:** The MIDI parsing logic happens in **State 4** (where your reference code asserts `new_data_out`).
-
-<!-- end list -->
-
-```systemverilog
 module midi_rx 
   #(
     parameter INPUT_CLOCK_FREQ = 100_000_000,
@@ -183,4 +170,3 @@ module midi_rx
    end
 
 endmodule
-```

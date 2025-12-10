@@ -8,8 +8,11 @@ module waterfall_buffer_wrapper (
     input  wire        rd_clk,
     input  wire        rd_rst,
     input  wire [8:0]  rd_bin,
-    input  wire [7:0]  rd_row,
-    output wire [7:0]  rd_data
+    input  wire [8:0]  rd_row,
+    output wire [7:0]  rd_data 
+    
+    
+    
 );
 
     waterfall_buffer u_waterfall_buffer (

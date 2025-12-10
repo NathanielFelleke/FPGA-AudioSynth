@@ -29,7 +29,7 @@ module hdmi_control (
     logic [9:0]  v_count;
 
     // Horizontal counter
-    always_ff @(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk) begin
         if (rst) begin
             h_count <= '0;
         end else begin

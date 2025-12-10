@@ -17,7 +17,8 @@ module synth_wrapper #(
     output wire signed [AUDIO_WIDTH-1:0] voice_6_out,
     output wire signed [AUDIO_WIDTH-1:0] voice_7_out,
     output wire signed [AUDIO_WIDTH-1:0] voice_8_out,
-    output wire [NUM_VOICES-1:0] note_on
+    output wire [NUM_VOICES-1:0] note_on,
+    output wire data_valid 
 );
 
     synth #(
@@ -36,7 +37,8 @@ module synth_wrapper #(
         .voice_6_out(voice_6_out),
         .voice_7_out(voice_7_out),
         .voice_8_out(voice_8_out),
-        .ons_out(note_on)
+        .ons_out(note_on),
+        .data_valid(data_valid)
     );
 
 endmodule

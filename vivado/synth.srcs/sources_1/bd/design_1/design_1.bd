@@ -37,7 +37,15 @@
       "log_scale_wrapper_0": "",
       "waterfall_buffer_wra_0": "",
       "axi_smc": "",
-      "ila_0": ""
+      "ila_0": "",
+      "video_handler_wrapper_0": "",
+      "hdmi_control_wrapper_0": "",
+      "color_mapping_wrapper_0": "",
+      "x_mapping_wrapper_0": "",
+      "proc_sys_reset_0": "",
+      "effect_interface_0": "",
+      "proc_sys_reset_1": "",
+      "ilconstant_7": ""
     },
     "interface_ports": {
       "DDR": {
@@ -2605,6 +2613,9 @@
             "direction": "O",
             "left": "7",
             "right": "0"
+          },
+          "data_valid": {
+            "direction": "O"
           }
         }
       },
@@ -3302,7 +3313,13 @@
           },
           "rd_rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
           },
           "rd_bin": {
             "direction": "I",
@@ -3311,7 +3328,7 @@
           },
           "rd_row": {
             "direction": "I",
-            "left": "7",
+            "left": "8",
             "right": "0"
           },
           "rd_data": {
@@ -3513,6 +3530,323 @@
             "value": "32"
           }
         }
+      },
+      "video_handler_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:video_handler_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_video_handler_wrapper_0_0",
+        "xci_path": "ip/design_1_video_handler_wrapper_0_0/design_1_video_handler_wrapper_0_0.xci",
+        "inst_hier_path": "video_handler_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "video_handler_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "40000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "pixel_x": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "pixel_y": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "hsync": {
+            "direction": "I"
+          },
+          "vsync": {
+            "direction": "I"
+          },
+          "active": {
+            "direction": "I"
+          },
+          "rgb_in": {
+            "direction": "I",
+            "left": "23",
+            "right": "0"
+          },
+          "rd_row": {
+            "direction": "O",
+            "left": "8",
+            "right": "0"
+          },
+          "rgb_out": {
+            "direction": "O",
+            "left": "23",
+            "right": "0"
+          },
+          "hsync_out": {
+            "direction": "O"
+          },
+          "vsync_out": {
+            "direction": "O"
+          },
+          "active_out": {
+            "direction": "O"
+          }
+        }
+      },
+      "hdmi_control_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:hdmi_control_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_hdmi_control_wrapper_0_0",
+        "xci_path": "ip/design_1_hdmi_control_wrapper_0_0/design_1_hdmi_control_wrapper_0_0.xci",
+        "inst_hier_path": "hdmi_control_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "hdmi_control_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "40000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "pixel_x": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "pixel_y": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "hsync": {
+            "direction": "O"
+          },
+          "vsync": {
+            "direction": "O"
+          },
+          "active": {
+            "direction": "O"
+          }
+        }
+      },
+      "color_mapping_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:color_mapping_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_color_mapping_wrapper_0_0",
+        "xci_path": "ip/design_1_color_mapping_wrapper_0_0/design_1_color_mapping_wrapper_0_0.xci",
+        "inst_hier_path": "color_mapping_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "color_mapping_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "40000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "log_val": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "valid_in": {
+            "direction": "I"
+          },
+          "rgb": {
+            "direction": "O",
+            "left": "23",
+            "right": "0"
+          },
+          "valid_out": {
+            "direction": "O"
+          }
+        }
+      },
+      "x_mapping_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:x_mapping_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_x_mapping_wrapper_0_0",
+        "xci_path": "ip/design_1_x_mapping_wrapper_0_0/design_1_x_mapping_wrapper_0_0.xci",
+        "inst_hier_path": "x_mapping_wrapper_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "x_mapping_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "40000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "pixel_x": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "active": {
+            "direction": "I"
+          },
+          "bin_index": {
+            "direction": "O",
+            "left": "8",
+            "right": "0"
+          },
+          "bin_valid": {
+            "direction": "O"
+          }
+        }
+      },
+      "proc_sys_reset_0": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "ip_revision": "17",
+        "xci_name": "design_1_proc_sys_reset_0_0",
+        "xci_path": "ip/design_1_proc_sys_reset_0_0/design_1_proc_sys_reset_0_0.xci",
+        "inst_hier_path": "proc_sys_reset_0",
+        "has_run_ip_tcl": "true"
+      },
+      "effect_interface_0": {
+        "vlnv": "xilinx.com:user:effect_interface:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_1_effect_interface_0_0",
+        "xci_path": "ip/design_1_effect_interface_0_0/design_1_effect_interface_0_0.xci",
+        "inst_hier_path": "effect_interface_0",
+        "has_run_ip_tcl": "true"
+      },
+      "proc_sys_reset_1": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "ip_revision": "17",
+        "xci_name": "design_1_proc_sys_reset_1_0",
+        "xci_path": "ip/design_1_proc_sys_reset_1_0/design_1_proc_sys_reset_1_0.xci",
+        "inst_hier_path": "proc_sys_reset_1",
+        "has_run_ip_tcl": "true"
+      },
+      "ilconstant_7": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1"
+          },
+          "CONST_WIDTH": {
+            "value": "1"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -3534,10 +3868,10 @@
           "voice_control_interf_0/S00_AXI"
         ]
       },
-      "fft_input_wrapper_0_m_axis1": {
+      "axi_smc_M03_AXI": {
         "interface_ports": [
-          "fft_input_wrapper_0/m_axis",
-          "xfft_0/S_AXIS_DATA"
+          "axi_smc/M03_AXI",
+          "effect_interface_0/S00_AXI"
         ]
       },
       "processing_system7_0_DDR": {
@@ -3560,6 +3894,16 @@
       }
     },
     "nets": {
+      "Net": {
+        "ports": [
+          "proc_sys_reset_0/peripheral_aresetn",
+          "hdmi_control_wrapper_0/rst",
+          "video_handler_wrapper_0/rst",
+          "x_mapping_wrapper_0/rst",
+          "color_mapping_wrapper_0/rst",
+          "waterfall_buffer_wra_0/rd_rst"
+        ]
+      },
       "audio_fir_interface_0_coeffs": {
         "ports": [
           "audio_fir_interface_0/coeffs",
@@ -3600,13 +3944,61 @@
         "ports": [
           "clk_wiz_0/clk_out1",
           "rgb2dvi_0/PixelClk",
-          "waterfall_buffer_wra_0/rd_clk"
+          "waterfall_buffer_wra_0/rd_clk",
+          "hdmi_control_wrapper_0/clk",
+          "video_handler_wrapper_0/clk",
+          "x_mapping_wrapper_0/clk",
+          "color_mapping_wrapper_0/clk",
+          "proc_sys_reset_0/slowest_sync_clk"
         ]
       },
       "clk_wiz_1_clk_out1": {
         "ports": [
           "clk_wiz_1/clk_out1",
-          "i2s_transmitter_0/aud_mclk"
+          "i2s_transmitter_0/aud_mclk",
+          "proc_sys_reset_1/slowest_sync_clk"
+        ]
+      },
+      "color_mapping_wrapper_0_rgb": {
+        "ports": [
+          "color_mapping_wrapper_0/rgb",
+          "video_handler_wrapper_0/rgb_in"
+        ]
+      },
+      "effect_interface_0_bit_depth": {
+        "ports": [
+          "effect_interface_0/bit_depth",
+          "effect_mux_wrapper_0/bit_depth"
+        ]
+      },
+      "effect_interface_0_delay_effect_amount": {
+        "ports": [
+          "effect_interface_0/delay_effect_amount",
+          "effect_mux_wrapper_0/delay_effect_amount"
+        ]
+      },
+      "effect_interface_0_delay_feedback_amount": {
+        "ports": [
+          "effect_interface_0/delay_feedback_amount",
+          "effect_mux_wrapper_0/delay_feedback_amount"
+        ]
+      },
+      "effect_interface_0_delay_num_samples": {
+        "ports": [
+          "effect_interface_0/delay_num_samples",
+          "effect_mux_wrapper_0/delay_num_samples"
+        ]
+      },
+      "effect_interface_0_enable_bitcrush": {
+        "ports": [
+          "effect_interface_0/enable_bitcrush",
+          "effect_mux_wrapper_0/enable_bitcrush"
+        ]
+      },
+      "effect_interface_0_enable_delay": {
+        "ports": [
+          "effect_interface_0/enable_delay",
+          "effect_mux_wrapper_0/enable_delay"
         ]
       },
       "effect_mux_wrapper_0_audio_out1": {
@@ -3643,6 +4035,24 @@
           "fft_mag_wrapper_0/s_axis_tvalid"
         ]
       },
+      "fft_input_wrapper_0_m_axis_tdata": {
+        "ports": [
+          "fft_input_wrapper_0/m_axis_tdata",
+          "xfft_0/s_axis_data_tdata"
+        ]
+      },
+      "fft_input_wrapper_0_m_axis_tlast": {
+        "ports": [
+          "fft_input_wrapper_0/m_axis_tlast",
+          "xfft_0/s_axis_data_tlast"
+        ]
+      },
+      "fft_input_wrapper_0_m_axis_tvalid": {
+        "ports": [
+          "fft_input_wrapper_0/m_axis_tvalid",
+          "xfft_0/s_axis_data_tvalid"
+        ]
+      },
       "fft_mag_wrapper_0_mag_last": {
         "ports": [
           "fft_mag_wrapper_0/mag_last",
@@ -3659,6 +4069,38 @@
         "ports": [
           "fft_mag_wrapper_0/mag_valid",
           "log_scale_wrapper_0/mag_valid"
+        ]
+      },
+      "hdmi_control_wrapper_0_active": {
+        "ports": [
+          "hdmi_control_wrapper_0/active",
+          "video_handler_wrapper_0/active",
+          "x_mapping_wrapper_0/active"
+        ]
+      },
+      "hdmi_control_wrapper_0_hsync": {
+        "ports": [
+          "hdmi_control_wrapper_0/hsync",
+          "video_handler_wrapper_0/hsync"
+        ]
+      },
+      "hdmi_control_wrapper_0_pixel_x": {
+        "ports": [
+          "hdmi_control_wrapper_0/pixel_x",
+          "video_handler_wrapper_0/pixel_x",
+          "x_mapping_wrapper_0/pixel_x"
+        ]
+      },
+      "hdmi_control_wrapper_0_pixel_y": {
+        "ports": [
+          "hdmi_control_wrapper_0/pixel_y",
+          "video_handler_wrapper_0/pixel_y"
+        ]
+      },
+      "hdmi_control_wrapper_0_vsync": {
+        "ports": [
+          "hdmi_control_wrapper_0/vsync",
+          "video_handler_wrapper_0/vsync"
         ]
       },
       "i2s_transmitter_0_lrclk_out": {
@@ -3705,10 +4147,22 @@
           "rgb2dvi_0/aRst"
         ]
       },
+      "ilconstant_7_dout": {
+        "ports": [
+          "ilconstant_7/dout",
+          "color_mapping_wrapper_0/valid_in"
+        ]
+      },
       "ilslice_0_Dout": {
         "ports": [
           "ilslice_0/Dout",
           "synth_wrapper_0/octave_on"
+        ]
+      },
+      "ilslice_3_Dout": {
+        "ports": [
+          "ilslice_3/Dout",
+          "leds"
         ]
       },
       "log_scale_wrapper_0_log_last": {
@@ -3732,9 +4186,8 @@
       "midi_in_1": {
         "ports": [
           "midi_in",
-          "synth_wrapper_0/midi_in",
           "ila_0/probe2",
-          "leds"
+          "synth_wrapper_0/midi_in"
         ]
       },
       "multi_voice_adsr_wra_0_data_out_valid": {
@@ -3791,6 +4244,12 @@
           "voice_mixer_wrapper_0/voice_7"
         ]
       },
+      "proc_sys_reset_1_peripheral_reset": {
+        "ports": [
+          "proc_sys_reset_1/peripheral_reset",
+          "i2s_transmitter_0/aud_mrst"
+        ]
+      },
       "processing_system7_0_FCLK_CLK0": {
         "ports": [
           "processing_system7_0/FCLK_CLK0",
@@ -3803,23 +4262,26 @@
           "voice_mixer_wrapper_0/clk",
           "xfft_0/aclk",
           "fft_input_wrapper_0/clk",
-          "synth_wrapper_0/clk",
           "multi_voice_adsr_wra_0/clk",
           "i2s_transmitter_0/s_axis_aud_aclk",
           "clk_wiz_1/clk_in1",
           "fft_mag_wrapper_0/clk",
           "fft_bin_filter_wrapp_0/clk",
           "log_scale_wrapper_0/clk",
-          "waterfall_buffer_wra_0/wr_clk",
           "axi_smc/aclk",
           "ila_0/clk",
-          "effect_mux_wrapper_0/clk"
+          "effect_mux_wrapper_0/clk",
+          "waterfall_buffer_wra_0/wr_clk",
+          "synth_wrapper_0/clk",
+          "effect_interface_0/s00_axi_aclk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
         "ports": [
           "processing_system7_0/FCLK_RESET0_N",
-          "rst_ps7_0_100M/ext_reset_in"
+          "rst_ps7_0_100M/ext_reset_in",
+          "proc_sys_reset_0/ext_reset_in",
+          "proc_sys_reset_1/ext_reset_in"
         ]
       },
       "rgb2dvi_0_TMDS_Clk_n": {
@@ -3852,15 +4314,22 @@
           "audio_fir_wrapper_0/rst",
           "voice_mixer_wrapper_0/rst",
           "fft_input_wrapper_0/rst",
-          "synth_wrapper_0/rst",
           "multi_voice_adsr_wra_0/rst",
           "i2s_transmitter_0/s_axis_aud_aresetn",
           "fft_mag_wrapper_0/rst",
           "fft_bin_filter_wrapp_0/rst",
           "log_scale_wrapper_0/rst",
-          "waterfall_buffer_wra_0/wr_rst",
           "axi_smc/aresetn",
-          "effect_mux_wrapper_0/rst"
+          "effect_mux_wrapper_0/rst",
+          "waterfall_buffer_wra_0/wr_rst",
+          "synth_wrapper_0/rst",
+          "effect_interface_0/s00_axi_aresetn"
+        ]
+      },
+      "synth_wrapper_0_data_valid": {
+        "ports": [
+          "synth_wrapper_0/data_valid",
+          "multi_voice_adsr_wra_0/data_in_valid"
         ]
       },
       "synth_wrapper_0_note_on": {
@@ -3925,6 +4394,36 @@
           "clk_wiz_0/clk_in1"
         ]
       },
+      "video_handler_wrapper_0_active_out": {
+        "ports": [
+          "video_handler_wrapper_0/active_out",
+          "rgb2dvi_0/vid_pVDE"
+        ]
+      },
+      "video_handler_wrapper_0_hsync_out": {
+        "ports": [
+          "video_handler_wrapper_0/hsync_out",
+          "rgb2dvi_0/vid_pHSync"
+        ]
+      },
+      "video_handler_wrapper_0_rd_row": {
+        "ports": [
+          "video_handler_wrapper_0/rd_row",
+          "waterfall_buffer_wra_0/rd_row"
+        ]
+      },
+      "video_handler_wrapper_0_rgb_out": {
+        "ports": [
+          "video_handler_wrapper_0/rgb_out",
+          "rgb2dvi_0/vid_pData"
+        ]
+      },
+      "video_handler_wrapper_0_vsync_out": {
+        "ports": [
+          "video_handler_wrapper_0/vsync_out",
+          "rgb2dvi_0/vid_pVSync"
+        ]
+      },
       "voice_control_interf_0_attack_time": {
         "ports": [
           "voice_control_interf_0/attack_time",
@@ -3961,6 +4460,18 @@
           "audio_fir_wrapper_0/data_in"
         ]
       },
+      "waterfall_buffer_wra_0_rd_data": {
+        "ports": [
+          "waterfall_buffer_wra_0/rd_data",
+          "color_mapping_wrapper_0/log_val"
+        ]
+      },
+      "x_mapping_wrapper_0_bin_index": {
+        "ports": [
+          "x_mapping_wrapper_0/bin_index",
+          "waterfall_buffer_wra_0/rd_bin"
+        ]
+      },
       "xfft_0_m_axis_data_tdata": {
         "ports": [
           "xfft_0/m_axis_data_tdata",
@@ -3978,6 +4489,12 @@
           "xfft_0/m_axis_data_tvalid",
           "fft_bin_filter_wrapp_0/fft_valid"
         ]
+      },
+      "xfft_0_s_axis_data_tready": {
+        "ports": [
+          "xfft_0/s_axis_data_tready",
+          "fft_input_wrapper_0/m_axis_tready"
+        ]
       }
     },
     "addressing": {
@@ -3988,6 +4505,13 @@
               "SEG_audio_fir_interface_0_S00_AXI_reg": {
                 "address_block": "/audio_fir_interface_0/S00_AXI/S00_AXI_reg",
                 "offset": "0x43C00000",
+                "range": "64K",
+                "offset_base_param": "C_S00_AXI_BASEADDR",
+                "offset_high_param": "C_S00_AXI_HIGHADDR"
+              },
+              "SEG_effect_interface_0_S00_AXI_reg": {
+                "address_block": "/effect_interface_0/S00_AXI/S00_AXI_reg",
+                "offset": "0x43C30000",
                 "range": "64K",
                 "offset_base_param": "C_S00_AXI_BASEADDR",
                 "offset_high_param": "C_S00_AXI_HIGHADDR"

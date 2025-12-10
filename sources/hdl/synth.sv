@@ -84,14 +84,14 @@ module synth #(
         end 
     endgenerate 
 
-    // Audio Output Assignment
-    assign voice_1_out = (octave_on)? ((osc_out[0] + oct_osc_out[0]) >>> 1) : osc_out[0]; 
-    assign voice_2_out = (octave_on)? ((osc_out[1] + oct_osc_out[1]) >>> 1) : osc_out[1]; 
-    assign voice_3_out = (octave_on)? ((osc_out[2] + oct_osc_out[2]) >>> 1) : osc_out[2]; 
-    assign voice_4_out = (octave_on)? ((osc_out[3] + oct_osc_out[3]) >>> 1) : osc_out[3]; 
-    assign voice_5_out = (octave_on)? ((osc_out[4] + oct_osc_out[4]) >>> 1) : osc_out[4]; 
-    assign voice_6_out = (octave_on)? ((osc_out[5] + oct_osc_out[5]) >>> 1) : osc_out[5]; 
-    assign voice_7_out = (octave_on)? ((osc_out[6] + oct_osc_out[6]) >>> 1) : osc_out[6]; 
-    assign voice_8_out = (octave_on)? ((osc_out[7] + oct_osc_out[7]) >>> 1) : osc_out[7]; 
+    // Audio Output Assignment - Output 0 when oscillator is not active (ons_out[i] == 0)
+    assign voice_1_out = ons_out[0] ? (octave_on ? ((osc_out[0] + oct_osc_out[0]) >>> 1) : osc_out[0]) : '0;
+    assign voice_2_out = ons_out[1] ? (octave_on ? ((osc_out[1] + oct_osc_out[1]) >>> 1) : osc_out[1]) : '0;
+    assign voice_3_out = ons_out[2] ? (octave_on ? ((osc_out[2] + oct_osc_out[2]) >>> 1) : osc_out[2]) : '0;
+    assign voice_4_out = ons_out[3] ? (octave_on ? ((osc_out[3] + oct_osc_out[3]) >>> 1) : osc_out[3]) : '0;
+    assign voice_5_out = ons_out[4] ? (octave_on ? ((osc_out[4] + oct_osc_out[4]) >>> 1) : osc_out[4]) : '0;
+    assign voice_6_out = ons_out[5] ? (octave_on ? ((osc_out[5] + oct_osc_out[5]) >>> 1) : osc_out[5]) : '0;
+    assign voice_7_out = ons_out[6] ? (octave_on ? ((osc_out[6] + oct_osc_out[6]) >>> 1) : osc_out[6]) : '0;
+    assign voice_8_out = ons_out[7] ? (octave_on ? ((osc_out[7] + oct_osc_out[7]) >>> 1) : osc_out[7]) : '0; 
 
 endmodule

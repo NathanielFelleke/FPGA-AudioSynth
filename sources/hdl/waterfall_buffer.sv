@@ -1,22 +1,21 @@
-module waterfall_buffer (
-    //main clock writing into it
+module waterfall_buffer #(
+    parameter HEIGHT = 300
+)(
     input  logic        wr_clk,
     input  logic        wr_rst,
     input  logic [7:0]  log_in,
     input  logic        log_valid,
     input  logic        log_last,
     
-    //25 Mhz clock (which runs video logic) reading from
     input  logic        rd_clk,
     input  logic        rd_rst,
     input  logic [8:0]  rd_bin,
-    input  logic [7:0]  rd_row,
+    input  logic [8:0]  rd_row,      // 0 = newest, HEIGHT-1 = oldest
     output logic [7:0]  rd_data
 );
 
-    //counters for bin and row for the writing side
     logic [8:0] wr_bin;
-    logic [7:0] wr_row;
+    logic [8:0] wr_row;
 
     always_ff @(posedge wr_clk) begin
         if (wr_rst) begin
@@ -24,23 +23,22 @@ module waterfall_buffer (
             wr_row <= '0;
         end else if (log_valid) begin
             if (log_last) begin
-
                 wr_bin <= '0;
-
-                wr_row <= wr_row + 1;
+                if (wr_row == HEIGHT - 1)
+                    wr_row <= '0;
+                else
+                    wr_row <= wr_row + 1;
             end else begin
-
-
                 wr_bin <= wr_bin + 1;
             end
         end
     end
 
-    //Using gray code to sync the write row to the read row (safely)
-    logic [7:0] wr_row_rd;
+    // Sync write row to read domain
+    logic [8:0] wr_row_rd;
 
-    xpm_cdc_gray #( //vivado ip for gray code
-        .WIDTH(8)
+    xpm_cdc_gray #(
+        .WIDTH(9)
     ) row_sync (
         .src_clk(wr_clk),
         .src_in_bin(wr_row),
@@ -48,14 +46,20 @@ module waterfall_buffer (
         .dest_out_bin(wr_row_rd)
     );
 
-    //read address based on the wr_row
-    logic [7:0] rd_row_addr;
-    assign rd_row_addr = wr_row_rd - rd_row - 1;
+    // read address
+    logic [8:0] rd_row_addr;
 
-    // using bram for storing this data
+    always_comb begin //assign the read address based on the sync write row
+        if (wr_row_rd > rd_row)
+            rd_row_addr = wr_row_rd - rd_row - 1;
+        else
+            rd_row_addr = HEIGHT + wr_row_rd - rd_row - 1;
+    end
+
+    // BRAM
     xilinx_true_dual_port_read_first_2_clock_ram #(
         .RAM_WIDTH(8),
-        .RAM_DEPTH(512 * 256),
+        .RAM_DEPTH(512 * HEIGHT),
         .RAM_PERFORMANCE("HIGH_PERFORMANCE")
     ) frame_mem (
         .clka(wr_clk),

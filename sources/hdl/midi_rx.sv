@@ -17,6 +17,11 @@ module midi_rx
 
    localparam BAUD_BIT_PERIOD = INPUT_CLOCK_FREQ/BAUD_RATE; // 3200 for 100MHz
 
+   // Input synchronizer (2-FF chain to prevent metastability)
+   logic        data_in_sync1;
+   logic        data_in_sync2;
+   logic        data_in_prev;
+
    // UART State Machine
    logic        uart_state;  // 0=IDLE, 1=READ
    logic [3:0]  bit_count;
@@ -39,6 +44,11 @@ module midi_rx
    // UART State Machine (matches reference from jzkmath)
    always_ff @(posedge clk) begin
       if(rst) begin
+         // Synchronizer chain
+         data_in_sync1 <= 1;
+         data_in_sync2 <= 1;
+         data_in_prev <= 1;
+
          uart_state <= 0;
          bit_count <= 0;
          cycle_count <= 0;
@@ -53,11 +63,17 @@ module midi_rx
          expecting_vel <= 0;
       end
       else begin
+         // Two-stage synchronizer for metastability protection
+         data_in_sync1 <= data_in;
+         data_in_sync2 <= data_in_sync1;
+         data_in_prev <= data_in_sync2;
+
          // State Machine
          case(uart_state)
             1'b0: begin // IDLE
                rx_done <= 0;
-               if(data_in == 0) begin // Start bit detected
+               // Edge detect: Look for high-to-low transition (start bit)
+               if(data_in_prev == 1 && data_in_sync2 == 0) begin
                   uart_state <= 1;
                   bit_count <= 0;
                   cycle_count <= 0;
@@ -76,13 +92,14 @@ module midi_rx
                // Sample data bits (8 bits total)
                else if(cycle_count == BAUD_BIT_PERIOD && bit_count >= 1 && bit_count <= 8) begin
                   // LSB first: shift right, new bit enters at MSB
-                  rx_data <= {data_in, rx_data[7:1]};
+                  // Use synchronized signal!
+                  rx_data <= {data_in_sync2, rx_data[7:1]};
                   bit_count <= bit_count + 1;
                   cycle_count <= 0;
                end
 
                // Check stop bit
-               else if(cycle_count == BAUD_BIT_PERIOD && bit_count == 9 && data_in == 1) begin
+               else if(cycle_count == BAUD_BIT_PERIOD && bit_count == 9 && data_in_sync2 == 1) begin
                   rx_done <= 1;
                   uart_state <= 0; // Back to IDLE
                   bit_count <= 0;
@@ -90,7 +107,7 @@ module midi_rx
                end
 
                // Framing error - no valid stop bit
-               else if(cycle_count == BAUD_BIT_PERIOD && bit_count == 9 && data_in == 0) begin
+               else if(cycle_count == BAUD_BIT_PERIOD && bit_count == 9 && data_in_sync2 == 0) begin
                   uart_state <= 0; // Abort, back to IDLE
                   bit_count <= 0;
                   cycle_count <= 0;
